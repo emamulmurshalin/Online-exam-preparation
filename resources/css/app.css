@@ -1,0 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.router-link-exact-active {
+    background-color: #1f8aff !important;
+    color: white!important;
+}
