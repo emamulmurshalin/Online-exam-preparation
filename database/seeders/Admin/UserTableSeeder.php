@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
                 'first_name' => 'Admin',
                 'last_name' => 'Demo',
                 'email' => 'admin@demo.com',
-                'role_id' => 2,
+                'role_id' => 1,
                 'status_id' => 2,
                 'photo' => 'default.png',
                 'password' => Hash::make('12345678'),

@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ContactInfo extends Model
 {
     use HasFactory;
-    public function contactComment()
-    {
-        return $this->hasOne(ContactComments::class);
-    }
-    public function country()
-    {
-        return $this->hasOne(Country::class);
-    }
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'message',
+    ];
 }

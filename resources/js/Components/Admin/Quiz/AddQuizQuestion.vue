@@ -14,6 +14,15 @@
                                               placeholder="Enter question title"></textarea>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Quiz subject</label>
+                        <select v-model="form.subject_id" class="col-sm-9">
+                            <option v-for="(subject, index) in subjectData" v-bind:value="subject.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                {{subject.name}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer float-right">
@@ -31,12 +40,24 @@
         name: "AddQuizQuestion",
         data(){
             return{
+                subjectData: {},
                 form: new Form({
                     quiz_question: '',
                 })
             }
         },
+        created(){
+            this.getSubject();
+        },
         methods:{
+            getSubject(){
+                this.axios.get('/get-subject')
+                    .then((response) => {
+                        this.subjectData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
             addQuiz(){
                 this.axios.post('/quiz/question', this.form)
                     .then((response) => {

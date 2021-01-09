@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ContactInfoController;
 use App\Http\Controllers\Admin\PreviousQuestionController;
 use App\Http\Controllers\Admin\QuestionTypeController;
 use App\Http\Controllers\Admin\QuestionYearController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\QuizManageController;
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +37,9 @@ Route::get('/users/contact-info', function () {
 });
 Route::get('/users/blog-post', function () {
     return view('layouts.admin.blog.blog-post');
+});
+Route::get('/users/add-post', function () {
+    return view('layouts.admin.blog.add-post');
 });
 Route::get('/users/profile', function () {
     return view('layouts.admin.profile.profile');
@@ -72,9 +78,17 @@ Route::post('/quiz/question', [QuizController::class, 'addQuizQuestion'])
     ->name('question');
 Route::get('/get-question', [QuizController::class, 'getQuizQuestion'])
     ->name('get_question');
+Route::get('/get-subject', [SubjectController::class, 'getsubject'])
+    ->name('get_subject');
 
 //Previous question
 Route::resource('get-years', QuestionYearController::class);
 Route::resource('get-types', QuestionTypeController::class);
 
 Route::resource('previous-question', PreviousQuestionController::class);
+
+//Contact info
+Route::resource('contact-info', ContactInfoController::class);
+
+//Contact info
+Route::resource('blogs', BlogController::class);

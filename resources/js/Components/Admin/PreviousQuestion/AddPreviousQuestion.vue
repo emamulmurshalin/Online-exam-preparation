@@ -96,7 +96,6 @@
                 formData.append('question_title', this.form.question_title);
                 formData.append('question_years_id', this.form.question_years_id);
                 formData.append('question_types_id', this.form.question_types_id);
-                console.log(formData);
                 this.axios.post('previous-question', formData, config)
                     .then((response) => {
                         toast.fire({

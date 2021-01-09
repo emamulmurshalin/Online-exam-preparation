@@ -66,6 +66,7 @@ import Users from './Components/Admin/Users/Users.vue';
 import Dashboard from './Components/Admin/Dashboard/Dashboard.vue';
 import ContactInfo from './Components/Admin/ContactInfo/ContactsInfo.vue';
 import BlogPost from './Components/Admin/Blog/Blogs.vue';
+import AddBlogPost from './Components/Admin/Blog/AddPost.vue';
 import Profile from './Components/Admin/Profile/Profile.vue';
 import Quiz from './Components/Admin/Quiz/QuizList.vue';
 import AddQuiz from './Components/Admin/Quiz/AddQuiz.vue';
@@ -78,6 +79,7 @@ let routes = [
     { path: '/dashboard', component: Dashboard },
     { path: '/users/contact-info', component: ContactInfo },
     { path: '/users/blog-post', component: BlogPost },
+    { path: '/users/add-post', component: AddBlogPost },
     { path: '/users/profile', component: Profile },
     { path: '/quiz/list/view', component: Quiz },
     { path: '/add-quiz', component: AddQuiz },
@@ -105,14 +107,6 @@ Vue.filter('localDate', function (date) {
 
 /////////////////
 Vue.component(
-    'overlay-loader',
-    require('./Components/Helpers/OverlayLoader').default
-);
-Vue.component(
-    'button-loader',
-    require('./Components/Helpers/Loader').default
-);
-Vue.component(
     'dashboard-show',
     require('./Components/Admin/Dashboard/Dashboard').default
 );
@@ -131,6 +125,10 @@ Vue.component(
 Vue.component(
     'blog-post',
     require('./Components/Admin/Blog/Blogs').default
+);
+Vue.component(
+    'add-blog-post',
+    require('./Components/Admin/Blog/AddPost').default
 );
 Vue.component(
     'user-profile',

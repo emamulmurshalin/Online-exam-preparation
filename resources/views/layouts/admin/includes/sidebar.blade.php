@@ -100,11 +100,28 @@
                         <p>Contact info</p>
                     </router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link to="/users/blog-post" class="nav-link">
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
                         <i class="fas fa-blog"></i>
-                        <p>Blog</p>
-                    </router-link>
+                        <p>
+                            Blog management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <router-link to="/users/blog-post" class="nav-link">
+                                <i class="fas fa-blog"></i>
+                                <p>All blog</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/users/add-post" class="nav-link">
+                                <i class="fas fa-blog"></i>
+                                <p>Add post</p>
+                            </router-link>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <router-link to="/users/profile" class="nav-link">

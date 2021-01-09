@@ -12,9 +12,6 @@ class CountryTableSeeder extends Seeder
         DB::table('countries')->insert(
             [
                 'name' => 'Bangladesh',
-            ],
-            [
-                'name' => 'Saudi Arabia',
             ]
         );
     }

@@ -6,34 +6,19 @@
     <title>Online job preparation | Dashboard</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-    <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
-    <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-    <!-- JQVMap -->
     <link rel="stylesheet" href="{{asset('admin/plugins/jqvmap/jqvmap.min.css')}}">
-    <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
-    <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-    <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
-    <!-- summernote -->
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.css')}}">
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -104,11 +89,11 @@
 {{--<script src="{{asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>--}}
 {{--<!-- overlayScrollbars -->--}}
 {{--<script src="{{asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>--}}
-<!-- AdminLTE App -->
+<!--  App -->
 <script src="{{asset('admin/dist/js/adminlte.js')}}"></script>
-{{--<!-- AdminLTE dashboard demo (This is only for demo purposes) -->--}}
+{{--<!--  dashboard demo (This is only for demo purposes) -->--}}
 {{--<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>--}}
-<!-- AdminLTE for demo purposes -->
+<!--  for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
 
 @auth()

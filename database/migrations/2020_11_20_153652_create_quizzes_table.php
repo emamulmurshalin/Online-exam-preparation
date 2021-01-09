@@ -16,7 +16,9 @@ class CreateQuizzesTable extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->increments('id');
             $table->string("quiz_question");
+            $table->integer('subject_id')->unsigned();
             $table->timestamps();
+            $table->foreign('subject_id')->references('id')->on('subjects');
         });
     }
 

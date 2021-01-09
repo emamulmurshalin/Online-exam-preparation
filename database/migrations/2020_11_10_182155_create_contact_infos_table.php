@@ -17,11 +17,10 @@ class CreateContactInfosTable extends Migration
 
             $table->increments('id');
             $table->string("name");
+            $table->string("phone");
             $table->string("email");
-            $table->integer('country_id')->nullable()->unsigned();
-            $table->string("subject");
+            $table->text("message");
             $table->timestamps();
-            $table->foreign('country_id')->references('id')->on('countries');
 
         });
     }

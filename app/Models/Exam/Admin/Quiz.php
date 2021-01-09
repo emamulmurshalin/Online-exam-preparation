@@ -12,7 +12,12 @@ class Quiz extends Model
     {
         return $this->hasMany(QuizOption::class);
     }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
     protected $fillable = [
         'quiz_question',
+        'subject_id'
     ];
 }
