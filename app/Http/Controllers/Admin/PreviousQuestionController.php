@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Exam\Admin\PreviousQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class PreviousQuestionController extends Controller
 {
@@ -97,5 +98,27 @@ class PreviousQuestionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function download($id)
+    {
+        $question = PreviousQuestion::findOrFail($id);
+
+        $file= public_path(). "/Question/".$question->question_file_path;
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return Response::download($file, $question->question_file_path, $headers);
+    }
+
+    public function previewQuestion($id)
+    {
+        $question = PreviousQuestion::findOrFail($id);
+        $file= public_path(). "/Question/".$question->question_file_path;
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return response()->file($file, $headers);
     }
 }

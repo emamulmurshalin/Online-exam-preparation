@@ -18,7 +18,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     <!-- //meta-tags -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     <link href="{{asset('front/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{asset('front/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome -->
@@ -30,31 +32,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
-<!-- header -->
+
+<div class="wrapper" id="app">
+    <!-- header -->
 @include('layouts.frontEnd.includes.top-navbar')
 
 @include('layouts.frontEnd.includes.top-menu')
 
-<!-- banner -->
-@include('layouts.frontEnd.includes.banner')
-<!--//banner -->
-<!-- about -->
-@include('layouts.frontEnd.includes.about-our')
-<!-- //about -->
-<!-- services -->
-@include('layouts.frontEnd.includes.our-service')
-<!-- //services -->
-
-<!-- //news -->
-<!-- middle section -->
-@include('layouts.frontEnd.includes.our-course')
-<!-- //middle section -->
-<!-- testimonials -->
-@include('layouts.frontEnd.includes.testimonial')
-<!-- //testimonials -->
+@yield('content')
 <!-- footer -->
 @include('layouts.frontEnd.includes.footer')
 <!--/footer -->
+</div>
 
 
 <script src="{{asset('front/js/jquery-2.1.4.min.js')}}"></script>

@@ -26,9 +26,24 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 Route::get('/', function () {
-    return view('layouts.frontEnd.index');
+    return view('layouts.frontEnd.master');
+});
+Route::get('/exam/contact-us', function () {
+    return view('layouts.frontEnd.contact.contact-us');
+});
+Route::get('/exam/about', function () {
+    return view('layouts.frontEnd.about.about');
+});
+Route::get('/exam/question', function () {
+    return view('layouts.frontEnd.question.question-show-front');
+});
+Route::get('/exam/model-test', function () {
+    return view('layouts.frontEnd.quiz.model-test');
 });
 
+
+
+//Admin view
 Route::get('/users/list/view', function () {
     return view('layouts.admin.users.user');
 });
@@ -64,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('layouts.admin.exam');
 })->name('dashboard');
 
+
+//Api for data get post edit delete
 //User
 Route::resource('users', UserController::class);
 Route::get('/find-user', [UserController::class, 'search']);
@@ -92,3 +109,13 @@ Route::resource('contact-info', ContactInfoController::class);
 
 //Contact info
 Route::resource('blogs', BlogController::class);
+
+
+Route::get('/exam/question/{id}/preview', [PreviousQuestionController::class, 'previewQuestion'])
+    ->name('preview-question');
+
+Route::get('/exam/question/{id}/download', [PreviousQuestionController::class, 'download'])
+    ->name('download');
+
+Route::get('/get-quiz', [QuizController::class, 'getQuiz'])
+    ->name('get_quiz');

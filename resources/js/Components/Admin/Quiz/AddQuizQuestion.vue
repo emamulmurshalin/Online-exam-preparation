@@ -5,10 +5,10 @@
                 <h3 class="card-title">Add quiz question</h3>
             </div>
             <form class="form-horizontal">
-                <div class="card-body">
+                <div class="card-body bg-color">
                     <div class="form-group row">
                         <label class="col-sm-3">Question</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                                     <textarea v-model="form.quiz_question" name="question"
                                               class="form-control d-flex justify-content-center"
                                               placeholder="Enter question title"></textarea>
@@ -17,17 +17,19 @@
 
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Quiz subject</label>
-                        <select v-model="form.subject_id" class="col-sm-9">
-                            <option v-for="(subject, index) in subjectData" v-bind:value="subject.id" :key="index" :selected="index === 0 ? 'selected' : ''">
-                                {{subject.name}}
-                            </option>
-                        </select>
+                        <div class="col-sm-8">
+                            <select v-model="form.subject_id" class="form-control">
+                                <option v-for="(subject, index) in subjectData" v-bind:value="subject.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{subject.name}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer float-right">
-                    <button type="submit" class="btn btn-default mr-2">Cancel</button>
-                    <button type="submit" class="btn btn-info" @click.prevent="addQuiz">Save</button>
+                <div class="float-right bg-color mr-2 mb-3 mt-3">
+                    <button class="btn btn-default pr-4 pl-4 mr-2">Cancel</button>
+                    <button type="submit" class="btn btn-info pr-4 pl-4" @click.prevent="addQuiz">Save</button>
                 </div>
                 <!-- /.card-footer -->
             </form>
@@ -73,3 +75,10 @@
         }
     }
 </script>
+
+<style scoped>
+    .bg-color {
+        background-color: #F5F5F5;
+    }
+
+</style>

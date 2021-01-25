@@ -5,17 +5,17 @@
                 <h3 class="card-title">Add Blog Post</h3>
             </div>
             <form class="form-horizontal">
-                <div class="card-body">
+                <div class="card-body bg-color">
                     <div class="form-group row">
                         <label class="col-sm-3">Title</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <input v-model="form.title" type="text" name="title"
                                    class="form-control" placeholder="Enter title" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3">Content</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                                     <textarea v-model="form.content" name="content"
                                               class="form-control d-flex justify-content-center"
                                               placeholder="Enter content"></textarea>
@@ -24,9 +24,9 @@
 
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer float-right">
-                    <button type="submit" class="btn btn-default mr-2">Cancel</button>
-                    <button type="submit" class="btn btn-info" @click.prevent="addPost">Save</button>
+                <div class="float-right bg-color mr-2 mb-3 mt-3">
+                    <button class="btn btn-default pr-4 pl-4 mr-2">Cancel</button>
+                    <button type="submit" class="btn btn-info pr-4 pl-4" @click.prevent="addPost">Save</button>
                 </div>
                 <!-- /.card-footer -->
             </form>
@@ -67,3 +67,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .bg-color {
+        background-color: #F5F5F5;
+    }
+</style>

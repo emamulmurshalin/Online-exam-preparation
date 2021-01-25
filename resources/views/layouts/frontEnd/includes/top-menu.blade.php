@@ -9,7 +9,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="/">
                         <h1>
                             <span class="fa fa-leanpub" aria-hidden="true"></span>Online Exam Preparation
                             <label>Quiz & Question</label>
@@ -21,22 +21,25 @@
                     <nav class="link-effect-2" id="link-effect-2">
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <a href="index.html" class="effect-3">Home</a>
+                                <a href="/" class="effect-3">Home</a>
                             </li>
                             <li>
-                                <a href="about.html" class="effect-3">About Us</a>
+                                <a href="/exam/model-test" class="effect-3">Model test</a>
                             </li>
                             <li>
-                                <a href="Gallery.html" class="effect-3">Attend quiz</a>
+                                <a href="/exam/question" class="effect-3">Question</a>
                             </li>
                             <li>
-                                <a href="courses.html" class="effect-3">Question</a>
+                                <a href="/exam/contact-us" class="effect-3">Contact Us</a>
                             </li>
                             <li>
-                                <a href="contact.html" class="effect-3">Contact Us</a>
+                                <a href="/exam/about" class="effect-3">About Us</a>
                             </li>
                             <li>
-                                <a href="join.html" class="effect-3">Sign up</a>
+                                <a href="/exam/blog" class="effect-3">Blog</a>
+                            </li>
+                            <li>
+                                <a href="/exam/user/register" class="effect-3">Sign up</a>
                             </li>
                         </ul>
                     </nav>

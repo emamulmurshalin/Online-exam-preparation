@@ -10,12 +10,10 @@
                     <a href="/">Home</a>
                     <span>| |</span>
                 </li>
-                <li>Contact Us</li>
+                <li>About Us</li>
             </ul>
         </div>
     </div>
     <!-- //short-->
-    <exam-contact-us>
-
-    </exam-contact-us>
+    @include('layouts.frontEnd.about.about-content')
 @endsection

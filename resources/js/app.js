@@ -73,6 +73,9 @@ import AddQuiz from './Components/Admin/Quiz/AddQuiz.vue';
 import AddQuizQuestion from './Components/Admin/Quiz/AddQuizQuestion.vue';
 import AddPreviousQuestion from './Components/Admin/PreviousQuestion/AddPreviousQuestion.vue';
 import ViewPreviousQuestion from './Components/Admin/PreviousQuestion/ShowQuestion.vue';
+import ExamContactUs from './Components/FrontEnd/Contact/ContactUs.vue';
+import QuestionShow from './Components/FrontEnd/Question/QuestionShow.vue';
+import ModelTest from './Components/FrontEnd/Quiz/ModelTest.vue';
 
 let routes = [
     { path: '/users/list/view', component: Users },
@@ -86,6 +89,10 @@ let routes = [
     { path: '/add-quiz-question', component: AddQuizQuestion },
     { path: '/add-previous-question', component: AddPreviousQuestion },
     { path: '/show-question', component: ViewPreviousQuestion },
+    { path: '/exam/contact-us', component: ExamContactUs },
+    { path: '/exam/question', component: QuestionShow },
+    { path: '/exam/question', component: QuestionShow },
+    { path: '/exam/model-test', component: QuestionShow },
 ];
 
 Vue.use(VueAxios, axios);
@@ -157,6 +164,23 @@ Vue.component(
 Vue.component(
     'show-previous-question',
     require('./Components/Admin/PreviousQuestion/ShowQuestion').default
+);
+
+
+//Front end vue
+Vue.component(
+    'exam-contact-us',
+    require('./Components/FrontEnd/Contact/ContactUs').default
+);
+
+Vue.component(
+    'exam-question',
+    require('./Components/FrontEnd/Question/QuestionShow').default
+);
+
+Vue.component(
+    'app-model-test',
+    require('./Components/FrontEnd/Quiz/ModelTest').default
 );
 
 const app = new Vue({

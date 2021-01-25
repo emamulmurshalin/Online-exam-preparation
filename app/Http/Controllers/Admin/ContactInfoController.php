@@ -37,7 +37,16 @@ class ContactInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'email' => 'required|string|email|max:191',
+        ]);
+        $user = ContactInfo::create($request->all());
+
+        return [
+            'status' => 200,
+            'message' => 'User created successfully',
+        ];
     }
 
     /**

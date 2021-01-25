@@ -5,40 +5,44 @@
                 <h3 class="card-title">Upload previous question</h3>
             </div>
             <form class="form-horizontal">
-                <div class="card-body">
+                <div class="card-body bg-color">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Question title</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <input type="text" v-model="form.question_title" class="form-control" placeholder="Enter title">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Upload question</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <input v-on:change="selectFile" type="file" placeholder="Photo">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Question year</label>
-                        <select v-model="form.question_years_id" class="col-sm-9">
-                            <option v-for="(questionYear, index) in yearData" v-bind:value="questionYear.id" :key="index" :selected="index === 0 ? 'selected' : ''">
-                                {{questionYear.year}}
-                            </option>
-                        </select>
+                        <div class="col-sm-8">
+                            <select v-model="form.question_years_id" class="form-control">
+                                <option v-for="(questionYear, index) in yearData" v-bind:value="questionYear.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{questionYear.year}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Question type</label>
-                        <select v-model="form.question_types_id" class="col-sm-9">
-                            <option v-for="(questionType, index) in typeData" v-bind:value="questionType.id" :key="index" :selected="index === 0 ? 'selected' : ''">
-                                {{questionType.type}}
-                            </option>
-                        </select>
+                        <div class="col-sm-8 ">
+                            <select v-model="form.question_types_id" class="form-control">
+                                <option v-for="(questionType, index) in typeData" v-bind:value="questionType.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{questionType.type}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer float-right">
-                    <button class="btn btn-default mr-2">Cancel</button>
-                    <button type="submit" class="btn btn-info" @click.prevent="addPreviousQuestion">Save</button>
+                <div class="float-right bg-color mr-2 mb-3 mt-3">
+                    <button class="btn btn-default pr-4 pl-4 mr-2">Cancel</button>
+                    <button type="submit" class="btn btn-info pr-4 pl-4" @click.prevent="addPreviousQuestion">Save</button>
                 </div>
                 <!-- /.card-footer -->
             </form>
@@ -109,3 +113,10 @@
         }
     }
 </script>
+
+
+<style scoped>
+    .bg-color {
+        background-color: #F5F5F5;
+    }
+</style>

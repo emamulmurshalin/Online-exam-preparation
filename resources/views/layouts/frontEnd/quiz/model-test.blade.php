@@ -1,5 +1,5 @@
 @extends('layouts.frontEnd.index')
-@section('title', 'Contact us')
+@section('title', 'Model test')
 @section('content')
     @include('layouts.frontEnd.banner')
     <!-- short-->
@@ -10,12 +10,12 @@
                     <a href="/">Home</a>
                     <span>| |</span>
                 </li>
-                <li>Contact Us</li>
+                <li>Model test</li>
             </ul>
         </div>
     </div>
     <!-- //short-->
-    <exam-contact-us>
+    <app-model-test>
 
-    </exam-contact-us>
+    </app-model-test>
 @endsection

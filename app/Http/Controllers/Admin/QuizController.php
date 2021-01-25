@@ -21,6 +21,13 @@ class QuizController extends Controller
             ->paginate(15);
     }
 
+    public function getQuiz()
+    {
+        return Quiz::with('quizOption')
+            ->inRandomOrder()
+            ->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
