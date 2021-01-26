@@ -15,6 +15,12 @@
                         <i class="fas fa-question"></i>
                     </button>
                 </div>
+                <div class="float-right mr-3">
+                    <button @click.prevent="addQuizAnswer" data-toggle="modal" class="btn btn-success">
+                        Add quiz answer
+                        <i class="fas fa-question"></i>
+                    </button>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -63,7 +69,7 @@
                                     <template v-if="quiz.quiz_option.length < 4">
                                         <td v-for="noOption in (4 - quiz.quiz_option.length)">{{'-'}}</td>
                                     </template>
-                                    <td v-if="quiz.quiz_option.length">{{quiz.quiz_option[0].answer}}</td>
+                                    <td v-if="quiz.quiz_answer">{{quiz.quiz_answer.answer}}</td>
                                     <td v-else>{{'-'}}</td>
                                     <td>
                                         <a href="#" @click.prevent="editQuiz(quiz.id)">
@@ -111,6 +117,9 @@
             },
             addQuizOption(){
                 window.location.replace('/add-quiz');
+            },
+            addQuizAnswer(){
+                window.location.replace('/add-quiz-answer');
             },
             searchIt(){
                 console.log('search');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Exam\Admin\Quiz;
+use App\Models\Exam\Admin\QuizAnswer;
 use App\Models\Exam\Admin\QuizOption;
 use Illuminate\Http\Request;
 
@@ -16,14 +17,14 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return Quiz::with('quizOption')
+        return Quiz::with('quizOption', 'quizAnswer')
             ->latest()
             ->paginate(15);
     }
 
     public function getQuiz()
     {
-        return Quiz::with('quizOption')
+        return Quiz::with('quizOption', 'quizAnswer')
             ->inRandomOrder()
             ->get();
     }
@@ -47,6 +48,16 @@ class QuizController extends Controller
     public function store(Request $request)
     {
         QuizOption::create($request->all());
+
+        return [
+            'status' => 200,
+            'message' => 'User created successfully',
+        ];
+    }
+
+    public function addQuizAnswer(Request $request)
+    {
+        QuizAnswer::create($request->all());
 
         return [
             'status' => 200,

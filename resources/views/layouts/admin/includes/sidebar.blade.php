@@ -88,7 +88,13 @@
                         <li class="nav-item">
                             <router-link to="/add-quiz" class="nav-link">
                                 <i class="fas fa-question"></i>
-                                <p>Quiz option</p>
+                                <p>Add quiz option</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/add-quiz-answer" class="nav-link">
+                                <i class="fas fa-question"></i>
+                                <p>Add quiz answer</p>
                             </router-link>
                         </li>
                     </ul>

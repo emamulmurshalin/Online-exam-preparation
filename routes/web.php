@@ -65,6 +65,9 @@ Route::get('/quiz/list/view', function () {
 Route::get('/add-quiz', function () {
     return view('layouts.admin.quiz.add-quiz');
 });
+Route::get('/add-quiz-answer', function () {
+    return view('layouts.admin.quiz.add-quiz-answer');
+});
 Route::get('/add-quiz-question', function () {
     return view('layouts.admin.quiz.add-quiz-question');
 });
@@ -91,6 +94,9 @@ Route::patch('/profile/{id}', [UserController::class, 'updateProfile']);
 
 //Quiz
 Route::resource('quiz', QuizController::class);
+Route::post('/quiz-answer', [QuizController::class, 'addQuizAnswer'])
+    ->name('question');
+
 Route::post('/quiz/question', [QuizController::class, 'addQuizQuestion'])
     ->name('question');
 Route::get('/get-question', [QuizController::class, 'getQuizQuestion'])

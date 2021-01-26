@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Add new quiz</h3>
+                <h3 class="card-title">Add question answer</h3>
             </div>
             <form class="form-horizontal">
                 <div class="card-body bg-color">
@@ -17,9 +17,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Option</label>
+                        <label class="col-sm-3 col-form-label">Answer</label>
                         <div class="col-sm-8">
-                            <input type="text" v-model="form.option" class="form-control" placeholder="Enter option">
+                            <input type="text" v-model="form.answer" class="form-control" placeholder="Enter answer">
                         </div>
                     </div>
                 </div>
@@ -36,13 +36,13 @@
 
 <script>
     export default {
-        name: "AddQuiz",
+        name: "AddQuizAnswer",
         data(){
             return{
                 questionData: {},
                 form: new Form({
                     quiz_id: '',
-                    option: '',
+                    answer: '',
                 })
             }
         },
@@ -59,7 +59,7 @@
                 });
             },
             addQuiz(){
-                this.axios.post('/quiz', this.form)
+                this.axios.post('/quiz-answer', this.form)
                     .then((response) => {
                         this.form = {};
                         toast.fire({

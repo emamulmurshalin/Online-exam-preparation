@@ -20,14 +20,14 @@
 
             <div v-if="isStartQuiz">
 
-                <template v-for="(quiz,index) in quizes" v-if="index + 1 == quizNumber">
+                <template v-for="(quiz,index) in quizes" v-if="index == quizNumber">
                     <div align="center" style="height: 50px">
                         <h4 align="center" style="padding-top: 30px" class="justify-content-center">
                             Think you are prepared for exam?</h4>
                     </div>
                     <div style="height: 50px; margin-top: 30px;">
                         <h3 align="center" style="margin-top: 5px" class="justify-content-center">
-                            {{ quiz.quiz_question}} {{ index}}</h3>
+                            {{ quiz.quiz_question}} </h3>
                     </div>
                     <div align="center" class="justify-content-center" style="height: 270px">
                         <template v-if="quiz.quiz_option[0]">

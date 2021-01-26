@@ -70,6 +70,7 @@ import AddBlogPost from './Components/Admin/Blog/AddPost.vue';
 import Profile from './Components/Admin/Profile/Profile.vue';
 import Quiz from './Components/Admin/Quiz/QuizList.vue';
 import AddQuiz from './Components/Admin/Quiz/AddQuiz.vue';
+import AddQuizAnswer from './Components/Admin/Quiz/AddQuizAnswer.vue';
 import AddQuizQuestion from './Components/Admin/Quiz/AddQuizQuestion.vue';
 import AddPreviousQuestion from './Components/Admin/PreviousQuestion/AddPreviousQuestion.vue';
 import ViewPreviousQuestion from './Components/Admin/PreviousQuestion/ShowQuestion.vue';
@@ -86,6 +87,7 @@ let routes = [
     { path: '/users/profile', component: Profile },
     { path: '/quiz/list/view', component: Quiz },
     { path: '/add-quiz', component: AddQuiz },
+    { path: '/add-quiz-answer', component: AddQuizAnswer },
     { path: '/add-quiz-question', component: AddQuizQuestion },
     { path: '/add-previous-question', component: AddPreviousQuestion },
     { path: '/show-question', component: ViewPreviousQuestion },
@@ -152,6 +154,10 @@ Vue.component(
 Vue.component(
     'add-new-quiz',
     require('./Components/Admin/Quiz/AddQuiz').default
+);
+Vue.component(
+    'add-quiz-answer',
+    require('./Components/Admin/Quiz/AddQuizAnswer').default
 );
 Vue.component(
     'add-quiz-question',
