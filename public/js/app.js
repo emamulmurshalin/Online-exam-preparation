@@ -3768,17 +3768,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModelTest",
   data: function data() {
     return {
       isStartQuiz: false,
-      quizes: {}
+      quizes: {},
+      answer: '',
+      marks: 0,
+      quizNumber: 0
     };
+  },
+  computed: {
+    countMarks: function countMarks() {
+      if (this.answer) {
+        console.log('hoise');
+      }
+    }
   },
   mounted: function mounted() {
     this.getAllQuiz();
-    console.log(this.quizes);
   },
   methods: {
     startQuiz: function startQuiz() {
@@ -3926,7 +3947,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".bg-color[data-v-48f86a63] {\n  height: 420px;\n  width: 100%;\n  background-color: #F5F5F5;\n}\ninput[type=\"radio\"][data-v-48f86a63]{\n  display: none;\n}\nlabel[data-v-48f86a63]{\n  margin-left: 10px;\n  margin-right: 10px;\n  position: relative;\n  color: #01cc65;\n  font-family: 'Poppins',sans-serif;\n  font-size: 20px;\n  border: 2px solid #01cc65;\n  padding: 10px 20px;\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\nlabel[data-v-48f86a63]:before{\n  content: \"\";\n  height: 30px;\n  width: 30px;\n  border: 2px solid #01cc65;\n  border-radius: 50%;\n  margin-right: 20px;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]{\n  background-color: #01cc65 !important;\n  color: white;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]:before{\n  height: 16px;\n  width: 16px;\n  border: 10px solid white;\n  background-color: #01cc65 !important;\n}\n\n", ""]);
+exports.push([module.i, ".bg-color[data-v-48f86a63] {\n  height: 420px;\n  width: 100%;\n  background-color: #F5F5F5;\n}\ninput[type=\"radio\"][data-v-48f86a63]{\n  display: none;\n}\nlabel[data-v-48f86a63]{\n  margin-left: 20px;\n  margin-right: 20px;\n  position: relative;\n  color: #01cc65;\n  font-family: 'Poppins',sans-serif;\n  font-size: 20px;\n  border: 2px solid #01cc65;\n  padding: 10px 20px;\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\nlabel[data-v-48f86a63]:before{\n  content: \"\";\n  height: 30px;\n  width: 30px;\n  border: 2px solid #01cc65;\n  border-radius: 50%;\n  margin-right: 20px;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]{\n  background-color: #01cc65 !important;\n  color: white;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]:before{\n  height: 16px;\n  width: 16px;\n  border: 10px solid white;\n  background-color: #01cc65 !important;\n}\n\n", ""]);
 
 // exports
 
@@ -53573,89 +53594,200 @@ var render = function() {
             "div",
             [
               _vm._l(_vm.quizes, function(quiz, index) {
-                return [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: { height: "50px" },
-                      attrs: { align: "center" }
-                    },
-                    [
+                return index + 1 == _vm.quizNumber
+                  ? [
                       _c(
-                        "h4",
+                        "div",
                         {
-                          staticClass: "justify-content-center",
-                          staticStyle: { "padding-top": "30px" },
+                          staticStyle: { height: "50px" },
                           attrs: { align: "center" }
                         },
                         [
-                          _vm._v(
-                            "\n                        Think you are prepared for exam?"
+                          _c(
+                            "h4",
+                            {
+                              staticClass: "justify-content-center",
+                              staticStyle: { "padding-top": "30px" },
+                              attrs: { align: "center" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Think you are prepared for exam?"
+                              )
+                            ]
                           )
                         ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { height: "150px", "margin-top": "60px" } },
-                    [
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "h3",
+                        "div",
+                        {
+                          staticStyle: { height: "50px", "margin-top": "30px" }
+                        },
+                        [
+                          _c(
+                            "h3",
+                            {
+                              staticClass: "justify-content-center",
+                              staticStyle: { "margin-top": "5px" },
+                              attrs: { align: "center" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(quiz.quiz_question) +
+                                  " " +
+                                  _vm._s(index)
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
                         {
                           staticClass: "justify-content-center",
-                          staticStyle: { "margin-top": "5px" },
+                          staticStyle: { height: "270px" },
                           attrs: { align: "center" }
                         },
                         [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(quiz.quiz_question) +
-                              " " +
-                              _vm._s(index)
-                          )
-                        ]
+                          quiz.quiz_option[0]
+                            ? [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.answer,
+                                      expression: "answer"
+                                    }
+                                  ],
+                                  attrs: {
+                                    type: "radio",
+                                    id: "first",
+                                    name: "option"
+                                  },
+                                  domProps: {
+                                    value: quiz.quiz_option[0].option,
+                                    checked: _vm._q(
+                                      _vm.answer,
+                                      quiz.quiz_option[0].option
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.answer = quiz.quiz_option[0].option
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("label", { attrs: { for: "first" } }, [
+                                  _vm._v(_vm._s(quiz.quiz_option[0].option))
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          quiz.quiz_option[1]
+                            ? [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.answer,
+                                      expression: "answer"
+                                    }
+                                  ],
+                                  attrs: { type: "radio", id: "second" },
+                                  domProps: {
+                                    value: quiz.quiz_option[1].option,
+                                    checked: _vm._q(
+                                      _vm.answer,
+                                      quiz.quiz_option[1].option
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.answer = quiz.quiz_option[1].option
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("label", { attrs: { for: "second" } }, [
+                                  _vm._v(_vm._s(quiz.quiz_option[1].option))
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          quiz.quiz_option[2]
+                            ? [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.answer,
+                                      expression: "answer"
+                                    }
+                                  ],
+                                  attrs: { type: "radio", id: "third" },
+                                  domProps: {
+                                    value: quiz.quiz_option[2].option,
+                                    checked: _vm._q(
+                                      _vm.answer,
+                                      quiz.quiz_option[2].option
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.answer = quiz.quiz_option[2].option
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("label", { attrs: { for: "third" } }, [
+                                  _vm._v(_vm._s(quiz.quiz_option[2].option))
+                                ])
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          quiz.quiz_option[3]
+                            ? [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.answer,
+                                      expression: "answer"
+                                    }
+                                  ],
+                                  attrs: { type: "radio", id: "fourth" },
+                                  domProps: {
+                                    value: quiz.quiz_option[3].option,
+                                    checked: _vm._q(
+                                      _vm.answer,
+                                      quiz.quiz_option[3].option
+                                    )
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.answer = quiz.quiz_option[3].option
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("label", { attrs: { for: "fourth" } }, [
+                                  _vm._v(_vm._s(quiz.quiz_option[3].option))
+                                ])
+                              ]
+                            : _vm._e()
+                        ],
+                        2
                       )
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "justify-content-center",
-                      staticStyle: { height: "70px" },
-                      attrs: { align: "center" }
-                    },
-                    [
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: "first",
-                          name: "first_option",
-                          checked: "checked"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { for: "first" } }, [
-                        _vm._v("First option")
-                      ]),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "radio",
-                          id: "second",
-                          name: "first_option"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { for: "second" } }, [
-                        _vm._v("Second option")
-                      ])
-                    ]
-                  )
-                ]
+                  : _vm._e()
               })
             ],
             2

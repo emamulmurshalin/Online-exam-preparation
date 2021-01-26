@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreateQuizMarksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('quiz_marks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('catergory_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->string("title");
-            $table->longText("content");
+            $table->string('marks');
+            $table->string('total_marks');
             $table->timestamps();
-            $table->foreign('catergory_id')->references('id')->on('post_catergories')
-                ->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
-
         });
     }
 
@@ -35,6 +31,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('quiz_marks');
     }
 }

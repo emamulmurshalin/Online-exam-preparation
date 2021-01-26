@@ -20,21 +20,33 @@
 
             <div v-if="isStartQuiz">
 
-                <template v-for="(quiz,index) in quizes">
+                <template v-for="(quiz,index) in quizes" v-if="index + 1 == quizNumber">
                     <div align="center" style="height: 50px">
                         <h4 align="center" style="padding-top: 30px" class="justify-content-center">
                             Think you are prepared for exam?</h4>
                     </div>
-                    <div style="height: 150px; margin-top: 60px;">
+                    <div style="height: 50px; margin-top: 30px;">
                         <h3 align="center" style="margin-top: 5px" class="justify-content-center">
                             {{ quiz.quiz_question}} {{ index}}</h3>
                     </div>
-                    <div align="center" class="justify-content-center" style="height: 70px">
-                        <input type="radio" id="first" name="first_option" checked="checked"/>
-                        <label for="first">First option</label><br>
+                    <div align="center" class="justify-content-center" style="height: 270px">
+                        <template v-if="quiz.quiz_option[0]">
+                            <input type="radio" id="first" name="option" v-bind:value="quiz.quiz_option[0].option" v-model="answer"/>
+                            <label for="first">{{ quiz.quiz_option[0].option }}</label>
+                        </template>
+                        <template v-if="quiz.quiz_option[1]">
+                            <input type="radio" id="second" v-bind:value="quiz.quiz_option[1].option" v-model="answer"/>
+                            <label for="second">{{ quiz.quiz_option[1].option }}</label>
+                        </template>
+                        <template v-if="quiz.quiz_option[2]">
+                            <input type="radio" id="third" v-bind:value="quiz.quiz_option[2].option" v-model="answer"/>
+                            <label for="third">{{ quiz.quiz_option[2].option }}</label>
+                        </template>
+                        <template v-if="quiz.quiz_option[3]">
+                            <input type="radio" id="fourth" v-bind:value="quiz.quiz_option[3].option" v-model="answer"/>
+                            <label for="fourth">{{ quiz.quiz_option[3].option }}</label>
+                        </template>
 
-                        <input type="radio" id="second" name="first_option"/>
-                        <label for="second">Second option</label>
                     </div>
                 </template>
 
@@ -51,11 +63,20 @@
             return{
                 isStartQuiz: false,
                 quizes: {},
+                answer: '',
+                marks: 0,
+                quizNumber: 0
+            }
+        },
+        computed:{
+            countMarks(){
+                if (this.answer){
+                    console.log('hoise');
+                }
             }
         },
         mounted(){
             this.getAllQuiz();
-            console.log(this.quizes);
         },
         methods:{
             startQuiz(){
@@ -86,8 +107,8 @@
         display: none;
     }
     label{
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
         position: relative;
         color: #01cc65;
         font-family: 'Poppins',sans-serif;

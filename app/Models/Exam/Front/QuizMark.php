@@ -1,24 +1,17 @@
 <?php
 
-namespace App\Models\Exam\Admin;
+namespace App\Models\Exam\Front;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class QuizMark extends Model
 {
     use HasFactory;
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    protected $fillable = [
-        'post_id',
-        'comment'
-    ];
 }

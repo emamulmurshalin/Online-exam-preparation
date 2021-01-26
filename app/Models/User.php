@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Exam\Admin\Comment;
+use App\Models\Exam\Admin\Post;
+use App\Models\Exam\Admin\PostLike;
+use App\Models\Exam\Front\QuizMark;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -67,5 +71,25 @@ class User extends Authenticatable
     public function status()
     {
         return $this->hasOne(Status::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function postLike()
+    {
+        return $this->hasOne(PostLike::class);
+    }
+
+    public function quizMark()
+    {
+        return $this->hasMany(QuizMark::class);
     }
 }
