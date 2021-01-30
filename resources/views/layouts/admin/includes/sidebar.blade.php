@@ -18,7 +18,7 @@
                 <a href="/users/profile" class="d-block">
                     {{auth()->user()->first_name}}
                     <p>
-                        {{auth()->user()->role_id}}
+                        {{auth()->user()->role}}
                     </p>
                 </a>
             </div>
@@ -51,15 +51,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <router-link to="/add-previous-question" class="nav-link">
-                                <i class="fas fa-question"></i>
-                                <p>Add previous question</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
                             <router-link to="/show-question" class="nav-link">
                                 <i class="fas fa-question"></i>
                                 <p>Show question</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/add-previous-question" class="nav-link">
+                                <i class="fas fa-question"></i>
+                                <p>Add previous question</p>
                             </router-link>
                         </li>
                     </ul>
@@ -129,6 +129,28 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <p>
+                            Job exam info
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <router-link to="/show-exam-info" class="nav-link">
+                                <p>Show exam info</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/add-exam-info" class="nav-link">
+                                <p>Add exam info</p>
+                            </router-link>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <router-link to="/users/profile" class="nav-link">
                         <i class="fas fa-user"></i>

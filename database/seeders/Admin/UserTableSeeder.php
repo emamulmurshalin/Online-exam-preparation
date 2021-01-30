@@ -12,79 +12,26 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert(
             [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
+                'first_name' => 'Joune',
+                'last_name' => 'Doe',
                 'email' => 'admin@demo.com',
-                'role_id' => 1,
-                'status_id' => 2,
+                'role' => 'Admin',
+                'status_id' => 1,
                 'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('123456'),
+                'created_at' => now(),
             ]
         );
         DB::table('users')->insert(
             [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
-                'email' => 'admin6@demo.com',
-                'role_id' => 2,
+                'first_name' => 'General',
+                'last_name' => 'User',
+                'email' => 'general@demo.com',
+                'role' => 'User',
                 'status_id' => 2,
                 'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
-            ]
-        );
-        DB::table('users')->insert(
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
-                'email' => 'admin5@demo.com',
-                'role_id' => 2,
-                'status_id' => 2,
-                'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
-            ]
-        );
-        DB::table('users')->insert(
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
-                'email' => 'admin4@demo.com',
-                'role_id' => 2,
-                'status_id' => 2,
-                'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
-            ]
-        );
-        DB::table('users')->insert(
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
-                'email' => 'admin3@demo.com',
-                'role_id' => 2,
-                'status_id' => 2,
-                'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
-            ]
-        );
-        DB::table('users')->insert(
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
-                'email' => 'admin2@demo.com',
-                'role_id' => 2,
-                'status_id' => 2,
-                'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
-            ]
-        );
-        DB::table('users')->insert(
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'Demo',
-                'email' => 'admin1@demo.com',
-                'role_id' => 2,
-                'status_id' => 2,
-                'photo' => 'default.png',
-                'password' => Hash::make('12345678'),
+                'password' => Hash::make('123456'),
+                'created_at' => now(),
             ]
         );
 

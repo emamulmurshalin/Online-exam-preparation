@@ -41,6 +41,18 @@
                                               placeholder="Enter Bio(optional)"></textarea>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3">Status</label>
+                                <div class="col-sm-9">
+                                    <select v-model="form.status_id" class="form-control">
+                                        <option v-for="(status, index) in statusData" v-bind:value="status.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                            {{ status.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-sm-3">Password</label>
                                 <div class="col-sm-9">
@@ -85,14 +97,15 @@
             return{
                 modalId: 'userModal',
                 formData: {},
+                statusData: {},
                 dataLoaded: false,
                 form: new Form({
                     first_name: '',
                     last_name: '',
                     email: '',
-                    role_id: 1,
+                    role: 'Admin',
                     password: '',
-                    status_id: 1,
+                    status_id: '',
                     photo: '',
                     bio: '',
                     remember: false
@@ -103,6 +116,14 @@
             checkMatchPassword(){
                 console.log('asche');
             },
+            getStatus(){
+                this.axios.get('/get-status')
+                    .then((response) => {
+                        this.statusData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
             submit(){
                 this.axios.post('/users', this.form)
                     .then((response) => {
@@ -110,6 +131,14 @@
                             icon: 'success',
                             title: 'User created successfully'
                         });
+                        this.form.first_name = '';
+                        this.form.last_name = '';
+                        this.form.email = '';
+                        this.form.role = '';
+                        this.form.status_id = '';
+                        this.form.bio = '';
+                        this.form.password = '';
+                        this.form.confirm_password = '';
                         this.closeModal();
                 }).catch(()=>{
                     this.closeModal();
@@ -144,7 +173,8 @@
                 this.$emit("close-modal", this.modalId);
             }
         },
-        created(){
+        mounted(){
+            this.getStatus();
             if (this.selectedUrl){
                 this.getEditData();
             }

@@ -45,6 +45,7 @@
                 subjectData: {},
                 form: new Form({
                     quiz_question: '',
+                    subject_id: '',
                 })
             }
         },
@@ -68,6 +69,7 @@
                             title: 'User created successfully'
                         });
                         this.form.quiz_question = '';
+                        this.form.subject_id = '';
                     }).catch(()=>{
 
                 });

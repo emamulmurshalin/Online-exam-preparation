@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="header-top-righ">
-                <a href="login.html">
+                <a href="/user/login">
                     <span class="fa fa-sign-out" aria-hidden="true"></span>Login</a>
             </div>
             <div class="clearfix"> </div>

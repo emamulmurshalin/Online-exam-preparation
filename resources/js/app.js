@@ -77,6 +77,10 @@ import ViewPreviousQuestion from './Components/Admin/PreviousQuestion/ShowQuesti
 import ExamContactUs from './Components/FrontEnd/Contact/ContactUs.vue';
 import QuestionShow from './Components/FrontEnd/Question/QuestionShow.vue';
 import ModelTest from './Components/FrontEnd/Quiz/ModelTest.vue';
+import Login from './Components/FrontEnd/Register/Login.vue';
+import Registration from './Components/FrontEnd/Register/Registration.vue';
+import ShowJobExam from './Components/Admin/JobExamInfo/ShowJobExamInfo.vue';
+import AddJobExam from './Components/Admin/JobExamInfo/AddJobExamInfo';
 
 let routes = [
     { path: '/users/list/view', component: Users },
@@ -93,8 +97,11 @@ let routes = [
     { path: '/show-question', component: ViewPreviousQuestion },
     { path: '/exam/contact-us', component: ExamContactUs },
     { path: '/exam/question', component: QuestionShow },
-    { path: '/exam/question', component: QuestionShow },
-    { path: '/exam/model-test', component: QuestionShow },
+    { path: '/exam/model-test', component: ModelTest },
+    { path: '/user/login', component: Login },
+    { path: '/user/registration', component: Registration },
+    { path: '/show-exam-info', component: ShowJobExam },
+    { path: '/add-exam-info', component: AddJobExam },
 ];
 
 Vue.use(VueAxios, axios);
@@ -172,6 +179,14 @@ Vue.component(
     require('./Components/Admin/PreviousQuestion/ShowQuestion').default
 );
 
+Vue.component(
+    'show-job-info',
+    require('./Components/Admin/JobExamInfo/ShowJobExamInfo').default
+);
+Vue.component(
+    'add-job-info',
+    require('./Components/Admin/JobExamInfo/AddJobExamInfo').default
+);
 
 //Front end vue
 Vue.component(
@@ -187,6 +202,15 @@ Vue.component(
 Vue.component(
     'app-model-test',
     require('./Components/FrontEnd/Quiz/ModelTest').default
+);
+
+Vue.component(
+    'app-login',
+    require('./Components/FrontEnd/Register/Login').default
+);
+Vue.component(
+    'app-registration',
+    require('./Components/FrontEnd/Register/Registration').default
 );
 
 const app = new Vue({

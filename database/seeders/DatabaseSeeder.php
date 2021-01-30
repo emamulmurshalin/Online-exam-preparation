@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Exam\Admin\Country;
 use Database\Seeders\Admin\CountryTableSeeder;
+use Database\Seeders\Admin\PostCategorySeeder;
 use Database\Seeders\Admin\QuestionTypeSeeder;
 use Database\Seeders\Admin\QuestionYearSeeder;
 use Database\Seeders\Admin\StatusTableSeeder;
@@ -31,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountryTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(PostCategorySeeder::class);
     }
 }

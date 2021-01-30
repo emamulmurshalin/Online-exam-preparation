@@ -69,16 +69,20 @@
             }
         },
         computed:{
-            countMarks(){
-                if (this.answer){
-                    console.log('hoise');
-                }
-            }
+
         },
         mounted(){
             this.getAllQuiz();
         },
         methods:{
+            countMarks(){
+                if (this.answer){
+                    if (this.answer === this.quizes[this.quizNumber].quiz_answer.answer){
+
+                    }
+                    this.answer = '';
+                }
+            },
             startQuiz(){
                 this.isStartQuiz = true;
             },

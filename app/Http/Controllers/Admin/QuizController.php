@@ -26,6 +26,7 @@ class QuizController extends Controller
     {
         return Quiz::with('quizOption', 'quizAnswer')
             ->inRandomOrder()
+            ->limit(2)
             ->get();
     }
 
@@ -113,7 +114,7 @@ class QuizController extends Controller
     public function addQuizQuestion(Request $request)
     {
         $this->validate($request, [
-            'quiz_question' => 'required|regex:/^[\pL\s\-]+$/u',
+            'quiz_question' => 'required',
         ]);
         $quiz = Quiz::create($request->all());
         return [

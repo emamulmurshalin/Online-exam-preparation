@@ -51,7 +51,7 @@
                                         <td class="sorting_1" tabindex="0">{{user.id}}</td>
                                         <td>{{user.first_name}} {{user.last_name}}</td>
                                         <td>{{user.email}}</td>
-                                        <td>{{user.role_id}}</td>
+                                        <td>{{user.role}}</td>
                                         <td>{{user.status_id}}</td>
                                         <td>{{user.created_at | localDate}}</td>
                                         <td>

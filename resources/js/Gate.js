@@ -5,6 +5,6 @@ export default class Gate{
     }
 
     isAdmin(){
-        return this.user.role_id == 1;
+        return this.user.role == 'Admin';
     }
 }

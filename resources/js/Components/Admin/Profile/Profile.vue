@@ -174,7 +174,7 @@
                     first_name: '',
                     last_name: '',
                     email: '',
-                    role_id: 1,
+                    role: 'Admin',
                     password: '',
                     status_id: 1,
                     photo: '',

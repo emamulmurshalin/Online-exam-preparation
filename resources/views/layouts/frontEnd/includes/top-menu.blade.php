@@ -39,7 +39,7 @@
                                 <a href="/exam/blog" class="effect-3">Blog</a>
                             </li>
                             <li>
-                                <a href="/exam/user/register" class="effect-3">Sign up</a>
+                                <a href="/user/registration" class="effect-3">Sign up</a>
                             </li>
                         </ul>
                     </nav>

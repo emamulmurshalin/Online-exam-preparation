@@ -22,6 +22,28 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Post category</label>
+                        <div class="col-sm-8 ">
+                            <select v-model="form.category_id" class="form-control">
+                                <option v-for="(category, index) in categoryData" v-bind:value="category.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{category.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Select status</label>
+                        <div class="col-sm-8 ">
+                            <select v-model="form.status_id" class="form-control">
+                                <option v-for="(status, index) in statusData" v-bind:value="status.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{ status.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /.card-body -->
                 <div class="float-right bg-color mr-2 mb-3 mt-3">
@@ -40,26 +62,50 @@
         props: ['selectedUrl'],
         data(){
             return{
+                categoryData: {},
+                statusData: {},
                 form: new Form({
                     title: '',
                     content: '',
+                    category_id: '',
+                    status_id: ''
                 })
             }
         },
-        created() {
+        mounted() {
+            this.getCategory();
+            this.getStatus();
             console.log(this.selectedUrl, 'url');
         },
         methods:{
+            getCategory(){
+                this.axios.get('/get-post-category')
+                    .then((response) => {
+                        this.categoryData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
+            getStatus(){
+                this.axios.get('/get-status')
+                    .then((response) => {
+                        this.statusData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
             addPost(){
                 this.axios.post('/blogs', this.form)
                     .then((response) => {
-                        window.location.replace('/users/blog-post');
                         toast.fire({
                             icon: 'success',
-                            title: 'User created successfully'
+                            title: 'Post created successfully'
                         });
+                        window.location.replace('/users/blog-post');
                         this.form.title = '';
                         this.form.content = '';
+                        this.form.category_id = '';
+                        this.form.status_id = '';
                     }).catch(()=>{
 
                 });

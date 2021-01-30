@@ -51,8 +51,12 @@
                                     <td>{{question.question_year.year}}</td>
                                     <td>{{question.question_type.type}}</td>
                                     <td>
-                                        <a href="#" @click.prevent="showquestion(question.id)">
+                                        <a :href="'/exam/question/'+ question.id + '/preview'" target="_blank">
                                             <i class="fas fa-eye"></i>
+                                        </a>
+                                        /
+                                        <a :href="'/exam/question/'+ question.id + '/download'" target="_blank">
+                                            <i class="fas fa-download"></i>
                                         </a>
                                         /
                                         <a href="#" @click.prevent="editquestion(question.id)">

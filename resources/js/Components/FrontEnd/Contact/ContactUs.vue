@@ -15,7 +15,7 @@
                 <div class="contact-row">
                     <div class="col-md-6 contact-text1">
                         <h4>Contact Our
-                            <span>Best Study</span>
+                            <span>Support Team</span>
                         </h4>
                         <p>Aliquam erat volutpat. Duis vulputate tempus laoreet.Aliquam erat volutpat. Duis vulputate tempus laoreet.Aliquam erat
                             volutpat. Duis vulputate tempus laoreet.
@@ -35,14 +35,14 @@
                     <h4>Contact Details</h4>
                     <ul class="w3_address">
                         <li>
-                            <span class="fa fa-globe" aria-hidden="true"></span>1235 Ipswich, Foxhall Road, USA
+                            <span class="fa fa-globe" aria-hidden="true"></span>Dhanmondi 32, Dhaka-1209
                         </li>
                         <li>
                             <span class="fa fa-envelope-o" aria-hidden="true"></span>
                             <a href="mailto:info@example.com">mail@example.com</a>
                         </li>
                         <li>
-                            <span class="fa fa-phone" aria-hidden="true"></span>+001 234 5678
+                            <span class="fa fa-phone" aria-hidden="true"></span>+8801722 234 678
                         </li>
                     </ul>
                 </div>
@@ -89,11 +89,14 @@
             submit(){
                 this.axios.post('/contact-info', this.form)
                     .then((response) => {
-                        this.form = '';
                         toast.fire({
                             icon: 'success',
                             title: 'User created successfully'
                         });
+                        this.form.name = '';
+                        this.form.em = '';
+                        this.form.phone = '';
+                        this.form.message = '';
                     }).catch(()=>{
                 });
             },

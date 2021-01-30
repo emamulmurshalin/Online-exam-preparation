@@ -5,16 +5,13 @@ namespace App\Models\Exam\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostCatergory extends Model
+class JobExamInfo extends Model
 {
     use HasFactory;
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
     protected $fillable = [
-        'name'
+        'job_title',
+        'exam_date',
+        'exam_time'
     ];
 }

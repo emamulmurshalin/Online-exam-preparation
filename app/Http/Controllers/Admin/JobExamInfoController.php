@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Exam\Admin\Post;
-use App\Models\Exam\Admin\PostCatergory;
-use App\Models\Status;
+use App\Models\Exam\Admin\JobExamInfo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class BlogController extends Controller
+class JobExamInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return Post::with('comments')
-            ->latest()
+        return JobExamInfo::latest()
             ->paginate(5);
     }
 
@@ -39,17 +35,17 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(Request $request, JobExamInfo $jobExamInfo)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'content' => 'required',
+            'job_title' => 'required',
+            'exam_date' => 'required',
+            'exam_time' => 'required',
         ]);
-        $request['user_id'] = Auth::user()->id;
-        $post->create($request->all());
+        $jobExamInfo->create($request->all());
         return [
             'status' => 200,
-            'message' => 'Post created successfully',
+            'message' => 'Job info created successfully',
         ];
     }
 
@@ -61,8 +57,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        return $post;
+        //
     }
 
     /**
@@ -73,7 +68,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('layouts.admin.blog.add-post', compact('id'));
+        //
     }
 
     /**
@@ -85,7 +80,7 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**
@@ -96,21 +91,6 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return [
-            'status' => 200,
-            'message' => 'Post deleted successfully',
-        ];
-    }
-
-    public function getCategory()
-    {
-        return PostCatergory::latest()->get();
-    }
-
-    public function getStatus()
-    {
-        return Status::latest()->get();
+        //
     }
 }

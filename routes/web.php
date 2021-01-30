@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactInfoController;
+use App\Http\Controllers\Admin\JobExamInfoController;
 use App\Http\Controllers\Admin\PreviousQuestionController;
 use App\Http\Controllers\Admin\QuestionTypeController;
 use App\Http\Controllers\Admin\QuestionYearController;
@@ -41,6 +42,14 @@ Route::get('/exam/model-test', function () {
     return view('layouts.frontEnd.quiz.model-test');
 });
 
+Route::get('/user/login', function () {
+    return view('layouts.frontEnd.register.login');
+});
+
+Route::get('/user/registration', function () {
+    return view('layouts.frontEnd.register.registration');
+});
+
 
 
 //Admin view
@@ -78,6 +87,13 @@ Route::get('/show-question', function () {
     return view('layouts.admin.previousQuestion.show-question');
 });
 
+Route::get('/show-exam-info', function () {
+    return view('layouts.admin.jobExam.show-job-info');
+});
+Route::get('/add-exam-info', function () {
+    return view('layouts.admin.jobExam.add-job-info');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('layouts.admin.exam');
 })->name('dashboard');
@@ -113,8 +129,13 @@ Route::resource('previous-question', PreviousQuestionController::class);
 //Contact info
 Route::resource('contact-info', ContactInfoController::class);
 
-//Contact info
 Route::resource('blogs', BlogController::class);
+Route::get('/get-post-category', [BlogController::class, 'getCategory'])
+    ->name('get_post_category');
+Route::get('/get-status', [BlogController::class, 'getStatus'])
+    ->name('get_status');
+
+Route::resource('jobs-info', JobExamInfoController::class);
 
 
 Route::get('/exam/question/{id}/preview', [PreviousQuestionController::class, 'previewQuestion'])

@@ -61,11 +61,12 @@
             addQuiz(){
                 this.axios.post('/quiz', this.form)
                     .then((response) => {
-                        this.form = {};
                         toast.fire({
                             icon: 'success',
                             title: 'User created successfully'
                         });
+                        this.form.quiz_id = '';
+                        this.form.option = '';
                     }).catch(()=>{
 
                 });

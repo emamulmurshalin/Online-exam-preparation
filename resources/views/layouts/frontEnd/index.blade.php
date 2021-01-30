@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 <script src="{{asset('front/js/jquery.flexisel.js')}}"></script>
-<script src="{{asset('front/js/SmoothScroll.min.js')}}"></script>
+{{--<script src="{{asset('front/js/SmoothScroll.min.js')}}"></script>--}}
 <script src="{{asset('front/js/move-top.js')}}"></script>
 <script src="{{asset('front/js/easing.js')}}"></script>
 <!-- here stars scrolling icon -->

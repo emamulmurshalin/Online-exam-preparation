@@ -106,6 +106,11 @@
                             icon: 'success',
                             title: 'Question added successfully'
                         });
+                        window.location.replace('/show-question');
+                        this.form.question_title = '';
+                        this.form.question_types_id = '';
+                        this.form.question_years_id = '';
+                        this.form.file = '';
                     }).catch(()=>{
 
                 });

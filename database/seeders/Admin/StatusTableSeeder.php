@@ -12,7 +12,27 @@ class StatusTableSeeder extends Seeder
     {
         DB::table('statuses')->insert(
             [
-                'name' => 'status_active',
+                'name' => 'Active',
+            ]
+        );
+        DB::table('statuses')->insert(
+            [
+                'name' => 'InActive',
+            ]
+        );
+        DB::table('statuses')->insert(
+            [
+                'name' => 'Invited',
+            ]
+        );
+        DB::table('statuses')->insert(
+            [
+                'name' => 'Published',
+            ]
+        );
+        DB::table('statuses')->insert(
+            [
+                'name' => 'Draft',
             ]
         );
     }
