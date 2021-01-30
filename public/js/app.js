@@ -4057,28 +4057,139 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModelTest",
   data: function data() {
     return {
+      form: new Form({
+        answer: null
+      }),
       isStartQuiz: false,
+      answerRight: false,
+      answerWrong: false,
+      isResult: false,
       quizes: {},
-      answer: '',
       marks: 0,
       quizNumber: 0
     };
   },
-  computed: {},
   mounted: function mounted() {
     this.getAllQuiz();
   },
   methods: {
-    countMarks: function countMarks() {
-      if (this.answer) {
-        if (this.answer === this.quizes[this.quizNumber].quiz_answer.answer) {}
-
-        this.answer = '';
+    startAgain: function startAgain() {
+      this.getAllQuiz();
+      this.isResult = false;
+      this.isStartQuiz = true;
+      this.answerWrong = false;
+      this.answerRight = false;
+    },
+    showResult: function showResult() {
+      if (this.quizNumber == this.quizes.length - 1) {
+        this.isResult = true;
       }
+    },
+    continueNewQuestion: function continueNewQuestion() {
+      this.answerWrong = false;
+      this.answerRight = false;
+      this.quizNumber = ++this.quizNumber;
+    },
+    countMarks: function countMarks() {
+      var _this = this;
+
+      setTimeout(function () {
+        if (_this.form.answer === _this.quizes[_this.quizNumber].quiz_answer.answer) {
+          _this.marks = ++_this.marks;
+          _this.answerWrong = false;
+          _this.answerRight = true;
+          _this.form.answer = '';
+        } else {
+          _this.answerRight = false;
+          _this.answerWrong = true;
+        }
+      });
     },
     startQuiz: function startQuiz() {
       this.isStartQuiz = true;
@@ -4086,11 +4197,21 @@ __webpack_require__.r(__webpack_exports__);
     getImage: function getImage() {
       return '/img/quiz.jpg';
     },
+    getRightImage: function getRightImage() {
+      return '/img/right.png';
+    },
+    getWrongImage: function getWrongImage() {
+      return '/img/wrong.jpg';
+    },
+    getResultImage: function getResultImage() {
+      return '/img/result.png';
+    },
     getAllQuiz: function getAllQuiz() {
-      var _this = this;
+      var _this2 = this;
 
       this.axios.get('/get-quiz').then(function (response) {
-        _this.quizes = response.data;
+        _this2.quizes = response.data;
+        console.log(_this2.quizes.length);
       })["catch"](function (error) {});
     }
   }
@@ -54633,11 +54754,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-10 mb-10" }, [
     _c("div", { staticClass: "card bg-color" }, [
-      !_vm.isStartQuiz
+      !_vm.isStartQuiz && !_vm.answerRight && !_vm.answerWrong && !_vm.isResult
         ? _c("div", [
             _c(
               "div",
-              { staticStyle: { height: "250px" }, attrs: { align: "center" } },
+              { staticStyle: { height: "230px" }, attrs: { align: "center" } },
               [
                 _c("img", {
                   staticClass: "justify-content-center",
@@ -54657,7 +54778,7 @@ var render = function() {
               "div",
               {
                 staticClass: "justify-content-center",
-                staticStyle: { height: "70px" },
+                staticStyle: { height: "70px", "margin-top": "12px" },
                 attrs: { align: "center" }
               },
               [
@@ -54665,7 +54786,11 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success",
-                    staticStyle: { padding: "20px", "font-size": "25px" },
+                    staticStyle: {
+                      padding: "17px 40px",
+                      "font-size": "25px",
+                      "background-color": "#00C794"
+                    },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -54675,7 +54800,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                    Start Model test\n                "
+                      "\n                        START QUIZ\n                    "
                     )
                   ]
                 )
@@ -54684,7 +54809,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.isStartQuiz
+      _vm.isStartQuiz && !_vm.answerRight && !_vm.answerWrong && !_vm.isResult
         ? _c(
             "div",
             [
@@ -54707,7 +54832,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Think you are prepared for exam?"
+                                "\n                            Think you are prepared for exam?"
                               )
                             ]
                           )
@@ -54724,12 +54849,15 @@ var render = function() {
                             "h3",
                             {
                               staticClass: "justify-content-center",
-                              staticStyle: { "margin-top": "5px" },
+                              staticStyle: {
+                                "margin-top": "5px",
+                                "font-weight": "bold"
+                              },
                               attrs: { align: "center" }
                             },
                             [
                               _vm._v(
-                                "\n                        " +
+                                "\n                            " +
                                   _vm._s(quiz.quiz_question) +
                                   " "
                               )
@@ -54753,25 +54881,26 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.answer,
-                                      expression: "answer"
+                                      value: _vm.form.answer,
+                                      expression: "form.answer"
                                     }
                                   ],
-                                  attrs: {
-                                    type: "radio",
-                                    id: "first",
-                                    name: "option"
-                                  },
+                                  attrs: { type: "radio", id: "first" },
                                   domProps: {
                                     value: quiz.quiz_option[0].option,
                                     checked: _vm._q(
-                                      _vm.answer,
+                                      _vm.form.answer,
                                       quiz.quiz_option[0].option
                                     )
                                   },
                                   on: {
+                                    click: _vm.countMarks,
                                     change: function($event) {
-                                      _vm.answer = quiz.quiz_option[0].option
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "answer",
+                                        quiz.quiz_option[0].option
+                                      )
                                     }
                                   }
                                 }),
@@ -54789,21 +54918,26 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.answer,
-                                      expression: "answer"
+                                      value: _vm.form.answer,
+                                      expression: "form.answer"
                                     }
                                   ],
                                   attrs: { type: "radio", id: "second" },
                                   domProps: {
                                     value: quiz.quiz_option[1].option,
                                     checked: _vm._q(
-                                      _vm.answer,
+                                      _vm.form.answer,
                                       quiz.quiz_option[1].option
                                     )
                                   },
                                   on: {
+                                    click: _vm.countMarks,
                                     change: function($event) {
-                                      _vm.answer = quiz.quiz_option[1].option
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "answer",
+                                        quiz.quiz_option[1].option
+                                      )
                                     }
                                   }
                                 }),
@@ -54821,21 +54955,26 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.answer,
-                                      expression: "answer"
+                                      value: _vm.form.answer,
+                                      expression: "form.answer"
                                     }
                                   ],
                                   attrs: { type: "radio", id: "third" },
                                   domProps: {
                                     value: quiz.quiz_option[2].option,
                                     checked: _vm._q(
-                                      _vm.answer,
+                                      _vm.form.answer,
                                       quiz.quiz_option[2].option
                                     )
                                   },
                                   on: {
+                                    click: _vm.countMarks,
                                     change: function($event) {
-                                      _vm.answer = quiz.quiz_option[2].option
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "answer",
+                                        quiz.quiz_option[2].option
+                                      )
                                     }
                                   }
                                 }),
@@ -54853,21 +54992,26 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.answer,
-                                      expression: "answer"
+                                      value: _vm.form.answer,
+                                      expression: "form.answer"
                                     }
                                   ],
                                   attrs: { type: "radio", id: "fourth" },
                                   domProps: {
                                     value: quiz.quiz_option[3].option,
                                     checked: _vm._q(
-                                      _vm.answer,
+                                      _vm.form.answer,
                                       quiz.quiz_option[3].option
                                     )
                                   },
                                   on: {
+                                    click: _vm.countMarks,
                                     change: function($event) {
-                                      _vm.answer = quiz.quiz_option[3].option
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "answer",
+                                        quiz.quiz_option[3].option
+                                      )
                                     }
                                   }
                                 }),
@@ -54886,6 +55030,211 @@ var render = function() {
             ],
             2
           )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.answerRight && !_vm.isResult
+        ? _c("div", [
+            _c(
+              "div",
+              { staticStyle: { height: "180px" }, attrs: { align: "center" } },
+              [
+                _c("img", {
+                  staticClass: "justify-content-center",
+                  staticStyle: { "margin-top": "25px", width: "10%" },
+                  attrs: {
+                    align: "center",
+                    src: _vm.getRightImage(),
+                    alt: "User Avatar"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "justify-content-center",
+                staticStyle: { height: "70px" },
+                attrs: { align: "center" }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: {
+                      padding: "17px 40px",
+                      "font-size": "25px",
+                      "background-color": "#00C794"
+                    },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.continueNewQuestion($event)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Continue\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.quizNumber == _vm.quizes.length - 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          padding: "17px 40px",
+                          "margin-left": "5px",
+                          "font-size": "25px",
+                          "background-color": "#00C794"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.showResult($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Result\n                    "
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.answerWrong && !_vm.isResult
+        ? _c("div", [
+            _c(
+              "div",
+              { staticStyle: { height: "180px" }, attrs: { align: "center" } },
+              [
+                _c("img", {
+                  staticClass: "justify-content-center",
+                  staticStyle: { "margin-top": "25px", width: "10%" },
+                  attrs: {
+                    align: "center",
+                    src: _vm.getWrongImage(),
+                    alt: "User Avatar"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "justify-content-center",
+                staticStyle: { height: "70px" },
+                attrs: { align: "center" }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: {
+                      padding: "17px 40px",
+                      "font-size": "25px",
+                      "background-color": "#00C794"
+                    },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.continueNewQuestion($event)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Continue\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.quizNumber == _vm.quizes.length - 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          padding: "17px 40px",
+                          "margin-left": "5px",
+                          "font-size": "25px",
+                          "background-color": "#00C794"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.showResult($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Result\n                    "
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isResult
+        ? _c("div", [
+            _c(
+              "div",
+              { staticStyle: { height: "230px" }, attrs: { align: "center" } },
+              [
+                _c("img", {
+                  staticClass: "justify-content-center",
+                  staticStyle: { "margin-top": "25px", width: "30%" },
+                  attrs: {
+                    align: "center",
+                    src: _vm.getResultImage(),
+                    alt: "User Avatar"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { height: "70px", "margin-top": "25px" } },
+              [
+                _c(
+                  "h2",
+                  {
+                    staticClass: "justify-content-center",
+                    staticStyle: { color: "black", "font-weight": "bold" },
+                    attrs: { align: "center" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Marks: " +
+                        _vm._s(_vm.marks) +
+                        " out of " +
+                        _vm._s(_vm.quizes.length)
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
         : _vm._e()
     ])
   ])
@@ -54895,21 +55244,65 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { height: "50px" } }, [
+    return _c("div", { staticStyle: { height: "70px" } }, [
       _c(
-        "h4",
-        { staticClass: "justify-content-center", attrs: { align: "center" } },
-        [_vm._v("\n                    Think you are prepared for exam?")]
+        "h2",
+        {
+          staticClass: "justify-content-center",
+          staticStyle: { "font-weight": "bold" },
+          attrs: { align: "center" }
+        },
+        [_vm._v("\n                        Think you are prepared for exam?")]
       ),
       _vm._v(" "),
       _c(
-        "h4",
+        "h2",
         {
           staticClass: "justify-content-center",
-          staticStyle: { "margin-top": "5px" },
+          staticStyle: { "margin-top": "5px", "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [_vm._v("\n                    Take the challenge today and prove it!")]
+        [
+          _vm._v(
+            "\n                        Take the challenge today and prove it!"
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { height: "100px" } }, [
+      _c(
+        "h2",
+        {
+          staticClass: "justify-content-center",
+          staticStyle: { color: "black", "font-weight": "bold" },
+          attrs: { align: "center" }
+        },
+        [_vm._v("\n                        Congratulations, you are right!")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticStyle: { height: "100px" } }, [
+      _c(
+        "h2",
+        {
+          staticClass: "justify-content-center",
+          staticStyle: { color: "black", "font-weight": "bold" },
+          attrs: { align: "center" }
+        },
+        [
+          _vm._v(
+            "\n                        Good try, but you answer was wrong!"
+          )
+        ]
       )
     ])
   }

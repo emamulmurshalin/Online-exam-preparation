@@ -6,55 +6,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/JobExamInfoController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/JobExamInfo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_29_111830_create_job_exam_infos_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/Admin/PostCategorySeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Question/1611924250.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Question/1611931479.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Question/1611931606.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/AddJobExamInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Register/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Register/Registration.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin/jobExam/add-job-info.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin/jobExam/show-job-info.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/register/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/register/registration.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Exam.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Exam.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/result.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/wrong.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/wrong.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/PostCatergory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/PostCatergory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_04_052948_create_statuses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_11_052948_create_statuses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_10_183535_create_posts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_10_183535_create_posts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/Admin/StatusTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/Admin/StatusTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/Admin/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/Admin/UserTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/AddPost.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/AddPost.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/AddPreviousQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/AddPreviousQuestion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Profile/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Profile/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuiz.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuiz.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuizAnswer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuizAnswer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuizQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuizQuestion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/UserModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/UserModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Contact/ContactUs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Contact/ContactUs.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Gate.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Gate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/includes/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,7 +461,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="/login&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -548,7 +507,7 @@
       <workItem from="1611407868150" duration="32693000" />
       <workItem from="1611771010906" duration="705000" />
       <workItem from="1611771827474" duration="870000" />
-      <workItem from="1611917586335" duration="25724000" />
+      <workItem from="1611917586335" duration="35728000" />
     </task>
     <servers />
   </component>
@@ -602,7 +561,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue</url>
-          <line>107</line>
+          <line>225</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
