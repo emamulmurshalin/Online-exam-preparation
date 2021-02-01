@@ -19,7 +19,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         Gate::authorize('isAdmin');
-        return User::latest()->paginate(5);
+        return User::with('status')
+            ->latest()
+            ->paginate(5);
     }
 
     /**
@@ -53,7 +55,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('status')->findOrFail($id);
         return $user;
     }
 

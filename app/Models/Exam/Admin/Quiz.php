@@ -20,8 +20,13 @@ class Quiz extends Model
     {
         return $this->belongsTo(Subject::class, 'subject_id');
     }
+    public function questionType()
+    {
+        return $this->belongsTo(QuestionType::class, 'question_types_id');
+    }
     protected $fillable = [
         'quiz_question',
+        'question_types_id',
         'subject_id'
     ];
 }

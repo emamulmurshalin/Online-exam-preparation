@@ -27,6 +27,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
     protected $fillable = [
         'first_name',
         'last_name',
@@ -67,11 +71,6 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function status()
-    {
-        return $this->hasOne(Status::class);
-    }
 
     public function comments()
     {

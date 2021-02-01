@@ -16,10 +16,15 @@ class PreviousQuestion extends Model
     {
         return $this->belongsTo(QuestionType::class, 'question_types_id');
     }
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
     protected $fillable = [
         'question_title',
         'question_file_path',
         'question_years_id',
-        'question_types_id'
+        'question_types_id',
+        'subject_id'
     ];
 }

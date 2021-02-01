@@ -2533,23 +2533,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddPreviousQuestion",
   data: function data() {
     return {
       yearData: {},
       typeData: {},
+      subjectData: {},
       form: new Form({
         question_title: '',
         question_years_id: '',
         question_types_id: '',
-        file: ''
+        file: '',
+        subject_id: ''
       })
     };
   },
   mounted: function mounted() {
     this.getYears();
     this.getTypes();
+    this.getSubject();
   },
   methods: {
     selectFile: function selectFile(file) {
@@ -2570,8 +2584,15 @@ __webpack_require__.r(__webpack_exports__);
         _this2.typeData = response.data;
       })["catch"](function () {});
     },
-    addPreviousQuestion: function addPreviousQuestion() {
+    getSubject: function getSubject() {
       var _this3 = this;
+
+      this.axios.get('/get-subject').then(function (response) {
+        _this3.subjectData = response.data;
+      })["catch"](function () {});
+    },
+    addPreviousQuestion: function addPreviousQuestion() {
+      var _this4 = this;
 
       var config = {
         headers: {
@@ -2583,16 +2604,17 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('question_title', this.form.question_title);
       formData.append('question_years_id', this.form.question_years_id);
       formData.append('question_types_id', this.form.question_types_id);
+      formData.append('subject_id', this.form.subject_id);
       this.axios.post('previous-question', formData, config).then(function (response) {
         toast.fire({
           icon: 'success',
           title: 'Question added successfully'
         });
         window.location.replace('/show-question');
-        _this3.form.question_title = '';
-        _this3.form.question_types_id = '';
-        _this3.form.question_years_id = '';
-        _this3.form.file = '';
+        _this4.form.question_title = '';
+        _this4.form.question_types_id = '';
+        _this4.form.question_years_id = '';
+        _this4.form.file = '';
       })["catch"](function () {});
     }
   }
@@ -3208,19 +3230,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddQuizQuestion",
   data: function data() {
     return {
       subjectData: {},
+      typeData: {},
       form: new Form({
         quiz_question: '',
-        subject_id: ''
+        subject_id: '',
+        question_types_id: ''
       })
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     this.getSubject();
+    this.getTypes();
   },
   methods: {
     getSubject: function getSubject() {
@@ -3230,16 +3266,23 @@ __webpack_require__.r(__webpack_exports__);
         _this.subjectData = response.data;
       })["catch"](function () {});
     },
-    addQuiz: function addQuiz() {
+    getTypes: function getTypes() {
       var _this2 = this;
+
+      this.axios.get('get-types').then(function (response) {
+        _this2.typeData = response.data;
+      })["catch"](function () {});
+    },
+    addQuiz: function addQuiz() {
+      var _this3 = this;
 
       this.axios.post('/quiz/question', this.form).then(function (response) {
         toast.fire({
           icon: 'success',
           title: 'User created successfully'
         });
-        _this2.form.quiz_question = '';
-        _this2.form.subject_id = '';
+        _this3.form.quiz_question = '';
+        _this3.form.subject_id = '';
       })["catch"](function () {});
     }
   }
@@ -3547,6 +3590,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.form.role = '';
         _this2.form.status_id = '';
         _this2.form.bio = '';
+        _this2.form.status_id = '';
         _this2.form.password = '';
         _this2.form.confirm_password = '';
 
@@ -3580,6 +3624,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.form.last_name = _this4.formData.last_name;
         _this4.form.email = _this4.formData.email;
         _this4.form.bio = _this4.formData.bio;
+        _this4.form.status_id = _this4.formData.status_id;
       })["catch"](function (error) {});
     },
     closeModal: function closeModal() {
@@ -51605,6 +51650,68 @@ var render = function() {
                 0
               )
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+              _vm._v("Quiz subject")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-8" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.subject_id,
+                      expression: "form.subject_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "subject_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.subjectData, function(subject, index) {
+                  return _c(
+                    "option",
+                    {
+                      key: index,
+                      domProps: {
+                        value: subject.id,
+                        selected: index === 0 ? "selected" : ""
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(subject.name) +
+                          "\n                            "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -52865,6 +52972,68 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
             _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+              _vm._v("Question type")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-8 " }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.question_types_id,
+                      expression: "form.question_types_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "question_types_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.typeData, function(questionType, index) {
+                  return _c(
+                    "option",
+                    {
+                      key: index,
+                      domProps: {
+                        value: questionType.id,
+                        selected: index === 0 ? "selected" : ""
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(questionType.type) +
+                          "\n                            "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group row" }, [
+            _c("label", { staticClass: "col-sm-3 col-form-label" }, [
               _vm._v("Quiz subject")
             ]),
             _vm._v(" "),
@@ -54002,7 +54171,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(user.role))]),
                                   _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(user.status_id))]),
+                                  _c("td", [_vm._v(_vm._s(user.status.name))]),
                                   _vm._v(" "),
                                   _c("td", [
                                     _vm._v(

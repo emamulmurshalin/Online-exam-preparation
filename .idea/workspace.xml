@@ -6,14 +6,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/result.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/wrong.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/wrong.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Question/1612198061.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Question/1612198194.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PreviousQuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PreviousQuestionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuizController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/PreviousQuestion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/PreviousQuestion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/QuestionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/QuestionType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Quiz.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Subject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Subject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Status.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Status.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_20_153138_create_previous_questions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_20_153138_create_previous_questions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_20_153652_create_quizzes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_20_153652_create_quizzes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/Admin/QuestionTypeSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/Admin/QuestionTypeSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/AddPreviousQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/AddPreviousQuestion.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuizQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/AddQuizQuestion.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/UserModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/UserModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -507,7 +519,7 @@
       <workItem from="1611407868150" duration="32693000" />
       <workItem from="1611771010906" duration="705000" />
       <workItem from="1611771827474" duration="870000" />
-      <workItem from="1611917586335" duration="35728000" />
+      <workItem from="1611917586335" duration="38676000" />
     </task>
     <servers />
   </component>

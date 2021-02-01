@@ -17,22 +17,7 @@ class QuestionTypeSeeder extends Seeder
         );
         DB::table('question_types')->insert(
             [
-                'type' => 'JSC',
-            ]
-        );
-        DB::table('question_types')->insert(
-            [
-                'type' => 'SSC',
-            ]
-        );
-        DB::table('question_types')->insert(
-            [
-                'type' => 'HSC',
-            ]
-        );
-        DB::table('question_types')->insert(
-            [
-                'type' => 'ADMISSION',
+                'type' => 'Bank job',
             ]
         );
     }

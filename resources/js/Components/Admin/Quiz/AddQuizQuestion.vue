@@ -16,6 +16,17 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Question type</label>
+                        <div class="col-sm-8 ">
+                            <select v-model="form.question_types_id" class="form-control">
+                                <option v-for="(questionType, index) in typeData" v-bind:value="questionType.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{questionType.type}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Quiz subject</label>
                         <div class="col-sm-8">
                             <select v-model="form.subject_id" class="form-control">
@@ -43,20 +54,31 @@
         data(){
             return{
                 subjectData: {},
+                typeData: {},
                 form: new Form({
                     quiz_question: '',
                     subject_id: '',
+                    question_types_id: '',
                 })
             }
         },
-        created(){
+        mounted(){
             this.getSubject();
+            this.getTypes();
         },
         methods:{
             getSubject(){
                 this.axios.get('/get-subject')
                     .then((response) => {
                         this.subjectData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
+            getTypes(){
+                this.axios.get('get-types')
+                    .then((response) => {
+                        this.typeData = response.data;
                     }).catch(()=>{
 
                 });

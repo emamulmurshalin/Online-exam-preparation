@@ -17,7 +17,7 @@ class PreviousQuestionController extends Controller
     public function index()
     {
         return PreviousQuestion::with([
-            'questionYear', 'questionType'])
+            'questionYear', 'questionType', 'subject'])
             ->latest()
             ->paginate(15);
     }

@@ -52,7 +52,7 @@
                                         <td>{{user.first_name}} {{user.last_name}}</td>
                                         <td>{{user.email}}</td>
                                         <td>{{user.role}}</td>
-                                        <td>{{user.status_id}}</td>
+                                        <td>{{user.status.name}}</td>
                                         <td>{{user.created_at | localDate}}</td>
                                         <td>
                                             <a href="#" @click.prevent="editUser(user.id)">

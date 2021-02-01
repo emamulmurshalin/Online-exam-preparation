@@ -17,14 +17,14 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return Quiz::with('quizOption', 'quizAnswer')
+        return Quiz::with('quizOption', 'quizAnswer', 'questionType')
             ->latest()
             ->paginate(15);
     }
 
     public function getQuiz()
     {
-        return Quiz::with('quizOption', 'quizAnswer')
+        return Quiz::with('quizOption', 'quizAnswer', 'questionType')
             ->inRandomOrder()
             ->limit(2)
             ->get();

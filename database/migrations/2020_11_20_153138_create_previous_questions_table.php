@@ -19,9 +19,17 @@ class CreatePreviousQuestionsTable extends Migration
             $table->string("question_file_path");
             $table->integer('question_years_id')->unsigned();
             $table->integer('question_types_id')->unsigned();
+            $table->integer('subject_id')->unsigned();
             $table->timestamps();
-            $table->foreign('question_years_id')->references('id')->on('question_years');
-            $table->foreign('question_types_id')->references('id')->on('question_types');
+            $table->foreign('question_years_id')
+                ->references('id')
+                ->on('question_years');
+            $table->foreign('question_types_id')
+                ->references('id')
+                ->on('question_types');
+            $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects');
         });
     }
 

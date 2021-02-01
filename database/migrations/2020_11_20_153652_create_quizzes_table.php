@@ -17,8 +17,14 @@ class CreateQuizzesTable extends Migration
             $table->increments('id');
             $table->string("quiz_question");
             $table->integer('subject_id')->unsigned();
+            $table->integer('question_types_id')->unsigned();
             $table->timestamps();
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects');
+            $table->foreign('question_types_id')
+                ->references('id')
+                ->on('question_types');
         });
     }
 

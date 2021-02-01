@@ -137,6 +137,7 @@
                         this.form.role = '';
                         this.form.status_id = '';
                         this.form.bio = '';
+                        this.form.status_id = '';
                         this.form.password = '';
                         this.form.confirm_password = '';
                         this.closeModal();
@@ -165,6 +166,7 @@
                         this.form.last_name = this.formData.last_name;
                         this.form.email = this.formData.email;
                         this.form.bio = this.formData.bio;
+                        this.form.status_id = this.formData.status_id;
                     }).catch((error) => {
 
                 });
