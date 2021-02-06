@@ -17,17 +17,36 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return Quiz::with('quizOption', 'quizAnswer', 'questionType')
+        return Quiz::with('quizOption', 'quizAnswer', 'questionType', 'subject')
             ->latest()
             ->paginate(15);
     }
 
-    public function getQuiz()
+    public function getQuiz(Request $request)
     {
-        return Quiz::with('quizOption', 'quizAnswer', 'questionType')
-            ->inRandomOrder()
-            ->limit(2)
-            ->get();
+        //dd($request->all());
+        return Quiz::with([
+                    'quizOption',
+                    'quizAnswer',
+                    'questionType',
+                    'subject'
+                ])
+                ->whereHas('questionType', function($q) use($request) {
+                    // Query the name field in status table
+                    if ($request->type){
+                        $q->where('type', '=', $request->type); // '=' is optional
+                    }
+                })
+                ->whereHas('subject', function($q) use($request) {
+                    // Query the name field in status table
+                    if ($request->subject){
+                        $q->where('name', '=', $request->subject); // '=' is optional
+                    }
+                })
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+
     }
 
     /**
@@ -52,7 +71,7 @@ class QuizController extends Controller
 
         return [
             'status' => 200,
-            'message' => 'User created successfully',
+            'message' => 'Quiz option created successfully',
         ];
     }
 

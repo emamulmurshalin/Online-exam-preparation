@@ -56,6 +56,8 @@
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Option three</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Option four</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Answer</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Type</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Subject</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
                                 </tr>
                                 </thead>
@@ -71,6 +73,8 @@
                                     </template>
                                     <td v-if="quiz.quiz_answer">{{quiz.quiz_answer.answer}}</td>
                                     <td v-else>{{'-'}}</td>
+                                    <td>{{quiz.question_type.type}}</td>
+                                    <td>{{quiz.subject.name}}</td>
                                     <td>
                                         <a href="#" @click.prevent="editQuiz(quiz.id)">
                                             <i class="fas fa-edit"></i>

@@ -15,6 +15,30 @@
                     <h2 align="center" style="margin-top: 5px; font-weight: bold;" class="justify-content-center">
                         Take the challenge today and prove it!</h2>
                 </div>
+                <div class="row" style="height: 40px; margin-top: 10px; margin-bottom: 5px">
+                    <div class="col-sm-3">
+
+                    </div>
+                    <div class="col-sm-3" align="center">
+                        <model-list-select :list="typeData"
+                                           v-model="form.quiz_type"
+                                           option-value="type"
+                                           option-text="type"
+                                           placeholder="Select quiz types">
+                        </model-list-select>
+                    </div>
+                    <div class="col-sm-3" align="center">
+                        <model-list-select :list="subjectData"
+                                           v-model="form.quiz_subject"
+                                           option-value="name"
+                                           option-text="name"
+                                           placeholder="Select quiz subject">
+                        </model-list-select>
+                    </div>
+                    <div class="col-sm-3">
+
+                    </div>
+                </div>
                 <div align="center" class="justify-content-center" style="height: 70px; margin-top: 12px;">
                     <button style="padding: 17px 40px; font-size: 25px; background-color: #00C794;"
                             @click.prevent="startQuiz"
@@ -139,24 +163,34 @@
 </template>
 
 <script>
+import { ModelListSelect  } from 'vue-search-select'
     export default {
+        components: {
+            ModelListSelect
+        },
         name: "ModelTest",
         data(){
             return{
                 form: new Form({
                     answer: null,
+                    quiz_type: '',
+                    quiz_subject: '',
                 }),
                 isStartQuiz: false,
                 answerRight: false,
                 answerWrong: false,
                 isResult: false,
                 quizes: {},
+                typeData: [],
+                subjectData: [],
                 marks: 0,
                 quizNumber: 0
             }
         },
         mounted(){
-            this.getAllQuiz();
+            // this.getAllQuiz();
+            this.getTypes();
+            this.getSubject();
         },
         methods:{
             startAgain(){
@@ -187,11 +221,13 @@
                     }else {
                         this.answerRight = false;
                         this.answerWrong = true;
+                        this.form.answer = '';
                     }
                 })
 
             },
             startQuiz(){
+                this.getAllQuiz();
                 this.isStartQuiz = true;
             },
             getImage(){
@@ -207,21 +243,36 @@
                 return '/img/result.png';
             },
             getAllQuiz(){
-                this.axios.get('/get-quiz')
+                this.axios.get('/get-quiz?type=' + this.form.quiz_type + '&subject=' + this.form.quiz_subject)
                     .then(response => {
                         this.quizes = response.data;
-                        console.log(this.quizes.length);
                     }).catch((error) => {
 
                 });
-            }
+            },
+            getTypes(){
+                this.axios.get('/get-types')
+                    .then((response) => {
+                        this.typeData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
+            getSubject(){
+                this.axios.get('/get-subject')
+                    .then((response) => {
+                        this.subjectData = response.data;
+                    }).catch(()=>{
+
+                });
+            },
         }
     }
 </script>
 
 <style scoped>
     .bg-color {
-        height: 420px;
+        height: 470px;
         width: 100%;
         background-color: #F5F5F5;
     }

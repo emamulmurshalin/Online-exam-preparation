@@ -12,10 +12,6 @@ class Subject extends Model
     {
         return $this->hasMany(Quiz::class);
     }
-    public function previousQuestion()
-    {
-        return $this->hasMany(PreviousQuestion::class);
-    }
     protected $fillable = [
         'name'
     ];

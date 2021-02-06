@@ -5,6 +5,7 @@ import moment from 'moment'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { Form, HasError, AlertError } from 'vform'
+import 'vue-search-select/dist/VueSearchSelect.css'
 
 import Gate from './Gate'
 Vue.prototype.$gate = new Gate(window.user);
