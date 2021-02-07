@@ -14,10 +14,24 @@ class PreviousQuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //dd($request->all());
         return PreviousQuestion::with([
-            'questionYear', 'questionType'])
+            'questionYear',
+            'questionType'
+        ])->whereHas('questionType', function($q) use($request) {
+                // Query the name field in status table
+                if ($request->type){
+                    $q->where('type', '=', $request->type); // '=' is optional
+                }
+            })
+            ->whereHas('questionYear', function($q) use($request) {
+                // Query the name field in status table
+                if ($request->year){
+                    $q->where('year', '=', $request->year); // '=' is optional
+                }
+            })
             ->latest()
             ->paginate(15);
     }

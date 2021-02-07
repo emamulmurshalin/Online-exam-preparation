@@ -6,20 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/Question/1612542270.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Question/1612653853.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Question/1612653883.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PreviousQuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PreviousQuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/QuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/PreviousQuestion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/PreviousQuestion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Subject.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Subject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_20_153138_create_previous_questions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_20_153138_create_previous_questions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/AddPreviousQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/AddPreviousQuestion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Question/QuestionShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Question/QuestionShow.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -522,7 +514,7 @@
       <workItem from="1611771010906" duration="705000" />
       <workItem from="1611771827474" duration="870000" />
       <workItem from="1611917586335" duration="39438000" />
-      <workItem from="1612462238054" duration="15077000" />
+      <workItem from="1612462238054" duration="21119000" />
     </task>
     <servers />
   </component>
@@ -571,7 +563,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/Components/FrontEnd/Question/QuestionShow.vue</url>
-          <line>45</line>
+          <line>64</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
