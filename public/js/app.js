@@ -4406,9 +4406,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
   data: function data() {
-    return {};
+    return {
+      form: new Form({
+        email: '',
+        password: ''
+      })
+    };
   },
-  methods: {}
+  methods: {
+    loginUser: function loginUser() {
+      this.axios.post('/user-login', this.form).then(function (response) {
+        console.log(response);
+
+        if (response.data.status == 200) {
+          console.log('ljkljk');
+          toast.fire({
+            icon: 'success',
+            title: 'User login successfully'
+          });
+          window.location.replace('/');
+        } else {
+          console.log('wrong');
+          toast.fire({
+            icon: 'error',
+            title: 'Login information wrong'
+          });
+          window.location.reload();
+        }
+      })["catch"](function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -55752,72 +55779,129 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "register-form-main" }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "login-form" }, [
+        _c("form", { attrs: { action: "#", method: "post" } }, [
+          _c("div", {}, [
+            _c("p", [_vm._v("User Name ")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.email,
+                  expression: "form.email"
+                }
+              ],
+              staticClass: "name",
+              attrs: { type: "text", name: "user name", required: "" },
+              domProps: { value: _vm.form.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "email", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", {}, [
+            _c("p", [_vm._v("Password")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.password,
+                  expression: "form.password"
+                }
+              ],
+              staticClass: "password",
+              attrs: { type: "password", name: "Password", required: "" },
+              domProps: { value: _vm.form.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "password", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "submit", value: "Login" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.loginUser($event)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(3)
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "register-form-main" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "title-div" }, [
-          _c("h3", { staticClass: "tittle" }, [
-            _c("span", [_vm._v("L")]),
-            _vm._v("ogin\n                "),
-            _c("span", [_vm._v("F")]),
-            _vm._v("orm\n            ")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "tittle-style" })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "login-form" }, [
-          _c("form", { attrs: { action: "#", method: "post" } }, [
-            _c("div", {}, [
-              _c("p", [_vm._v("User Name ")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "name",
-                attrs: { type: "text", name: "user name", required: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", {}, [
-              _c("p", [_vm._v("Password")]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "password",
-                attrs: { type: "password", name: "Password", required: "" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "anim" }, [
-              _c("input", {
-                staticClass: "checkbox",
-                attrs: { type: "checkbox" }
-              }),
-              _vm._v(" "),
-              _c("span", [_vm._v(" Remember me ?")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "login-agileits-bottom wthree" }, [
-              _c("h6", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Forgot password?")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "submit", value: "Login" } }),
-            _vm._v(" "),
-            _c("div", { staticClass: "register-forming" }, [
-              _c("p", [
-                _vm._v("To Register New Account --\n                        "),
-                _c("a", { attrs: { href: "/user/registration" } }, [
-                  _vm._v("Click Here")
-                ])
-              ])
-            ])
-          ])
+    return _c("div", { staticClass: "title-div" }, [
+      _c("h3", { staticClass: "tittle" }, [
+        _c("span", [_vm._v("L")]),
+        _vm._v("ogin\n                "),
+        _c("span", [_vm._v("F")]),
+        _vm._v("orm\n            ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tittle-style" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "anim" }, [
+      _c("input", { staticClass: "checkbox", attrs: { type: "checkbox" } }),
+      _vm._v(" "),
+      _c("span", [_vm._v(" Remember me ?")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login-agileits-bottom wthree" }, [
+      _c("h6", [
+        _c("a", { attrs: { href: "#" } }, [_vm._v("Forgot password?")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "register-forming" }, [
+      _c("p", [
+        _vm._v("To Register New Account --\n                        "),
+        _c("a", { attrs: { href: "/user/registration" } }, [
+          _vm._v("Click Here")
         ])
       ])
     ])

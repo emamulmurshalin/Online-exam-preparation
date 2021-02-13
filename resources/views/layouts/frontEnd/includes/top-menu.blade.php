@@ -38,9 +38,11 @@
                             <li>
                                 <a href="/exam/blog" class="effect-3">Blog</a>
                             </li>
-                            <li>
-                                <a href="/user/registration" class="effect-3">Sign up</a>
-                            </li>
+                            @if(!auth()->user())
+                                <li>
+                                    <a href="/user/registration" class="effect-3">Sign up</a>
+                                </li>
+                            @endif
                         </ul>
                     </nav>
                 </div>

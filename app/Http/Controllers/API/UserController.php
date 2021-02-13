@@ -151,4 +151,45 @@ class UserController extends Controller
         }
         return User::latest()->paginate(5);
     }
+
+    public function loginUser(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'sometimes|required|string|min:6'
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return response()->json([
+                'status' => 200,
+                'message' => 'You are logged in successfully'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message' => 'Incorrect login details'
+            ]);
+        }
+    }
+
+    public function loginAdmin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'sometimes|required|string|min:6'
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return response()->json([
+                'status' => 200,
+                'message' => 'You are logged in successfully'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message' => 'Incorrect login details'
+            ]);
+        }
+    }
+
 }

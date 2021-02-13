@@ -20,23 +20,26 @@
             </div>
             <div class="botttom-nav-allah">
                 <ul>
-                    <li>
-                        <a href="index.html">Home</a>
+                    <li class="active">
+                        <a href="/" class="effect-3">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About Us</a>
+                        <a href="/exam/model-test" class="effect-3">Model test</a>
                     </li>
                     <li>
-                        <a href="courses.html">Questions</a>
+                        <a href="/exam/question" class="effect-3">Question</a>
                     </li>
                     <li>
-                        <a href="courses.html">Attend Quiz</a>
+                        <a href="/exam/contact-us" class="effect-3">Contact Us</a>
                     </li>
                     <li>
-                        <a href="join.html">Sign Up</a>
+                        <a href="/exam/about" class="effect-3">About Us</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact Us</a>
+                        <a href="/exam/blog" class="effect-3">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/user/registration" class="effect-3">Sign up</a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +54,7 @@
         <div class="container">
             <div class="allah-copy">
                 <p>© 2020 Online Preparation. All rights reserved | Design by
-                    <a href="http://w3layouts.com/">Tasnim Jahan</a>
+                    <a href="">Tasnim Jahan</a>
                 </p>
             </div>
             <div class="footercopy-social">

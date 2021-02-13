@@ -23,10 +23,25 @@
                     <span class="fa fa-linkedin"></span>
                 </a>
             </div>
+            @if(auth()->user())
+            <div class="header-top-righ">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                        <span class="fas fa-power-off" aria-hidden="true">{{ __('Logout') }}</span>
+
+                    </a>
+                </form>
+            </div>
+            @else
             <div class="header-top-righ">
                 <a href="/user/login">
                     <span class="fa fa-sign-out" aria-hidden="true"></span>Login</a>
             </div>
+            @endif
             <div class="clearfix"> </div>
         </div>
         <div class="clearfix"> </div>

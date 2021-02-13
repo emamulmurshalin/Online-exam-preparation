@@ -146,3 +146,10 @@ Route::get('/exam/question/{id}/download', [PreviousQuestionController::class, '
 
 Route::get('/get-quiz', [QuizController::class, 'getQuiz'])
     ->name('get_quiz');
+
+
+//User login
+Route::post('/user-login', [UserController::class, 'loginUser'])
+    ->name('user_login');
+Route::post('/admin-login', [UserController::class, 'loginAdmin'])
+    ->name('admin_login');
