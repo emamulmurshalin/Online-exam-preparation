@@ -6,7 +6,6 @@
                 <div class="float-right">
                     <button @click.prevent="addExamInfo" class="btn btn-success">
                         Add exam info
-                        <i class="fas fa-user-plus fa-fw"></i>
                     </button>
                 </div>
             </div>

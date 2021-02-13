@@ -6,19 +6,16 @@
                 <div class="float-right">
                     <button @click.prevent="addQuestion" data-toggle="modal" class="btn btn-success">
                         Add question
-                        <i class="fas fa-question"></i>
                     </button>
                 </div>
                 <div class="float-right mr-3">
                     <button @click.prevent="addQuizOption" data-toggle="modal" class="btn btn-success">
                         Add quiz option
-                        <i class="fas fa-question"></i>
                     </button>
                 </div>
                 <div class="float-right mr-3">
                     <button @click.prevent="addQuizAnswer" data-toggle="modal" class="btn btn-success">
                         Add quiz answer
-                        <i class="fas fa-question"></i>
                     </button>
                 </div>
             </div>

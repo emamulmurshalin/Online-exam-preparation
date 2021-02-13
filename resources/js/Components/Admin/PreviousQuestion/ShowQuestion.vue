@@ -6,7 +6,7 @@
                 <div class="float-right">
                     <button @click.prevent="addQuestion" data-toggle="modal" class="btn btn-success">
                         Upload question
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-question-circle"></i>
                     </button>
                 </div>
             </div>

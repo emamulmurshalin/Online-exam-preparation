@@ -43,10 +43,10 @@
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-question-circle"></i>
                         <p>
                             Question management
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="fas fa-angle-down"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -64,10 +64,10 @@
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-align-center"></i>
                         <p>
                             Quiz management
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="fas fa-angle-down"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -104,7 +104,7 @@
                         <i class="fas fa-blog"></i>
                         <p>
                             Blog management
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="fas fa-angle-down"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -123,9 +123,10 @@
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
+                        <i class="fas fa-stream"></i>
                         <p>
                             Job exam info
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="fas fa-angle-down"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">

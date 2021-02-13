@@ -6,7 +6,6 @@
                 <div class="float-right">
                     <button @click.prevent="addPost" data-toggle="modal" class="btn btn-success">
                         Add post
-                        <i class="fas fa-user-plus fa-fw"></i>
                     </button>
                 </div>
             </div>
