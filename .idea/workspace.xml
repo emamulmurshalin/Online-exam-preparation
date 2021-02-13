@@ -7,8 +7,15 @@
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ContactInfoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ContactInfoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/ContactInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/ContactInfo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Status.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Status.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_10_182155_create_contact_infos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_10_182155_create_contact_infos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/Admin/StatusTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/Admin/StatusTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Contact/ContactUs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Contact/ContactUs.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -511,7 +518,7 @@
       <workItem from="1611771010906" duration="705000" />
       <workItem from="1611771827474" duration="870000" />
       <workItem from="1611917586335" duration="39438000" />
-      <workItem from="1612462238054" duration="28734000" />
+      <workItem from="1612462238054" duration="31048000" />
     </task>
     <servers />
   </component>

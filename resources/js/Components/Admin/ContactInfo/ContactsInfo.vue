@@ -37,6 +37,7 @@
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Phone</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Email</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Message</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Status</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
                                 </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                     <td>{{contact.phone}}</td>
                                     <td>{{contact.email}}</td>
                                     <td>{{contact.message}}</td>
+                                    <td>{{contact.status.name}}</td>
                                     <td>
                                         <a href="#" @click.preven="deleteContact(contact.id)">
                                             <i class="fas fa-trash"></i>

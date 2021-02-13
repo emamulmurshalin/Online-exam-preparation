@@ -20,6 +20,7 @@ class CreateContactInfosTable extends Migration
             $table->string("phone");
             $table->string("email");
             $table->text("message");
+            $table->integer('status_id')->unsigned();
             $table->timestamps();
 
         });

@@ -81,7 +81,8 @@
                     name: '',
                     email: '',
                     phone: '',
-                    message: ''
+                    message: '',
+                    status_id: 7
                 })
             }
         },
@@ -91,12 +92,13 @@
                     .then((response) => {
                         toast.fire({
                             icon: 'success',
-                            title: 'User created successfully'
+                            title: 'Message sent successfully'
                         });
                         this.form.name = '';
                         this.form.em = '';
                         this.form.phone = '';
                         this.form.message = '';
+                        this.form.status_id = '';
                     }).catch(()=>{
                 });
             },

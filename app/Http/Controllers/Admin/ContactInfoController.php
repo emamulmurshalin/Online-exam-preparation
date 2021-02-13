@@ -15,7 +15,7 @@ class ContactInfoController extends Controller
      */
     public function index()
     {
-        return ContactInfo::latest()
+        return ContactInfo::with('status')->latest()
             ->paginate(15);
     }
 
@@ -41,7 +41,7 @@ class ContactInfoController extends Controller
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|string|email|max:191',
         ]);
-        $user = ContactInfo::create($request->all());
+        $contact = ContactInfo::create($request->all());
 
         return [
             'status' => 200,

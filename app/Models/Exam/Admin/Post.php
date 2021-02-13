@@ -2,6 +2,7 @@
 
 namespace App\Models\Exam\Admin;
 
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,10 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
     protected $fillable = [
         'title',

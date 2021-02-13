@@ -2262,6 +2262,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContactInfo",
   data: function data() {
@@ -3891,7 +3893,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        status_id: 7
       })
     };
   },
@@ -3902,12 +3905,13 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post('/contact-info', this.form).then(function (response) {
         toast.fire({
           icon: 'success',
-          title: 'User created successfully'
+          title: 'Message sent successfully'
         });
         _this.form.name = '';
         _this.form.em = '';
         _this.form.phone = '';
         _this.form.message = '';
+        _this.form.status_id = '';
       })["catch"](function () {});
     }
   },
@@ -50699,6 +50703,8 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(contact.message))]),
                                 _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(contact.status.name))]),
+                                _vm._v(" "),
                                 _c("td", [
                                   _c(
                                     "a",
@@ -50882,6 +50888,19 @@ var staticRenderFns = [
             }
           },
           [_vm._v("Message")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Status")]
         ),
         _vm._v(" "),
         _c(

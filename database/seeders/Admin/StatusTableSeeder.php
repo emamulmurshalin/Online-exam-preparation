@@ -35,5 +35,15 @@ class StatusTableSeeder extends Seeder
                 'name' => 'Draft',
             ]
         );
+        DB::table('statuses')->insert(
+            [
+                'name' => 'Read',
+            ]
+        );
+        DB::table('statuses')->insert(
+            [
+                'name' => 'Unread',
+            ]
+        );
     }
 }
