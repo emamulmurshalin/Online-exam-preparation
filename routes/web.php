@@ -152,6 +152,13 @@ Route::get('/exam/question/{id}/download', [PreviousQuestionController::class, '
 Route::get('/get-quiz', [QuizController::class, 'getQuiz'])
     ->name('get_quiz');
 
+//Profile data get
+Route::get('/get-total-user', [UserController::class, 'totalUser'])
+    ->name('get_total_user');
+Route::get('/get-total-question', [UserController::class, 'totalQuestion'])
+    ->name('get_total_question');
+Route::get('/get-total-quiz', [UserController::class, 'totalQuiz'])
+    ->name('get_total_quiz');
 
 //User login
 Route::post('/user-login', [UserController::class, 'loginUser'])

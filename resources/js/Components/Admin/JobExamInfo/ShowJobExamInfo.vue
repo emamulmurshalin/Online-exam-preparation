@@ -51,6 +51,10 @@
                                     <td>{{jobExam.exam_date | localDate }}</td>
                                     <td>{{jobExam.exam_time | localTime}}</td>
                                     <td>
+                                        <a href="#" @click.prevent="editJobInfo(jobExam.id)">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        /
                                         <a href="#" @click.preven="deleteJobInfo(jobExam.id)">
                                             <i class="fas fa-trash"></i>
                                         </a>
@@ -103,6 +107,9 @@ export default {
                 }).catch((error) => {
 
             });
+        },
+        editJobInfo(id){
+            console.log(id, 'edit');
         },
         deleteJobInfo(id){
             swal.fire({

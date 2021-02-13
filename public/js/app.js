@@ -2514,6 +2514,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowJobExamInfo",
   data: function data() {
@@ -2540,6 +2544,9 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get('/jobs-info?page=' + page).then(function (response) {
         _this2.jobExamInfo = response.data;
       })["catch"](function (error) {});
+    },
+    editJobInfo: function editJobInfo(id) {
+      console.log(id, 'edit');
     },
     deleteJobInfo: function deleteJobInfo(id) {
       var _this3 = this;
@@ -3008,6 +3015,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       formData: {},
       dataLoaded: false,
+      totalUser: 0,
+      totalQuiz: 0,
+      totalQuestion: 0,
       form: new Form({
         first_name: '',
         last_name: '',
@@ -3076,10 +3086,34 @@ __webpack_require__.r(__webpack_exports__);
         _this3.form.photo = _this3.formData.photo;
         _this3.dataLoaded = true;
       })["catch"](function (error) {});
+    },
+    getTotalUser: function getTotalUser() {
+      var _this4 = this;
+
+      this.axios.get('/get-total-user').then(function (response) {
+        _this4.totalUser = response.data;
+      })["catch"](function (error) {});
+    },
+    getTotalQuiz: function getTotalQuiz() {
+      var _this5 = this;
+
+      this.axios.get('/get-total-quiz').then(function (response) {
+        _this5.totalQuiz = response.data;
+      })["catch"](function (error) {});
+    },
+    getTotalQuestion: function getTotalQuestion() {
+      var _this6 = this;
+
+      this.axios.get('/get-total-question').then(function (response) {
+        _this6.totalQuestion = response.data;
+      })["catch"](function (error) {});
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     this.getEditData();
+    this.getTotalUser();
+    this.getTotalQuiz();
+    this.getTotalQuestion();
   }
 });
 
@@ -51376,6 +51410,22 @@ var render = function() {
                                       attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.editJobInfo(jobExam.id)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fas fa-edit" })]
+                                  ),
+                                  _vm._v(
+                                    "\n                                    /\n                                    "
+                                  ),
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
                                           if (
                                             !$event.type.indexOf("key") &&
                                             _vm._k(
@@ -52730,14 +52780,52 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-4 border-right" }, [
+                    _c("div", { staticClass: "description-block" }, [
+                      _c("h5", { staticClass: "description-header" }, [
+                        _vm._v(_vm._s(_vm.totalUser))
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "description-text" }, [
+                        _vm._v("User")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-4 border-right" }, [
+                    _c("div", { staticClass: "description-block" }, [
+                      _c("h5", { staticClass: "description-header" }, [
+                        _vm._v(_vm._s(_vm.totalQuestion))
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "description-text" }, [
+                        _vm._v("Question Bank")
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-4" }, [
+                    _c("div", { staticClass: "description-block" }, [
+                      _c("h5", { staticClass: "description-header" }, [
+                        _vm._v(_vm._s(_vm.totalQuiz))
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "description-text" }, [
+                        _vm._v("Total Quiz")
+                      ])
+                    ])
+                  ])
+                ])
+              ])
             ])
           ])
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "tab-content" }, [
@@ -52939,7 +53027,7 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -52986,50 +53074,14 @@ var staticRenderFns = [
       { staticClass: "widget-user-header text-white user-cover" },
       [
         _c("h3", { staticClass: "widget-user-username text-right" }, [
-          _vm._v("Elizabeth Pierce")
+          _vm._v("Tansim Jahan")
         ]),
         _vm._v(" "),
         _c("h5", { staticClass: "widget-user-desc text-right" }, [
-          _vm._v("Web Designer")
+          _vm._v("Web Developer")
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-4 border-right" }, [
-          _c("div", { staticClass: "description-block" }, [
-            _c("h5", { staticClass: "description-header" }, [_vm._v("3,200")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "description-text" }, [_vm._v("SALES")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4 border-right" }, [
-          _c("div", { staticClass: "description-block" }, [
-            _c("h5", { staticClass: "description-header" }, [_vm._v("13,000")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "description-text" }, [
-              _vm._v("FOLLOWERS")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4" }, [
-          _c("div", { staticClass: "description-block" }, [
-            _c("h5", { staticClass: "description-header" }, [_vm._v("35")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "description-text" }, [
-              _vm._v("PRODUCTS")
-            ])
-          ])
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this

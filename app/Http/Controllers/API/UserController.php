@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exam\Admin\PreviousQuestion;
+use App\Models\Exam\Admin\Quiz;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -190,6 +192,20 @@ class UserController extends Controller
                 'message' => 'Incorrect login details'
             ]);
         }
+    }
+
+    //Get profile data
+    public function totalUser()
+    {
+        return User::all()->count();
+    }
+    public function totalQuestion()
+    {
+        return PreviousQuestion::all()->count();
+    }
+    public function totalQuiz()
+    {
+        return Quiz::all()->count();
     }
 
 }

@@ -5,8 +5,8 @@
                 <div class="card card-widget widget-user">
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header text-white user-cover">
-                        <h3 class="widget-user-username text-right">Elizabeth Pierce</h3>
-                        <h5 class="widget-user-desc text-right">Web Designer</h5>
+                        <h3 class="widget-user-username text-right">Tansim Jahan</h3>
+                        <h5 class="widget-user-desc text-right">Web Developer</h5>
                     </div>
                     <div class="widget-user-image">
                         <img class="img-circle" :src="getProfileImage()" alt="User Avatar">
@@ -15,24 +15,24 @@
                         <div class="row">
                             <div class="col-sm-4 border-right">
                                 <div class="description-block">
-                                    <h5 class="description-header">3,200</h5>
-                                    <span class="description-text">SALES</span>
+                                    <h5 class="description-header">{{ totalUser }}</h5>
+                                    <span class="description-text">User</span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 border-right">
                                 <div class="description-block">
-                                    <h5 class="description-header">13,000</h5>
-                                    <span class="description-text">FOLLOWERS</span>
+                                    <h5 class="description-header">{{ totalQuestion }}</h5>
+                                    <span class="description-text">Question Bank</span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4">
                                 <div class="description-block">
-                                    <h5 class="description-header">35</h5>
-                                    <span class="description-text">PRODUCTS</span>
+                                    <h5 class="description-header">{{ totalQuiz }}</h5>
+                                    <span class="description-text">Total Quiz</span>
                                 </div>
                                 <!-- /.description-block -->
                             </div>
@@ -134,6 +134,9 @@
             return{
                 formData: {},
                 dataLoaded: false,
+                totalUser: 0,
+                totalQuiz: 0,
+                totalQuestion: 0,
                 form: new Form({
                     first_name: '',
                     last_name: '',
@@ -198,9 +201,36 @@
 
                 });
             },
+            getTotalUser(){
+                this.axios.get('/get-total-user')
+                    .then((response) => {
+                        this.totalUser = response.data;
+                    }).catch((error) => {
+
+                });
+            },
+            getTotalQuiz(){
+                this.axios.get('/get-total-quiz')
+                    .then((response) => {
+                        this.totalQuiz = response.data;
+                    }).catch((error) => {
+
+                });
+            },
+            getTotalQuestion(){
+                this.axios.get('/get-total-question')
+                    .then((response) => {
+                        this.totalQuestion = response.data;
+                    }).catch((error) => {
+
+                });
+            }
         },
-        created(){
+        mounted(){
             this.getEditData();
+            this.getTotalUser();
+            this.getTotalQuiz();
+            this.getTotalQuestion();
         },
     }
 </script>
