@@ -52,13 +52,11 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <router-link to="/show-question" class="nav-link">
-                                <i class="fas fa-question"></i>
                                 <p>Show question</p>
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/add-previous-question" class="nav-link">
-                                <i class="fas fa-question"></i>
                                 <p>Add previous question</p>
                             </router-link>
                         </li>
@@ -75,31 +73,26 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <router-link to="/quiz/list/view" class="nav-link">
-                                <i class="fas fa-question"></i>
                                 <p>All quiz</p>
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/add-quiz-question" class="nav-link">
-                                <i class="fas fa-question"></i>
                                 <p>Add quiz question</p>
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/add-quiz" class="nav-link">
-                                <i class="fas fa-question"></i>
                                 <p>Add quiz option</p>
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/add-quiz-answer" class="nav-link">
-                                <i class="fas fa-question"></i>
                                 <p>Add quiz answer</p>
                             </router-link>
                         </li>
                     </ul>
                 </li>
-                @endcan
                 <li class="nav-item">
                     <router-link to="/users/contact-info" class="nav-link">
                         <i class="fas fa-envelope-open-text"></i>
@@ -117,13 +110,11 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <router-link to="/users/blog-post" class="nav-link">
-                                <i class="fas fa-blog"></i>
                                 <p>All blog</p>
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/users/add-post" class="nav-link">
-                                <i class="fas fa-blog"></i>
                                 <p>Add post</p>
                             </router-link>
                         </li>
@@ -150,7 +141,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @endcan
                 <li class="nav-item">
                     <router-link to="/users/profile" class="nav-link">
                         <i class="fas fa-user"></i>

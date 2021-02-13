@@ -62,7 +62,7 @@ export default {
                     });
                     this.form.job_title = '';
                     this.form.exam_date = '';
-                    this.form.exam_date = '';
+                    this.form.exam_time = '';
                 }).catch(()=>{
 
             });

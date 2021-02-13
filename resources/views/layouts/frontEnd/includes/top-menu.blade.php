@@ -42,6 +42,10 @@
                                 <li>
                                     <a href="/user/registration" class="effect-3">Sign up</a>
                                 </li>
+                            @else
+                                <li>
+                                    <a href="/dashboard" class="effect-3">Dashboard</a>
+                                </li>
                             @endif
                         </ul>
                     </nav>

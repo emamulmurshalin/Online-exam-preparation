@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Exam\Admin\JobExamInfo;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class JobExamInfoController extends Controller
 {
@@ -91,6 +93,11 @@ class JobExamInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $jobInfo = JobExamInfo::findOrFail($id);
+        $jobInfo->delete();
+        return [
+            'status' => 200,
+            'message' => 'Job info deleted successfully',
+        ];
     }
 }

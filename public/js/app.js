@@ -2421,7 +2421,7 @@ __webpack_require__.r(__webpack_exports__);
         });
         _this.form.job_title = '';
         _this.form.exam_date = '';
-        _this.form.exam_date = '';
+        _this.form.exam_time = '';
       })["catch"](function () {});
     }
   }
@@ -2442,8 +2442,127 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ShowJobExamInfo"
+  name: "ShowJobExamInfo",
+  data: function data() {
+    return {
+      search: '',
+      jobExamInfo: {}
+    };
+  },
+  methods: {
+    searchIt: function searchIt() {
+      var _this = this;
+
+      this.axios.get('/jobs-info?search=' + this.search).then(function (response) {
+        _this.jobExamInfo = response.data;
+      })["catch"](function (error) {});
+    },
+    loadJobExamInfo: function loadJobExamInfo() {
+      var _this2 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      this.axios.get('/jobs-info?page=' + page).then(function (response) {
+        _this2.jobExamInfo = response.data;
+      })["catch"](function (error) {});
+    },
+    deleteJobInfo: function deleteJobInfo(id) {
+      var _this3 = this;
+
+      swal.fire({
+        title: 'Are you sure',
+        text: "This content will be deleted permanently!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this3.axios["delete"]("/jobs-info/".concat(id)).then(function (response) {
+            _this3.loadJobExamInfo();
+
+            swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          })["catch"](function (error) {
+            swal.fire('Failed!', 'Something went wrong.', 'warning');
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    if (this.$gate.isAdmin()) {
+      this.loadJobExamInfo();
+    }
+  }
 });
 
 /***/ }),
@@ -51122,10 +51241,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true&":
-/*!************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6& ***!
+  \************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -51137,9 +51256,316 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "container" }, [
+    _vm.$gate.isAdmin()
+      ? _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "div",
+              {
+                staticClass: "dataTables_wrapper dt-bootstrap4",
+                attrs: { id: "example1_wrapper" }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "dataTables_filter",
+                        attrs: { id: "example1_filter" }
+                      },
+                      [
+                        _c("label", [
+                          _vm._v(
+                            "\n                                Search:\n                                "
+                          ),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.search,
+                                expression: "search"
+                              }
+                            ],
+                            staticClass: "form-control form-control-sm",
+                            attrs: {
+                              type: "search",
+                              placeholder: "",
+                              "aria-controls": "example1"
+                            },
+                            domProps: { value: _vm.search },
+                            on: {
+                              keyup: function($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.searchIt($event)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.search = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-12" }, [
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-bordered table-striped dataTable dtr-inline",
+                        attrs: {
+                          id: "example1",
+                          role: "grid",
+                          "aria-describedby": "example1_info"
+                        }
+                      },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.jobExamInfo.data, function(jobExam) {
+                            return _c(
+                              "tr",
+                              {
+                                key: jobExam.id,
+                                staticClass: "even",
+                                attrs: { role: "row" }
+                              },
+                              [
+                                _c(
+                                  "td",
+                                  {
+                                    staticClass: "sorting_1",
+                                    attrs: { tabindex: "0" }
+                                  },
+                                  [_vm._v(_vm._s(jobExam.id))]
+                                ),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(jobExam.job_title))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("localDate")(jobExam.exam_date)
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(jobExam.exam_time))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "preven",
+                                              undefined,
+                                              $event.key,
+                                              undefined
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          return _vm.deleteJobInfo(jobExam.id)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fas fa-trash" })]
+                                  )
+                                ])
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-footer" },
+            [
+              _c(
+                "pagination",
+                {
+                  attrs: { data: _vm.jobExamInfo },
+                  on: { "pagination-change-page": _vm.loadJobExamInfo }
+                },
+                [
+                  _c(
+                    "span",
+                    { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                    [_vm._v("< Previous")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                    [_vm._v("Next >")]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      : _vm._e()
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Job exam info")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+      _c(
+        "div",
+        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
+        [
+          _c("label", [
+            _vm._v("Show "),
+            _c(
+              "select",
+              {
+                staticClass:
+                  "custom-select custom-select-sm form-control form-control-sm",
+                attrs: { name: "example1_length", "aria-controls": "example1" }
+              },
+              [
+                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
+              ]
+            ),
+            _vm._v(" entries")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { attrs: { role: "row" } }, [
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1",
+              "aria-sort": "ascending"
+            }
+          },
+          [_vm._v("ID")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Title")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Date")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Time")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Action")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -76897,7 +77323,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ShowJobExamInfo_vue_vue_type_template_id_b283dce6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true& */ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true&");
+/* harmony import */ var _ShowJobExamInfo_vue_vue_type_template_id_b283dce6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShowJobExamInfo.vue?vue&type=template&id=b283dce6& */ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&");
 /* harmony import */ var _ShowJobExamInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShowJobExamInfo.vue?vue&type=script&lang=js& */ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -76909,11 +77335,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _ShowJobExamInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ShowJobExamInfo_vue_vue_type_template_id_b283dce6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ShowJobExamInfo_vue_vue_type_template_id_b283dce6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ShowJobExamInfo_vue_vue_type_template_id_b283dce6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShowJobExamInfo_vue_vue_type_template_id_b283dce6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "b283dce6",
+  null,
   null
   
 )
@@ -76939,19 +77365,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true&":
-/*!******************************************************************************************************************!*\
-  !*** ./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true& ***!
-  \******************************************************************************************************************/
+/***/ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6& ***!
+  \******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowJobExamInfo_vue_vue_type_template_id_b283dce6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowJobExamInfo_vue_vue_type_template_id_b283dce6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowJobExamInfo_vue_vue_type_template_id_b283dce6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShowJobExamInfo.vue?vue&type=template&id=b283dce6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue?vue&type=template&id=b283dce6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowJobExamInfo_vue_vue_type_template_id_b283dce6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowJobExamInfo_vue_vue_type_template_id_b283dce6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowJobExamInfo_vue_vue_type_template_id_b283dce6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
