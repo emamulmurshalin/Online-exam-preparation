@@ -73,7 +73,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('layouts.admin.blog.add-post', compact('id'));
+        //dd('ljk');
+        return view('layouts.admin.blog.add-post', with(['id' => $id ]));
     }
 
     /**

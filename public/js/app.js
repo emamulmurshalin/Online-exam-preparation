@@ -2115,10 +2115,9 @@ __webpack_require__.r(__webpack_exports__);
   name: "Blogs",
   data: function data() {
     return {
+      isEditActive: false,
       search: '',
-      posts: {},
-      dataGetUrl: '',
-      editedUrl: ''
+      posts: {}
     };
   },
   methods: {
@@ -2164,9 +2163,7 @@ __webpack_require__.r(__webpack_exports__);
       window.location.replace('/users/add-post');
     },
     editPost: function editPost(id) {
-      this.dataGetUrl = "/blogs/".concat(id);
-      this.editedUrl = "/blogs/".concat(id, "/edit");
-      window.location.replace(this.editedUrl);
+      window.location.replace("/blogs/".concat(id, "/edit"));
     }
   },
   created: function created() {

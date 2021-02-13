@@ -29,17 +29,17 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <router-link to="/dashboard" class="nav-link">
+                    <a href="/dashboard" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
-                    </router-link>
+                    </a>
                 </li>
                 @can('isAdmin')
                 <li class="nav-item">
-                    <router-link to="/users/list/view" class="nav-link">
+                    <a href="/users/list/view" class="nav-link">
                         <i class="fas fa-users"></i>
                         <p>Users</p>
-                    </router-link>
+                    </a>
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -51,14 +51,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <router-link to="/show-question" class="nav-link">
+                            <a href="/show-question" class="nav-link">
                                 <p>Show question</p>
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/add-previous-question" class="nav-link">
+                            <a href="/add-previous-question" class="nav-link">
                                 <p>Add previous question</p>
-                            </router-link>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -72,32 +72,32 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <router-link to="/quiz/list/view" class="nav-link">
+                            <a href="/quiz/list/view" class="nav-link">
                                 <p>All quiz</p>
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/add-quiz-question" class="nav-link">
+                            <a href="/add-quiz-question" class="nav-link">
                                 <p>Add quiz question</p>
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/add-quiz" class="nav-link">
+                            <a href="/add-quiz" class="nav-link">
                                 <p>Add quiz option</p>
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/add-quiz-answer" class="nav-link">
+                            <a href="/add-quiz-answer" class="nav-link">
                                 <p>Add quiz answer</p>
-                            </router-link>
+                            </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/users/contact-info" class="nav-link">
+                    <a href="/users/contact-info" class="nav-link">
                         <i class="fas fa-envelope-open-text"></i>
                         <p>Contact info</p>
-                    </router-link>
+                    </a>
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -109,14 +109,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <router-link to="/users/blog-post" class="nav-link">
+                            <a href="/users/blog-post" class="nav-link">
                                 <p>All blog</p>
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/users/add-post" class="nav-link">
+                            <a href="/users/add-post" class="nav-link">
                                 <p>Add post</p>
-                            </router-link>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -131,23 +131,23 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <router-link to="/show-exam-info" class="nav-link">
+                            <a href="/show-exam-info" class="nav-link">
                                 <p>Show exam info</p>
-                            </router-link>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/add-exam-info" class="nav-link">
+                            <a href="/add-exam-info" class="nav-link">
                                 <p>Add exam info</p>
-                            </router-link>
+                            </a>
                         </li>
                     </ul>
                 </li>
                 @endcan
                 <li class="nav-item">
-                    <router-link to="/users/profile" class="nav-link">
+                    <a href="/users/profile" class="nav-link">
                         <i class="fas fa-user"></i>
                         <p>Profile</p>
-                    </router-link>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">

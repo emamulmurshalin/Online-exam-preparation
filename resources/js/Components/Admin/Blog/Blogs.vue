@@ -84,10 +84,9 @@
         name: "Blogs",
         data() {
             return {
+                isEditActive: false,
                 search: '',
                 posts: {},
-                dataGetUrl: '',
-                editedUrl: ''
             }
         },
         methods:{
@@ -140,9 +139,7 @@
                window.location.replace('/users/add-post');
             },
             editPost(id){
-                this.dataGetUrl = `/blogs/${id}`;
-                this.editedUrl = `/blogs/${id}/edit`;
-                window.location.replace(this.editedUrl);
+                window.location.replace(`/blogs/${id}/edit`);
             }
         },
         created() {
