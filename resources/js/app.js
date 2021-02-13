@@ -121,6 +121,21 @@ Vue.filter('textUppercase', function (text) {
 Vue.filter('localDate', function (date) {
     return moment(date).format('MMMM Do YYYY');
 });
+Vue.filter('localTime', function (time) {
+    let [hours, minutes] = time.split(":");
+    let modifier = '';
+    if (hours === "12") {
+        hours = "00";
+    }else if (hours > 12){
+        hours = hours - 12;
+        modifier = 'PM';
+    }else {
+        hours = hours;
+        modifier = 'AM';
+    }
+
+    return `${hours}:${minutes} ${modifier}`;
+});
 
 /////////////////
 Vue.component(

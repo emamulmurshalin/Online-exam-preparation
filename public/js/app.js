@@ -2510,6 +2510,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowJobExamInfo",
   data: function data() {
@@ -2519,6 +2525,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    addExamInfo: function addExamInfo() {
+      window.location.replace('/add-exam-info');
+    },
     searchIt: function searchIt() {
       var _this = this;
 
@@ -51259,7 +51268,30 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm.$gate.isAdmin()
       ? _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Job exam info")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "float-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.addExamInfo($event)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    Add exam info\n                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                ]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -51270,7 +51302,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-sm-12 col-md-6" }, [
                     _c(
@@ -51344,7 +51376,7 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._m(2),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c(
                           "tbody",
@@ -51376,7 +51408,13 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(jobExam.exam_time))]),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("localTime")(jobExam.exam_time)
+                                    )
+                                  )
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [
                                   _c(
@@ -51449,14 +51487,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Job exam info")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -78645,6 +78675,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FrontEnd_Register_Registration_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./Components/FrontEnd/Register/Registration.vue */ "./resources/js/Components/FrontEnd/Register/Registration.vue");
 /* harmony import */ var _Components_Admin_JobExamInfo_ShowJobExamInfo_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./Components/Admin/JobExamInfo/ShowJobExamInfo.vue */ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue");
 /* harmony import */ var _Components_Admin_JobExamInfo_AddJobExamInfo__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./Components/Admin/JobExamInfo/AddJobExamInfo */ "./resources/js/Components/Admin/JobExamInfo/AddJobExamInfo.vue");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -78794,6 +78836,26 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('textUppercase', function (tex
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('localDate', function (date) {
   return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('MMMM Do YYYY');
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('localTime', function (time) {
+  var _time$split = time.split(":"),
+      _time$split2 = _slicedToArray(_time$split, 2),
+      hours = _time$split2[0],
+      minutes = _time$split2[1];
+
+  var modifier = '';
+
+  if (hours === "12") {
+    hours = "00";
+  } else if (hours > 12) {
+    hours = hours - 12;
+    modifier = 'PM';
+  } else {
+    hours = hours;
+    modifier = 'AM';
+  }
+
+  return "".concat(hours, ":").concat(minutes, " ").concat(modifier);
 }); /////////////////
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('dashboard-show', __webpack_require__(/*! ./Components/Admin/Dashboard/Dashboard */ "./resources/js/Components/Admin/Dashboard/Dashboard.vue")["default"]);

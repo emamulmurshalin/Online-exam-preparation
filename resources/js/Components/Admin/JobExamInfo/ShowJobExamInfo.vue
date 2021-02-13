@@ -3,6 +3,12 @@
         <div class="card" v-if="$gate.isAdmin()">
             <div class="card-header">
                 <h3 class="card-title">Job exam info</h3>
+                <div class="float-right">
+                    <button @click.prevent="addExamInfo" class="btn btn-success">
+                        Add exam info
+                        <i class="fas fa-user-plus fa-fw"></i>
+                    </button>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -44,7 +50,7 @@
                                     <td class="sorting_1" tabindex="0">{{jobExam.id}}</td>
                                     <td>{{jobExam.job_title}}</td>
                                     <td>{{jobExam.exam_date | localDate }}</td>
-                                    <td>{{jobExam.exam_time}}</td>
+                                    <td>{{jobExam.exam_time | localTime}}</td>
                                     <td>
                                         <a href="#" @click.preven="deleteJobInfo(jobExam.id)">
                                             <i class="fas fa-trash"></i>
@@ -80,6 +86,9 @@ export default {
         }
     },
     methods:{
+        addExamInfo(){
+            window.location.replace('/add-exam-info');
+        },
         searchIt(){
             this.axios.get('/jobs-info?search=' + this.search)
                 .then(response => {
