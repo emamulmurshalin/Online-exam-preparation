@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\QuizManageController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+//Front end view
 Route::get('/', function () {
     return view('layouts.frontEnd.master');
 });
@@ -53,51 +56,53 @@ Route::get('/user/registration', function () {
 
 
 //Admin view
-Route::get('/users/list/view', function () {
-    return view('layouts.admin.users.user');
-});
-Route::get('/users/contact-info', function () {
-    return view('layouts.admin.contactInfo.contact-info');
-});
-Route::get('/users/blog-post', function () {
-    return view('layouts.admin.blog.blog-post');
-});
-Route::get('/users/add-post', function () {
-    return view('layouts.admin.blog.add-post');
-});
-Route::get('/users/profile', function () {
-    return view('layouts.admin.profile.profile');
-});
-Route::get('/quiz/list/view', function () {
-    return view('layouts.admin.quiz.quiz');
-});
-Route::get('/add-quiz', function () {
-    return view('layouts.admin.quiz.add-quiz');
-});
-Route::get('/add-quiz-answer', function () {
-    return view('layouts.admin.quiz.add-quiz-answer');
-});
-Route::get('/add-quiz-question', function () {
-    return view('layouts.admin.quiz.add-quiz-question');
-});
-Route::get('/add-previous-question', function () {
-    return view('layouts.admin.previousQuestion.previous-question');
-});
-Route::get('/show-question', function () {
-    return view('layouts.admin.previousQuestion.show-question');
-});
-
-Route::get('/show-exam-info', function () {
-    return view('layouts.admin.jobExam.show-job-info');
-});
-Route::get('/add-exam-info', function () {
-    return view('layouts.admin.jobExam.add-job-info');
-});
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('layouts.admin.exam');
 })->name('dashboard');
 
+Route::middleware([Authenticate::class])->group(function () {
+    Route::get('/users/list/view', function () {
+        return view('layouts.admin.users.user');
+    });
+    Route::get('/users/contact-info', function () {
+        return view('layouts.admin.contactInfo.contact-info');
+    });
+    Route::get('/users/blog-post', function () {
+        return view('layouts.admin.blog.blog-post');
+    });
+    Route::get('/users/add-post', function () {
+        return view('layouts.admin.blog.add-post');
+    });
+    Route::get('/users/profile', function () {
+        return view('layouts.admin.profile.profile');
+    });
+    Route::get('/quiz/list/view', function () {
+        return view('layouts.admin.quiz.quiz');
+    });
+    Route::get('/add-quiz', function () {
+        return view('layouts.admin.quiz.add-quiz');
+    });
+    Route::get('/add-quiz-answer', function () {
+        return view('layouts.admin.quiz.add-quiz-answer');
+    });
+    Route::get('/add-quiz-question', function () {
+        return view('layouts.admin.quiz.add-quiz-question');
+    });
+    Route::get('/add-previous-question', function () {
+        return view('layouts.admin.previousQuestion.previous-question');
+    });
+    Route::get('/show-question', function () {
+        return view('layouts.admin.previousQuestion.show-question');
+    });
+
+    Route::get('/show-exam-info', function () {
+        return view('layouts.admin.jobExam.show-job-info');
+    });
+    Route::get('/add-exam-info', function () {
+        return view('layouts.admin.jobExam.add-job-info');
+    });
+
+});
 
 //Api for data get post edit delete
 //User
