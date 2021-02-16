@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Exam\Admin\PreviousQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 
 class PreviousQuestionController extends Controller
@@ -16,20 +17,17 @@ class PreviousQuestionController extends Controller
      */
     public function index(Request $request)
     {
-        //dd($request->all());
         return PreviousQuestion::with([
             'questionYear',
             'questionType'
         ])->whereHas('questionType', function($q) use($request) {
-                // Query the name field in status table
                 if ($request->type){
-                    $q->where('type', '=', $request->type); // '=' is optional
+                    $q->where('type', '=', $request->type);
                 }
             })
             ->whereHas('questionYear', function($q) use($request) {
-                // Query the name field in status table
                 if ($request->year){
-                    $q->where('year', '=', $request->year); // '=' is optional
+                    $q->where('year', '=', $request->year);
                 }
             })
             ->latest()
@@ -111,7 +109,13 @@ class PreviousQuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('isAdmin');
+        $question = PreviousQuestion::findOrFail($id);
+        $question->delete();
+        return [
+            'status' => 200,
+            'message' => 'Question deleted successfully',
+        ];
     }
 
     public function download($id)
@@ -134,5 +138,23 @@ class PreviousQuestionController extends Controller
             'Content-Type: application/pdf',
         );
         return response()->file($file, $headers);
+    }
+
+    public function search(Request $request)
+    {
+        if ($search = \Request::get('search')){
+            $question = PreviousQuestion::with([
+                'questionYear',
+                'questionType'
+            ])->where(function ($query) use ($search){
+                    $query->where('question_title', 'LIKE', '%'.$search.'%');
+                })->paginate(5);
+            return $question;
+        }
+        return PreviousQuestion::with([
+            'questionYear',
+            'questionType'
+        ])->latest()
+            ->paginate(5);
     }
 }

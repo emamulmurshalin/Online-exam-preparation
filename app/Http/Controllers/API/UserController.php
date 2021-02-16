@@ -144,7 +144,6 @@ class UserController extends Controller
         ];
     }
     public function search(Request $request){
-        //dd($request->all(), 'hoise');
         if ($search = \Request::get('search')){
             $users = User::with('status')
                 ->where(function ($query) use ($search){

@@ -140,6 +140,7 @@ Route::resource('get-years', QuestionYearController::class);
 Route::resource('get-types', QuestionTypeController::class);
 
 Route::resource('previous-question', PreviousQuestionController::class);
+Route::get('/find-previous-question', [PreviousQuestionController::class, 'search']);
 
 //Contact info
 Route::resource('contact-info', ContactInfoController::class);

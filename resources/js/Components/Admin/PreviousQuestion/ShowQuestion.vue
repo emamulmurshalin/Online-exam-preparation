@@ -103,7 +103,12 @@
                 window.location.replace('/add-previous-question');
             },
             searchIt(){
-                console.log('search');
+                this.axios.get('/find-previous-question?search=' + this.search)
+                    .then(response => {
+                        this.questions = response.data;
+                    }).catch((error) => {
+
+                });
             },
             showquestion(){
 
@@ -112,7 +117,33 @@
                 console.log(id, 'edit');
             },
             deleteQuestion(id){
-                console.log(id, 'delete');
+                swal.fire({
+                    title: 'Are you sure',
+                    text: "This content will be deleted permanently!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.axios.delete(`/previous-question/${id}`)
+                            .then((response) => {
+                                this.getAllQuestion();
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                            }).catch((error) => {
+                            swal.fire(
+                                'Failed!',
+                                'Something went wrong.',
+                                'warning'
+                            )
+                        });
+                    }
+                })
             },
             getAllQuestion(page = 0){
                 this.axios.get('previous-question?page=' + page)
