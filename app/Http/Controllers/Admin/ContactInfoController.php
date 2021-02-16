@@ -78,9 +78,13 @@ class ContactInfoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ContactInfo $contactInfo)
     {
-        //
+        $contactInfo->update($request->all());
+        return [
+            'status' => 200,
+            'message' => 'Contact info updated successfully',
+        ];
     }
 
     /**
@@ -97,5 +101,21 @@ class ContactInfoController extends Controller
             'status' => 200,
             'message' => 'User deleted successfully',
         ];
+    }
+
+    public function search()
+    {
+        if ($search = \Request::get('search')){
+            $contactInfo = ContactInfo::with('status')
+                ->where(function ($query) use ($search){
+                    $query->where('name', 'LIKE', '%'.$search.'%')
+                        ->orWhere('phone', 'LIKE', '%'.$search.'%')
+                        ->orWhere('email', 'LIKE', '%'.$search.'%');
+                })->paginate(5);
+            return $contactInfo;
+        }
+        return ContactInfo::with('status')
+            ->latest()
+            ->paginate(5);
     }
 }

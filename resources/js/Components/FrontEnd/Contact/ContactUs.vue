@@ -90,12 +90,13 @@
             submit(){
                 this.axios.post('/contact-info', this.form)
                     .then((response) => {
+                        window.location.reload();
                         toast.fire({
                             icon: 'success',
                             title: 'Message sent successfully'
                         });
                         this.form.name = '';
-                        this.form.em = '';
+                        this.form.email = '';
                         this.form.phone = '';
                         this.form.message = '';
                         this.form.status_id = '';

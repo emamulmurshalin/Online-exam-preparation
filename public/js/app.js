@@ -2260,19 +2260,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ContactInfo",
   data: function data() {
     return {
       search: '',
-      contacts: {}
+      contacts: {},
+      form: new Form({
+        status_id: 6
+      })
     };
   },
   methods: {
     searchIt: function searchIt() {
       var _this = this;
 
-      this.axios.get('/find-user?search=' + this.search).then(function (response) {
+      this.axios.get('/find-contact-info?search=' + this.search).then(function (response) {
         _this.contacts = response.data;
       })["catch"](function (error) {});
     },
@@ -2284,8 +2291,20 @@ __webpack_require__.r(__webpack_exports__);
         _this2.contacts = response.data;
       })["catch"](function (error) {});
     },
-    deleteContact: function deleteContact(id) {
+    updateContact: function updateContact(id) {
       var _this3 = this;
+
+      this.axios.patch("/contact-info/".concat(id), this.form).then(function (response) {
+        _this3.loadContact();
+
+        toast.fire({
+          icon: 'success',
+          title: 'Contact info updated successfully'
+        });
+      })["catch"](function () {});
+    },
+    deleteContact: function deleteContact(id) {
+      var _this4 = this;
 
       swal.fire({
         title: 'Are you sure',
@@ -2294,11 +2313,12 @@ __webpack_require__.r(__webpack_exports__);
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
       }).then(function (result) {
         if (result.isConfirmed) {
-          _this3.axios["delete"]("/contact-info/".concat(id)).then(function (response) {
-            _this3.loadContact();
+          _this4.axios["delete"]("/contact-info/".concat(id)).then(function (response) {
+            _this4.loadContact();
 
             swal.fire('Deleted!', 'Your file has been deleted.', 'success');
           })["catch"](function (error) {
@@ -4073,12 +4093,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.post('/contact-info', this.form).then(function (response) {
+        window.location.reload();
         toast.fire({
           icon: 'success',
           title: 'Message sent successfully'
         });
         _this.form.name = '';
-        _this.form.em = '';
+        _this.form.email = '';
         _this.form.phone = '';
         _this.form.message = '';
         _this.form.status_id = '';
@@ -50871,6 +50892,33 @@ var render = function() {
                                 _c("td", [_vm._v(_vm._s(contact.status.name))]),
                                 _vm._v(" "),
                                 _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "preven",
+                                              undefined,
+                                              $event.key,
+                                              undefined
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          return _vm.updateContact(contact.id)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fab fa-readme" })]
+                                  ),
+                                  _vm._v(
+                                    "\n                                    /\n                                    "
+                                  ),
                                   _c(
                                     "a",
                                     {

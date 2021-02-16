@@ -50,6 +50,10 @@
                                     <td>{{contact.message}}</td>
                                     <td>{{contact.status.name}}</td>
                                     <td>
+                                        <a href="#" @click.preven="updateContact(contact.id)">
+                                            <i class="fab fa-readme"></i>
+                                        </a>
+                                        /
                                         <a href="#" @click.preven="deleteContact(contact.id)">
                                             <i class="fas fa-trash"></i>
                                         </a>
@@ -81,11 +85,14 @@
             return {
                 search: '',
                 contacts: {},
+                form: new Form({
+                    status_id: 6
+                })
             }
         },
         methods:{
             searchIt(){
-                this.axios.get('/find-user?search=' + this.search)
+                this.axios.get('/find-contact-info?search=' + this.search)
                     .then(response => {
                         this.contacts = response.data;
                     }).catch((error) => {
@@ -100,6 +107,18 @@
 
                 });
             },
+            updateContact(id){
+                this.axios.patch(`/contact-info/${id}`, this.form)
+                    .then((response) => {
+                        this.loadContact();
+                        toast.fire({
+                            icon: 'success',
+                            title: 'Contact info updated successfully'
+                        });
+                    }).catch(()=>{
+
+                });
+            },
             deleteContact(id){
                 swal.fire({
                     title: 'Are you sure',
@@ -108,7 +127,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.axios.delete(`/contact-info/${id}`)

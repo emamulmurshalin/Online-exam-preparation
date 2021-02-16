@@ -145,6 +145,7 @@ Route::get('/find-previous-question', [PreviousQuestionController::class, 'searc
 
 //Contact info
 Route::resource('contact-info', ContactInfoController::class);
+Route::get('/find-contact-info', [ContactInfoController::class, 'search']);
 
 Route::resource('blogs', BlogController::class);
 Route::get('/get-post-category', [BlogController::class, 'getCategory'])
