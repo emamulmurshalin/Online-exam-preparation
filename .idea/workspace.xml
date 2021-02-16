@@ -7,13 +7,9 @@
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/JobExamInfoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/JobExamInfoController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -518,7 +514,7 @@
       <workItem from="1611771827474" duration="870000" />
       <workItem from="1611917586335" duration="39438000" />
       <workItem from="1612462238054" duration="47953000" />
-      <workItem from="1613493117783" duration="8884000" />
+      <workItem from="1613493117783" duration="9303000" />
     </task>
     <servers />
   </component>

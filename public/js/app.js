@@ -2559,7 +2559,7 @@ __webpack_require__.r(__webpack_exports__);
     searchIt: function searchIt() {
       var _this = this;
 
-      this.axios.get('/jobs-info?search=' + this.search).then(function (response) {
+      this.axios.get('/find-exam-info?search=' + this.search).then(function (response) {
         _this.jobExamInfo = response.data;
       })["catch"](function (error) {});
     },
@@ -2584,7 +2584,9 @@ __webpack_require__.r(__webpack_exports__);
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
           _this3.axios["delete"]("/jobs-info/".concat(id)).then(function (response) {

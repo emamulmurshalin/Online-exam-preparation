@@ -100,4 +100,15 @@ class JobExamInfoController extends Controller
             'message' => 'Job info deleted successfully',
         ];
     }
+
+    public function search()
+    {
+        if ($search = \Request::get('search')){
+            $examInfo = JobExamInfo::where(function ($query) use ($search){
+                    $query->where('job_title', 'LIKE', '%'.$search.'%');
+                })->paginate(5);
+            return $examInfo;
+        }
+        return JobExamInfo::latest()->paginate(5);
+    }
 }

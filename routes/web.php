@@ -155,7 +155,9 @@ Route::get('/get-post-category', [BlogController::class, 'getCategory'])
 Route::get('/get-status', [BlogController::class, 'getStatus'])
     ->name('get_status');
 
+//Job exam info
 Route::resource('jobs-info', JobExamInfoController::class);
+Route::get('/find-exam-info', [JobExamInfoController::class, 'search']);
 
 
 Route::get('/exam/question/{id}/preview', [PreviousQuestionController::class, 'previewQuestion'])

@@ -93,7 +93,7 @@ export default {
             window.location.replace('/add-exam-info');
         },
         searchIt(){
-            this.axios.get('/jobs-info?search=' + this.search)
+            this.axios.get('/find-exam-info?search=' + this.search)
                 .then(response => {
                     this.jobExamInfo = response.data;
                 }).catch((error) => {
@@ -119,7 +119,9 @@ export default {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.axios.delete(`/jobs-info/${id}`)
