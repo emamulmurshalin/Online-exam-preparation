@@ -3859,6 +3859,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.axios.get('/find-user?search=' + this.search).then(function (response) {
+        console.log(response.data, 'jkjlkj');
         _this.users = response.data;
       })["catch"](function (error) {});
     },

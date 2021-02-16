@@ -103,6 +103,7 @@
             searchIt(){
                 this.axios.get('/find-user?search=' + this.search)
                     .then(response => {
+                        console.log(response.data, 'jkjlkj');
                         this.users = response.data;
                     }).catch((error) => {
 

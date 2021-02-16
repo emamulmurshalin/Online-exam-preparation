@@ -143,15 +143,20 @@ class UserController extends Controller
             'message' => 'User profile updated successfully',
         ];
     }
-    public function search(){
+    public function search(Request $request){
+        //dd($request->all(), 'hoise');
         if ($search = \Request::get('search')){
-            $users = User::where(function ($query) use ($search){
+            $users = User::with('status')
+                ->where(function ($query) use ($search){
                 $query->where('email', 'LIKE', '%'.$search.'%')
-                ->orWhere('first_name', 'LIKE', '%'.$search.'%');
-            })->paginate(5);
+                    ->orWhere('first_name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('last_name', 'LIKE', '%'.$search.'%');
+                })->paginate(5);
             return $users;
         }
-        return User::latest()->paginate(5);
+        return User::with('status')
+            ->latest()
+            ->paginate(5);
     }
 
     public function loginUser(Request $request)
