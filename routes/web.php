@@ -127,6 +127,7 @@ Route::patch('/profile/{id}', [UserController::class, 'updateProfile']);
 Route::resource('quiz', QuizController::class);
 Route::post('/quiz-answer', [QuizController::class, 'addQuizAnswer'])
     ->name('question');
+Route::get('/find-quiz', [QuizController::class, 'search']);
 
 Route::post('/quiz/question', [QuizController::class, 'addQuizQuestion'])
     ->name('question');

@@ -3408,6 +3408,7 @@ __webpack_require__.r(__webpack_exports__);
           title: 'User created successfully'
         });
         _this3.form.quiz_question = '';
+        _this3.form.question_types_id = '';
         _this3.form.subject_id = '';
       })["catch"](function () {});
     }
@@ -3549,20 +3550,44 @@ __webpack_require__.r(__webpack_exports__);
       window.location.replace('/add-quiz-answer');
     },
     searchIt: function searchIt() {
-      console.log('search');
+      var _this = this;
+
+      this.axios.get('/find-quiz?search=' + this.search).then(function (response) {
+        _this.quizes = response.data;
+      })["catch"](function (error) {});
     },
     editQuiz: function editQuiz(id) {
       console.log(id, 'edit');
     },
     deleteQuiz: function deleteQuiz(id) {
-      console.log(id, 'delete');
+      var _this2 = this;
+
+      swal.fire({
+        title: 'Are you sure',
+        text: "This content will be deleted permanently!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this2.axios["delete"]("/quiz/".concat(id)).then(function (response) {
+            _this2.getAllQuiz();
+
+            swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          })["catch"](function (error) {
+            swal.fire('Failed!', 'Something went wrong.', 'warning');
+          });
+        }
+      });
     },
     getAllQuiz: function getAllQuiz() {
-      var _this = this;
+      var _this3 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       this.axios.get('/quiz?page=' + page).then(function (response) {
-        _this.quizes = response.data;
+        _this3.quizes = response.data;
       })["catch"](function (error) {});
     }
   }

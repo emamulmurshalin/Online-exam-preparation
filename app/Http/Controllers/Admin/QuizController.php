@@ -7,6 +7,7 @@ use App\Models\Exam\Admin\Quiz;
 use App\Models\Exam\Admin\QuizAnswer;
 use App\Models\Exam\Admin\QuizOption;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class QuizController extends Controller
 {
@@ -17,7 +18,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return Quiz::with('quizOption', 'quizAnswer', 'questionType', 'subject')
+        return Quiz::with([
+            'quizOption', 'quizAnswer', 'questionType', 'subject'])
             ->latest()
             ->paginate(15);
     }
@@ -127,7 +129,13 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('isAdmin');
+        $quiz = Quiz::findOrFail($id);
+        $quiz->delete();
+        return [
+            'status' => 200,
+            'message' => 'Quiz deleted successfully',
+        ];
     }
 
     public function addQuizQuestion(Request $request)
@@ -144,5 +152,21 @@ class QuizController extends Controller
     public function getQuizQuestion()
     {
         return Quiz::latest()->get();
+    }
+
+    public function search()
+    {
+        if ($search = \Request::get('search')){
+            $quiz = Quiz::with([
+                'quizOption', 'quizAnswer', 'questionType', 'subject'])
+                ->where(function ($query) use ($search){
+                $query->where('quiz_question', 'LIKE', '%'.$search.'%');
+            })->paginate(5);
+            return $quiz;
+        }
+        return Quiz::with([
+            'quizOption', 'quizAnswer', 'questionType', 'subject'])
+            ->latest()
+            ->paginate(5);
     }
 }

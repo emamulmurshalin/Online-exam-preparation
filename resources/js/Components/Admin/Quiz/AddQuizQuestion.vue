@@ -91,6 +91,7 @@
                             title: 'User created successfully'
                         });
                         this.form.quiz_question = '';
+                        this.form.question_types_id = '';
                         this.form.subject_id = '';
                     }).catch(()=>{
 

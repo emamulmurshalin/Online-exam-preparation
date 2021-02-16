@@ -123,13 +123,44 @@
                 window.location.replace('/add-quiz-answer');
             },
             searchIt(){
-                console.log('search');
+                this.axios.get('/find-quiz?search=' + this.search)
+                    .then(response => {
+                        this.quizes = response.data;
+                    }).catch((error) => {
+
+                });
             },
             editQuiz(id){
                 console.log(id, 'edit');
             },
             deleteQuiz(id){
-                console.log(id, 'delete');
+                swal.fire({
+                    title: 'Are you sure',
+                    text: "This content will be deleted permanently!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.axios.delete(`/quiz/${id}`)
+                            .then((response) => {
+                                this.getAllQuiz();
+                                swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                            }).catch((error) => {
+                            swal.fire(
+                                'Failed!',
+                                'Something went wrong.',
+                                'warning'
+                            )
+                        });
+                    }
+                })
             },
             getAllQuiz(page = 0){
                 this.axios.get('/quiz?page=' + page)
