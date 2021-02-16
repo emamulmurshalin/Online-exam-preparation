@@ -10,7 +10,9 @@
                         <label class="col-sm-3 col-form-label">Question</label>
                         <div class="col-sm-8">
                             <select v-model="form.quiz_id" class="form-control">
-                                <option v-for="(question, index) in questionData" v-bind:value="question.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                <option v-for="(question, index) in questionData" v-if="question.quiz_option.length < 4"
+                                        v-bind:value="question.id" :key="index"
+                                        :selected="index === 0 ? 'selected' : ''">
                                     {{question.quiz_question}}
                                 </option>
                             </select>
@@ -61,6 +63,7 @@
             addQuiz(){
                 this.axios.post('/quiz', this.form)
                     .then((response) => {
+                        this.getQuestion();
                         toast.fire({
                             icon: 'success',
                             title: 'User created successfully'

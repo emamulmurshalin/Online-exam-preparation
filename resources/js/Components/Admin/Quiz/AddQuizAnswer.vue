@@ -9,8 +9,8 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Question</label>
                         <div class="col-sm-8">
-                            <select v-model="form.quiz_id" class="form-control">
-                                <option v-for="(question, index) in questionData" v-bind:value="question.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                            <select @change="getAnswerOption($event)" v-model="form.quiz_id" class="form-control">
+                                <option v-for="(question, index) in questionData" v-if="!question.quiz_answer" v-bind:value="question.id" :key="index" :selected="index === 0 ? 'selected' : ''">
                                     {{question.quiz_question}}
                                 </option>
                             </select>
@@ -19,7 +19,11 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Answer</label>
                         <div class="col-sm-8">
-                            <input type="text" v-model="form.answer" class="form-control" placeholder="Enter answer">
+                            <select v-model="form.answer" class="form-control">
+                                <option v-for="(option, index) in optionData" v-bind:value="option.option" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                    {{option.option}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -40,6 +44,7 @@
         data(){
             return{
                 questionData: {},
+                optionData: {},
                 form: new Form({
                     quiz_id: '',
                     answer: '',
@@ -50,6 +55,16 @@
             this.getQuestion();
         },
         methods:{
+            getAnswerOption(event){
+                if (this.form.quiz_id){
+                    this.axios.get(`/get-answer-option/${this.form.quiz_id}`)
+                        .then((response) => {
+                            this.optionData = response.data.quiz_option;
+                        }).catch(()=>{
+
+                    });
+                }
+            },
             getQuestion(){
                 this.axios.get('/get-question')
                     .then((response) => {

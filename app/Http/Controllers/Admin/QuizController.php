@@ -26,7 +26,6 @@ class QuizController extends Controller
 
     public function getQuiz(Request $request)
     {
-        //dd($request->all());
         return Quiz::with([
                     'quizOption',
                     'quizAnswer',
@@ -34,15 +33,13 @@ class QuizController extends Controller
                     'subject'
                 ])
                 ->whereHas('questionType', function($q) use($request) {
-                    // Query the name field in status table
                     if ($request->type){
-                        $q->where('type', '=', $request->type); // '=' is optional
+                        $q->where('type', '=', $request->type);
                     }
                 })
                 ->whereHas('subject', function($q) use($request) {
-                    // Query the name field in status table
                     if ($request->subject){
-                        $q->where('name', '=', $request->subject); // '=' is optional
+                        $q->where('name', '=', $request->subject);
                     }
                 })
                 ->inRandomOrder()
@@ -151,7 +148,9 @@ class QuizController extends Controller
     }
     public function getQuizQuestion()
     {
-        return Quiz::latest()->get();
+        return Quiz::with(['quizOption', 'quizAnswer'])
+            ->latest()
+            ->get();
     }
 
     public function search()
@@ -168,5 +167,10 @@ class QuizController extends Controller
             'quizOption', 'quizAnswer', 'questionType', 'subject'])
             ->latest()
             ->paginate(5);
+    }
+
+    public function getOptionByQuiz($id)
+    {
+        return Quiz::with(['quizOption'])->findOrFail($id);
     }
 }

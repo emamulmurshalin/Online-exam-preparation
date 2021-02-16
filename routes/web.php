@@ -136,6 +136,10 @@ Route::get('/get-question', [QuizController::class, 'getQuizQuestion'])
 Route::get('/get-subject', [SubjectController::class, 'getsubject'])
     ->name('get_subject');
 
+//Quiz option
+Route::get('/get-answer-option/{id}', [QuizController::class, 'getOptionByQuiz'])
+    ->name('get_answer_option');
+
 //Previous question
 Route::resource('get-years', QuestionYearController::class);
 Route::resource('get-types', QuestionTypeController::class);

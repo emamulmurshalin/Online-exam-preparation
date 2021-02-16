@@ -3218,6 +3218,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddQuiz",
   data: function data() {
@@ -3244,6 +3246,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.axios.post('/quiz', this.form).then(function (response) {
+        _this2.getQuestion();
+
         toast.fire({
           icon: 'success',
           title: 'User created successfully'
@@ -3302,11 +3306,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddQuizAnswer",
   data: function data() {
     return {
       questionData: {},
+      optionData: {},
       form: new Form({
         quiz_id: '',
         answer: ''
@@ -3317,23 +3326,32 @@ __webpack_require__.r(__webpack_exports__);
     this.getQuestion();
   },
   methods: {
-    getQuestion: function getQuestion() {
+    getAnswerOption: function getAnswerOption(event) {
       var _this = this;
 
+      if (this.form.quiz_id) {
+        this.axios.get("/get-answer-option/".concat(this.form.quiz_id)).then(function (response) {
+          _this.optionData = response.data.quiz_option;
+        })["catch"](function () {});
+      }
+    },
+    getQuestion: function getQuestion() {
+      var _this2 = this;
+
       this.axios.get('/get-question').then(function (response) {
-        _this.questionData = response.data;
+        _this2.questionData = response.data;
       })["catch"](function () {});
     },
     addQuiz: function addQuiz() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.axios.post('/quiz-answer', this.form).then(function (response) {
         toast.fire({
           icon: 'success',
           title: 'User created successfully'
         });
-        _this2.form.quiz_id = '';
-        _this2.form.answer = '';
+        _this3.form.quiz_id = '';
+        _this3.form.answer = '';
       })["catch"](function () {});
     }
   }
@@ -53351,23 +53369,25 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.questionData, function(question, index) {
-                  return _c(
-                    "option",
-                    {
-                      key: index,
-                      domProps: {
-                        value: question.id,
-                        selected: index === 0 ? "selected" : ""
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(question.quiz_question) +
-                          "\n                            "
+                  return question.quiz_option.length < 4
+                    ? _c(
+                        "option",
+                        {
+                          key: index,
+                          domProps: {
+                            value: question.id,
+                            selected: index === 0 ? "selected" : ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(question.quiz_question) +
+                              "\n                            "
+                          )
+                        ]
                       )
-                    ]
-                  )
+                    : _vm._e()
                 }),
                 0
               )
@@ -53485,43 +53505,50 @@ var render = function() {
                   ],
                   staticClass: "form-control",
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.form,
-                        "quiz_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.form,
+                          "quiz_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        return _vm.getAnswerOption($event)
+                      }
+                    ]
                   }
                 },
                 _vm._l(_vm.questionData, function(question, index) {
-                  return _c(
-                    "option",
-                    {
-                      key: index,
-                      domProps: {
-                        value: question.id,
-                        selected: index === 0 ? "selected" : ""
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(question.quiz_question) +
-                          "\n                            "
+                  return !question.quiz_answer
+                    ? _c(
+                        "option",
+                        {
+                          key: index,
+                          domProps: {
+                            value: question.id,
+                            selected: index === 0 ? "selected" : ""
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(question.quiz_question) +
+                              "\n                            "
+                          )
+                        ]
                       )
-                    ]
-                  )
+                    : _vm._e()
                 }),
                 0
               )
@@ -53534,27 +53561,59 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-8" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.answer,
-                    expression: "form.answer"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", placeholder: "Enter answer" },
-                domProps: { value: _vm.form.answer },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.answer,
+                      expression: "form.answer"
                     }
-                    _vm.$set(_vm.form, "answer", $event.target.value)
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "answer",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
                   }
-                }
-              })
+                },
+                _vm._l(_vm.optionData, function(option, index) {
+                  return _c(
+                    "option",
+                    {
+                      key: index,
+                      domProps: {
+                        value: option.option,
+                        selected: index === 0 ? "selected" : ""
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(option.option) +
+                          "\n                            "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
             ])
           ])
         ]),
