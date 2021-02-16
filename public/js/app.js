@@ -2866,7 +2866,8 @@ __webpack_require__.r(__webpack_exports__);
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
       }).then(function (result) {
         if (result.isConfirmed) {
           _this2.axios["delete"]("/previous-question/".concat(id)).then(function (response) {
@@ -3569,7 +3570,8 @@ __webpack_require__.r(__webpack_exports__);
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
       }).then(function (result) {
         if (result.isConfirmed) {
           _this2.axios["delete"]("/quiz/".concat(id)).then(function (response) {
@@ -3940,7 +3942,8 @@ __webpack_require__.r(__webpack_exports__);
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
       }).then(function (result) {
         if (result.isConfirmed) {
           _this3.axios["delete"]("/users/".concat(id)).then(function (response) {

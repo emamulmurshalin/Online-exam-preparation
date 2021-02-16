@@ -124,7 +124,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.axios.delete(`/previous-question/${id}`)
