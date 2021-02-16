@@ -41,6 +41,9 @@
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Title</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Content</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Total comment</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Status</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Category</th>
+                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Created by</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
                                 </tr>
                                 </thead>
@@ -50,6 +53,9 @@
                                     <td>{{post.title}}</td>
                                     <td>{{post.content}}</td>
                                     <td>{{post.comments.length}}</td>
+                                    <td>{{post.status.name}}</td>
+                                    <td>{{post.category.name}}</td>
+                                    <td>{{post.user.first_name}} {{post.user.last_name}}</td>
                                     <td>
                                         <a href="#" @click.preven="editPost(post.id)">
                                             <i class="fas fa-edit"></i>
@@ -91,7 +97,7 @@
         },
         methods:{
             searchIt(){
-                this.axios.get('/find-post?search=' + this.search)
+                this.axios.get('/find-blog-post?search=' + this.search)
                     .then(response => {
                         this.posts = response.data;
                     }).catch((error) => {
@@ -114,7 +120,9 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
+                    reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.axios.delete(`/blogs/${id}`)

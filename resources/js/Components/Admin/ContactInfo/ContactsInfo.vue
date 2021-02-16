@@ -129,6 +129,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes',
                     cancelButtonText: 'No',
+                    reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.axios.delete(`/contact-info/${id}`)

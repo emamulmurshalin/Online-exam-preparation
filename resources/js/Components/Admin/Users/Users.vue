@@ -136,7 +136,8 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
+                    cancelButtonText: 'No',
+                    reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         this.axios.delete(`/users/${id}`)

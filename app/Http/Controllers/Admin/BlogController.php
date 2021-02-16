@@ -18,7 +18,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return Post::with('comments')
+        return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
             ->latest()
             ->paginate(5);
     }
@@ -112,5 +112,19 @@ class BlogController extends Controller
     public function getStatus()
     {
         return Status::latest()->get();
+    }
+
+    public function search()
+    {
+        if ($search = \Request::get('search')){
+            $post = Post::with(['comments', 'status', 'postLike', 'category', 'user'])
+                ->where(function ($query) use ($search){
+                    $query->where('title', 'LIKE', '%'.$search.'%');
+                })->paginate(5);
+            return $post;
+        }
+        return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
+            ->latest()
+            ->paginate(5);
     }
 }

@@ -2111,6 +2111,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Blogs",
   data: function data() {
@@ -2124,7 +2130,7 @@ __webpack_require__.r(__webpack_exports__);
     searchIt: function searchIt() {
       var _this = this;
 
-      this.axios.get('/find-post?search=' + this.search).then(function (response) {
+      this.axios.get('/find-blog-post?search=' + this.search).then(function (response) {
         _this.posts = response.data;
       })["catch"](function (error) {});
     },
@@ -2146,7 +2152,9 @@ __webpack_require__.r(__webpack_exports__);
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
           _this3.axios["delete"]("/blogs/".concat(id)).then(function (response) {
@@ -2314,7 +2322,8 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
+        cancelButtonText: 'No',
+        reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
           _this4.axios["delete"]("/contact-info/".concat(id)).then(function (response) {
@@ -2887,7 +2896,8 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
+        cancelButtonText: 'No',
+        reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
           _this2.axios["delete"]("/previous-question/".concat(id)).then(function (response) {
@@ -3591,7 +3601,8 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
+        cancelButtonText: 'No',
+        reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
           _this2.axios["delete"]("/quiz/".concat(id)).then(function (response) {
@@ -3963,7 +3974,8 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes',
-        cancelButtonText: 'No'
+        cancelButtonText: 'No',
+        reverseButtons: true
       }).then(function (result) {
         if (result.isConfirmed) {
           _this3.axios["delete"]("/users/".concat(id)).then(function (response) {
@@ -50543,6 +50555,18 @@ var render = function() {
                                   _vm._v(_vm._s(post.comments.length))
                                 ]),
                                 _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(post.status.name))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(post.category.name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(post.user.first_name) +
+                                      " " +
+                                      _vm._s(post.user.last_name)
+                                  )
+                                ]),
+                                _vm._v(" "),
                                 _c("td", [
                                   _c(
                                     "a",
@@ -50732,6 +50756,45 @@ var staticRenderFns = [
             }
           },
           [_vm._v("Total comment")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Status")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Category")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          {
+            attrs: {
+              tabindex: "0",
+              "aria-controls": "example1",
+              rowspan: "1",
+              colspan: "1"
+            }
+          },
+          [_vm._v("Created by")]
         ),
         _vm._v(" "),
         _c(
