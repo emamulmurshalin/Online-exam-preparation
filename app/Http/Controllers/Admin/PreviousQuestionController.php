@@ -58,12 +58,20 @@ class PreviousQuestionController extends Controller
             $request['question_file_path'] = $fileName;
             if($file->move('Question',$fileName))
             {
-                $question = PreviousQuestion::create($request->all());
+                PreviousQuestion::create($request->all());
+                return [
+                    'status' => 200,
+                    'message' => 'Question info created successfully',
+                ];
             } else
             {
                 return 'file not uploaded';
             }
-
+        }else{
+            return [
+                'status' => 200,
+                'message' => 'No file added',
+            ];
         }
     }
 
@@ -75,7 +83,7 @@ class PreviousQuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        return PreviousQuestion::with(['questionYear', 'questionType'])->findOrFail($id);
     }
 
     /**
@@ -96,9 +104,30 @@ class PreviousQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PreviousQuestion $previousQuestion)
     {
-        //
+        if($file = $request->file('file')){
+            //$name =  $file->getClientOriginalName();
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $request['question_file_path'] = $fileName;
+            if($file->move('Question',$fileName))
+            {
+                $previousQuestion->update($request->all());
+                return [
+                    'status' => 200,
+                    'message' => 'Question info updated successfully',
+                ];
+            } else
+            {
+                return 'file not uploaded';
+            }
+        }else{
+            $previousQuestion->update($request->params['data']);
+            return [
+                'status' => 200,
+                'message' => 'Question info updated successfully',
+            ];
+        }
     }
 
     /**

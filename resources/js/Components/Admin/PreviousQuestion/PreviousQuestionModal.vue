@@ -55,7 +55,7 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         Cancel
                     </button>
-                    <button v-if="selectedUrl" type="submit" class="btn btn-primary">
+                    <button v-if="selectedUrl" type="submit" class="btn btn-primary" @click.prevent="update">
                         Update
                     </button>
                     <button v-else type="submit" class="btn btn-primary" @click.prevent="submit">
@@ -75,6 +75,7 @@ export default {
         return{
             yearData: {},
             typeData: {},
+            formData: {},
             form: new Form({
                 question_title: '',
                 question_years_id: '',
@@ -86,6 +87,9 @@ export default {
     mounted(){
         this.getYears();
         this.getTypes();
+        if (this.selectedUrl){
+            this.getEditData();
+        }
     },
     methods:{
         selectFile(file) {
@@ -131,6 +135,49 @@ export default {
                     this.closeModal();
                 }).catch(()=>{
                 this.closeModal();
+            });
+        },
+        update(){
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+            let formData = new FormData();
+            formData.append('file', this.form.file);
+            formData.append('question_title', this.form.question_title);
+            formData.append('question_years_id', this.form.question_years_id);
+            formData.append('question_types_id', this.form.question_types_id);
+
+            this.axios.put(this.selectedUrl, {
+                params: {
+                    data: this.form
+                },
+
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }).then((response) => {
+                    toast.fire({
+                        icon: 'success',
+                        title: 'Question updated successfully'
+                    });
+                    this.form.question_title = '';
+                    this.form.question_types_id = '';
+                    this.form.question_years_id = '';
+                    this.form.file = '';
+                    this.closeModal();
+                }).catch(()=>{
+                this.closeModal();
+            });
+        },
+        getEditData(){
+            this.axios.get(this.selectedUrl)
+                .then((response) => {
+                    this.formData = response.data;
+                    this.form.question_title = this.formData.question_title;
+                    this.form.question_years_id = this.formData.question_years_id;
+                    this.form.question_types_id = this.formData.question_types_id;
+                }).catch((error) => {
+
             });
         },
         closeModal(){

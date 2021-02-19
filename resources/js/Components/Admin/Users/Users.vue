@@ -111,6 +111,7 @@
             closeModal(modalId){
                 this.isUserModal = false;
                 $('#userModal').modal('hide');
+                this.editedUrl= '';
                 this.loadUser();
             },
             loadUser(page = 0){

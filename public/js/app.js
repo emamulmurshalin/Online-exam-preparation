@@ -2801,6 +2801,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       yearData: {},
       typeData: {},
+      formData: {},
       form: new Form({
         question_title: '',
         question_years_id: '',
@@ -2812,6 +2813,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getYears();
     this.getTypes();
+
+    if (this.selectedUrl) {
+      this.getEditData();
+    }
   },
   methods: {
     selectFile: function selectFile(file) {
@@ -2859,6 +2864,51 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         _this3.closeModal();
       });
+    },
+    update: function update() {
+      var _this4 = this;
+
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      var formData = new FormData();
+      formData.append('file', this.form.file);
+      formData.append('question_title', this.form.question_title);
+      formData.append('question_years_id', this.form.question_years_id);
+      formData.append('question_types_id', this.form.question_types_id);
+      this.axios.put(this.selectedUrl, {
+        params: {
+          data: this.form
+        },
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'Question updated successfully'
+        });
+        _this4.form.question_title = '';
+        _this4.form.question_types_id = '';
+        _this4.form.question_years_id = '';
+        _this4.form.file = '';
+
+        _this4.closeModal();
+      })["catch"](function () {
+        _this4.closeModal();
+      });
+    },
+    getEditData: function getEditData() {
+      var _this5 = this;
+
+      this.axios.get(this.selectedUrl).then(function (response) {
+        _this5.formData = response.data;
+        _this5.form.question_title = _this5.formData.question_title;
+        _this5.form.question_years_id = _this5.formData.question_years_id;
+        _this5.form.question_types_id = _this5.formData.question_types_id;
+      })["catch"](function (error) {});
     },
     closeModal: function closeModal() {
       this.$emit("close-modal", this.modalId);
@@ -2987,6 +3037,7 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal(modalId) {
       this.isModalActive = false;
       $('#previousQuestionModal').modal('hide');
+      this.editedUrl = '';
       this.getAllQuestion();
     },
     addQuestion: function addQuestion() {
@@ -4193,6 +4244,7 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal(modalId) {
       this.isUserModal = false;
       $('#userModal').modal('hide');
+      this.editedUrl = '';
       this.loadUser();
     },
     loadUser: function loadUser() {
@@ -52725,7 +52777,13 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.update($event)
+                        }
+                      }
                     },
                     [_vm._v("\n                    Update\n                ")]
                   )

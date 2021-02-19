@@ -109,6 +109,7 @@
             closeModal(modalId){
                 this.isModalActive = false;
                 $('#previousQuestionModal').modal('hide');
+                this.editedUrl= '';
                 this.getAllQuestion();
             },
             addQuestion(){

@@ -92,8 +92,6 @@ let routes = [
     { path: '/user/login', component: Login },
     { path: '/user/registration', component: Registration },
     { path: '/show-exam-info', component: ShowJobExam },
-
-
 ];
 
 Vue.use(VueAxios, axios);
