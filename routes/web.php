@@ -73,9 +73,6 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/users/blog-post', function () {
         return view('layouts.admin.blog.blog-post');
     });
-    Route::get('/users/add-post', function () {
-        return view('layouts.admin.blog.add-post');
-    });
 
     //Profile
     Route::get('/users/profile', function () {
@@ -86,20 +83,8 @@ Route::middleware([Authenticate::class])->group(function () {
     Route::get('/quiz/list/view', function () {
         return view('layouts.admin.quiz.quiz');
     });
-    Route::get('/add-quiz', function () {
-        return view('layouts.admin.quiz.add-quiz');
-    });
-    Route::get('/add-quiz-answer', function () {
-        return view('layouts.admin.quiz.add-quiz-answer');
-    });
-    Route::get('/add-quiz-question', function () {
-        return view('layouts.admin.quiz.add-quiz-question');
-    });
 
     //Previous question
-    Route::get('/add-previous-question', function () {
-        return view('layouts.admin.previousQuestion.previous-question');
-    });
     Route::get('/show-question', function () {
         return view('layouts.admin.previousQuestion.show-question');
     });
@@ -107,9 +92,6 @@ Route::middleware([Authenticate::class])->group(function () {
     //Job exam info
     Route::get('/show-exam-info', function () {
         return view('layouts.admin.jobExam.show-job-info');
-    });
-    Route::get('/add-exam-info', function () {
-        return view('layouts.admin.jobExam.add-job-info');
     });
 
 });

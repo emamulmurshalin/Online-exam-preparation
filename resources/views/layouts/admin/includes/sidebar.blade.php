@@ -42,105 +42,42 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="/show-question" class="nav-link">
                         <i class="fas fa-question-circle"></i>
                         <p>
                             Question management
-                            <i class="fas fa-angle-down"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/show-question" class="nav-link">
-                                <p>Show question</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/add-previous-question" class="nav-link">
-                                <p>Add previous question</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="/quiz/list/view" class="nav-link">
                         <i class="fas fa-align-center"></i>
                         <p>
                             Quiz management
-                            <i class="fas fa-angle-down"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/quiz/list/view" class="nav-link">
-                                <p>All quiz</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/add-quiz-question" class="nav-link">
-                                <p>Add quiz question</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/add-quiz" class="nav-link">
-                                <p>Add quiz option</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/add-quiz-answer" class="nav-link">
-                                <p>Add quiz answer</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="/show-exam-info" class="nav-link">
+                        <i class="fas fa-stream"></i>
+                        <p>
+                            Job exam info
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="/users/blog-post" class="nav-link">
+                        <i class="fas fa-blog"></i>
+                        <p>
+                            Blog management
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="/users/contact-info" class="nav-link">
                         <i class="fas fa-envelope-open-text"></i>
                         <p>Contact info</p>
                     </a>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-blog"></i>
-                        <p>
-                            Blog management
-                            <i class="fas fa-angle-down"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/users/blog-post" class="nav-link">
-                                <p>All blog</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/users/add-post" class="nav-link">
-                                <p>Add post</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-stream"></i>
-                        <p>
-                            Job exam info
-                            <i class="fas fa-angle-down"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/show-exam-info" class="nav-link">
-                                <p>Show exam info</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/add-exam-info" class="nav-link">
-                                <p>Add exam info</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 @endcan
                 <li class="nav-item">

@@ -67,13 +67,8 @@ import Users from './Components/Admin/Users/Users.vue';
 import Dashboard from './Components/Admin/Dashboard/Dashboard.vue';
 import ContactInfo from './Components/Admin/ContactInfo/ContactsInfo.vue';
 import BlogPost from './Components/Admin/Blog/Blogs.vue';
-import AddBlogPost from './Components/Admin/Blog/AddPost.vue';
 import Profile from './Components/Admin/Profile/Profile.vue';
 import Quiz from './Components/Admin/Quiz/QuizList.vue';
-import AddQuiz from './Components/Admin/Quiz/AddQuiz.vue';
-import AddQuizAnswer from './Components/Admin/Quiz/AddQuizAnswer.vue';
-import AddQuizQuestion from './Components/Admin/Quiz/AddQuizQuestion.vue';
-import AddPreviousQuestion from './Components/Admin/PreviousQuestion/AddPreviousQuestion.vue';
 import ViewPreviousQuestion from './Components/Admin/PreviousQuestion/ShowQuestion.vue';
 import ExamContactUs from './Components/FrontEnd/Contact/ContactUs.vue';
 import QuestionShow from './Components/FrontEnd/Question/QuestionShow.vue';
@@ -81,7 +76,6 @@ import ModelTest from './Components/FrontEnd/Quiz/ModelTest.vue';
 import Login from './Components/FrontEnd/Register/Login.vue';
 import Registration from './Components/FrontEnd/Register/Registration.vue';
 import ShowJobExam from './Components/Admin/JobExamInfo/ShowJobExamInfo.vue';
-import AddJobExam from './Components/Admin/JobExamInfo/AddJobExamInfo.vue';
 
 
 let routes = [
@@ -89,13 +83,8 @@ let routes = [
     { path: '/dashboard', component: Dashboard },
     { path: '/users/contact-info', component: ContactInfo },
     { path: '/users/blog-post', component: BlogPost },
-    { path: '/users/add-post', component: AddBlogPost },
     { path: '/users/profile', component: Profile },
     { path: '/quiz/list/view', component: Quiz },
-    { path: '/add-quiz', component: AddQuiz },
-    { path: '/add-quiz-answer', component: AddQuizAnswer },
-    { path: '/add-quiz-question', component: AddQuizQuestion },
-    { path: '/add-previous-question', component: AddPreviousQuestion },
     { path: '/show-question', component: ViewPreviousQuestion },
     { path: '/exam/contact-us', component: ExamContactUs },
     { path: '/exam/question', component: QuestionShow },
@@ -103,7 +92,6 @@ let routes = [
     { path: '/user/login', component: Login },
     { path: '/user/registration', component: Registration },
     { path: '/show-exam-info', component: ShowJobExam },
-    { path: '/add-exam-info', component: AddJobExam },
 
 
 ];
@@ -191,10 +179,6 @@ Vue.component(
     require('./Components/Admin/Blog/Blogs').default
 );
 Vue.component(
-    'add-blog-post',
-    require('./Components/Admin/Blog/AddPost').default
-);
-Vue.component(
     'user-profile',
     require('./Components/Admin/Profile/Profile').default
 );
@@ -206,22 +190,7 @@ Vue.component(
     'quiz-list-view',
     require('./Components/Admin/Quiz/QuizList').default
 );
-Vue.component(
-    'add-new-quiz',
-    require('./Components/Admin/Quiz/AddQuiz').default
-);
-Vue.component(
-    'add-quiz-answer',
-    require('./Components/Admin/Quiz/AddQuizAnswer').default
-);
-Vue.component(
-    'add-quiz-question',
-    require('./Components/Admin/Quiz/AddQuizQuestion').default
-);
-Vue.component(
-    'add-previous-question',
-    require('./Components/Admin/PreviousQuestion/AddPreviousQuestion').default
-);
+
 Vue.component(
     'show-previous-question',
     require('./Components/Admin/PreviousQuestion/ShowQuestion').default
@@ -230,10 +199,6 @@ Vue.component(
 Vue.component(
     'show-job-info',
     require('./Components/Admin/JobExamInfo/ShowJobExamInfo').default
-);
-Vue.component(
-    'add-job-info',
-    require('./Components/Admin/JobExamInfo/AddJobExamInfo').default
 );
 
 //Front end vue
