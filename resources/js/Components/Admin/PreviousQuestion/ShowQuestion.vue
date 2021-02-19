@@ -81,6 +81,11 @@
                     <span slot="next-nav">Next &gt;</span>
                 </pagination>
             </div>
+
+            <app-previous-question-modal v-if="isModalActive"
+                      v-bind:selected-url="editedUrl"
+                      @close-modal="closeModal">
+            </app-previous-question-modal>
             <!-- /.card-body -->
         </div>
     </div>
@@ -93,14 +98,24 @@
             return{
                 questions: {},
                 search: '',
+                isModalActive: false,
+                editedUrl: ''
             }
         },
         created(){
             this.getAllQuestion();
         },
         methods:{
+            closeModal(modalId){
+                this.isModalActive = false;
+                $('#previousQuestionModal').modal('hide');
+                this.getAllQuestion();
+            },
             addQuestion(){
-                window.location.replace('/add-previous-question');
+                this.isModalActive = true;
+                setTimeout(()=> {
+                    $('#previousQuestionModal').modal('show');
+                })
             },
             searchIt(){
                 this.axios.get('/find-previous-question?search=' + this.search)
@@ -114,7 +129,11 @@
 
             },
             editquestion(id){
-                console.log(id, 'edit');
+                this.editedUrl = `/previous-question/${id}`;
+                this.isModalActive = true;
+                setTimeout(()=> {
+                    $('#previousQuestionModal').modal('show');
+                })
             },
             deleteQuestion(id){
                 swal.fire({

@@ -95,6 +95,18 @@
                     <span slot="next-nav">Next &gt;</span>
                 </pagination>
             </div>
+
+            <app-quiz-question-modal v-if="isQuestionModal"
+                      @close-modal="questionCloseModal">
+            </app-quiz-question-modal>
+
+            <app-quiz-option-modal v-if="isOptionModal"
+                                   @close-modal="optionCloseModal">
+            </app-quiz-option-modal>
+
+            <app-quiz-answer-modal v-if="isAnswerModal"
+                                   @close-modal="answerCloseModal">
+            </app-quiz-answer-modal>
             <!-- /.card-body -->
         </div>
     </div>
@@ -107,20 +119,48 @@
             return{
                 quizes: {},
                 search: '',
+                isQuestionModal: false,
+                isOptionModal: false,
+                isAnswerModal: false,
+
             }
         },
         created(){
             this.getAllQuiz();
         },
         methods:{
+            questionCloseModal(modalId){
+                this.isQuestionModal = false;
+                $('#quizQuestionModal').modal('hide');
+                this.getAllQuiz();
+            },
+            optionCloseModal(modalId){
+                this.isOptionModal = false;
+                $('#quizOptionModal').modal('hide');
+                this.getAllQuiz();
+            },
+            answerCloseModal(modalId){
+                this.isAnswerModal = false;
+                $('#quizAnswerModal').modal('hide');
+                this.getAllQuiz();
+            },
             addQuestion(){
-                window.location.replace('/add-quiz-question');
+                this.isQuestionModal = true;
+                setTimeout(()=> {
+                    $('#quizQuestionModal').modal('show');
+                })
             },
             addQuizOption(){
-                window.location.replace('/add-quiz');
+                this.isOptionModal = true;
+                setTimeout(()=> {
+                    $('#quizOptionModal').modal('show');
+                })
             },
             addQuizAnswer(){
-                window.location.replace('/add-quiz-answer');
+                this.isAnswerModal = true;
+                setTimeout(()=> {
+                    $('#quizAnswerModal').modal('show');
+                })
             },
             searchIt(){
                 this.axios.get('/find-quiz?search=' + this.search)

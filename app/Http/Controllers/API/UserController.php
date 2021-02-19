@@ -38,7 +38,7 @@ class UserController extends Controller
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|string|email|max:191|unique:users',
-            'password' => 'required|string|min:6'
+            'password' => 'required|min:6'
         ]);
         $request['password'] = Hash::make($request->password);
          $user = User::create($request->all());
@@ -57,8 +57,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::with('status')->findOrFail($id);
-        return $user;
+         return User::with('status')->findOrFail($id);
     }
 
     /**
@@ -73,8 +72,8 @@ class UserController extends Controller
         $this->validate($request, [
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'email' => 'required|string|email|max:191|unique:users',
-            'password' => 'required|string|min:6'
+            'email' => 'required|string|email|max:191',
+            'password' => 'required|min:6'
         ]);
         $user->update($request->all());
         return [

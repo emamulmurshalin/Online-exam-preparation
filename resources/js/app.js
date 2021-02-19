@@ -81,7 +81,8 @@ import ModelTest from './Components/FrontEnd/Quiz/ModelTest.vue';
 import Login from './Components/FrontEnd/Register/Login.vue';
 import Registration from './Components/FrontEnd/Register/Registration.vue';
 import ShowJobExam from './Components/Admin/JobExamInfo/ShowJobExamInfo.vue';
-import AddJobExam from './Components/Admin/JobExamInfo/AddJobExamInfo';
+import AddJobExam from './Components/Admin/JobExamInfo/AddJobExamInfo.vue';
+
 
 let routes = [
     { path: '/users/list/view', component: Users },
@@ -103,6 +104,8 @@ let routes = [
     { path: '/user/registration', component: Registration },
     { path: '/show-exam-info', component: ShowJobExam },
     { path: '/add-exam-info', component: AddJobExam },
+
+
 ];
 
 Vue.use(VueAxios, axios);
@@ -146,10 +149,39 @@ Vue.component(
     'show-user',
     require('./Components/Admin/Users/Users').default
 );
+
+//All Modal
 Vue.component(
     'add-user',
     require('./Components/Admin/Users/UserModal').default
 );
+Vue.component(
+    'app-post-modal',
+    require('./Components/Admin/Blog/PostModal').default
+);
+Vue.component(
+    'app-job-exam-info-modal',
+    require('./Components/Admin/JobExamInfo/JobExamInfoModal').default
+);
+Vue.component(
+    'app-previous-question-modal',
+    require('./Components/Admin/PreviousQuestion/PreviousQuestionModal').default
+);
+Vue.component(
+    'app-quiz-option-modal',
+    require('./Components/Admin/Quiz/QuizOptionModal').default
+);
+Vue.component(
+    'app-quiz-answer-modal',
+    require('./Components/Admin/Quiz/QuizAnswerModal').default
+);
+Vue.component(
+    'app-quiz-question-modal',
+    require('./Components/Admin/Quiz/QuizQuestionModal').default
+);
+
+
+
 Vue.component(
     'contact-info',
     require('./Components/Admin/ContactInfo/ContactsInfo').default

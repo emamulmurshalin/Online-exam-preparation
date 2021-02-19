@@ -79,6 +79,11 @@
                     <span slot="next-nav">Next &gt;</span>
                 </pagination>
             </div>
+
+            <app-post-modal v-if="isPostModal"
+                      v-bind:selected-url="editedUrl"
+                      @close-modal="closeModal">
+            </app-post-modal>
             <!-- /.card-body -->
         </div>
     </div>
@@ -90,12 +95,18 @@
         name: "Blogs",
         data() {
             return {
-                isEditActive: false,
+                isPostModal: false,
+                editedUrl: '',
                 search: '',
                 posts: {},
             }
         },
         methods:{
+            closeModal(modalId){
+                this.isPostModal = false;
+                $('#postModal').modal('hide');
+                this.loadPost();
+            },
             searchIt(){
                 this.axios.get('/find-blog-post?search=' + this.search)
                     .then(response => {
@@ -144,10 +155,17 @@
                 })
             },
             addPost(){
-               window.location.replace('/users/add-post');
+                this.isPostModal = true;
+                setTimeout(()=> {
+                    $('#postModal').modal('show');
+                })
             },
             editPost(id){
-                window.location.replace(`/blogs/${id}/edit`);
+                this.editedUrl = `/blogs/${id}`;
+                this.isPostModal = true;
+                setTimeout(()=> {
+                    $('#postModal').modal('show');
+                })
             }
         },
         created() {

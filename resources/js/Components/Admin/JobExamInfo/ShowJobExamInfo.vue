@@ -73,6 +73,11 @@
                     <span slot="next-nav">Next &gt;</span>
                 </pagination>
             </div>
+
+            <app-job-exam-info-modal v-if="isJobInfoModal"
+                      v-bind:selected-url="editedUrl"
+                      @close-modal="closeModal">
+            </app-job-exam-info-modal>
             <!-- /.card-body -->
         </div>
     </div>
@@ -86,11 +91,21 @@ export default {
         return {
             search: '',
             jobExamInfo: {},
+            isJobInfoModal: false,
+            editedUrl: ''
         }
     },
     methods:{
+        closeModal(modalId){
+            this.isJobInfoModal = false;
+            $('#jobInfoModal').modal('hide');
+            this.loadJobExamInfo();
+        },
         addExamInfo(){
-            window.location.replace('/add-exam-info');
+            this.isJobInfoModal = true;
+            setTimeout(()=> {
+                $('#jobInfoModal').modal('show');
+            })
         },
         searchIt(){
             this.axios.get('/find-exam-info?search=' + this.search)
@@ -109,7 +124,11 @@ export default {
             });
         },
         editJobInfo(id){
-            console.log(id, 'edit');
+            this.editedUrl = `/jobs-info/${id}`;
+            this.isJobInfoModal = true;
+            setTimeout(()=> {
+                $('#jobInfoModal').modal('show');
+            })
         },
         deleteJobInfo(id){
             swal.fire({
