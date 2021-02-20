@@ -59,7 +59,7 @@ class JobExamInfoController extends Controller
      */
     public function show($id)
     {
-        //
+        return JobExamInfo::findOrFail($id);
     }
 
     /**
@@ -82,7 +82,18 @@ class JobExamInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jobInfo = JobExamInfo::findOrFail($id);
+
+        $this->validate($request, [
+            'job_title' => 'required',
+            'exam_date' => 'required',
+            'exam_time' => 'required',
+        ]);
+        $jobInfo->update($request->all());
+        return [
+            'status' => 200,
+            'message' => 'Job exam info updated successfully',
+        ];
     }
 
     /**

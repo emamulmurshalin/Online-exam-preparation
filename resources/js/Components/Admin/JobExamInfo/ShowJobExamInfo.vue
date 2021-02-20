@@ -99,6 +99,7 @@ export default {
         closeModal(modalId){
             this.isJobInfoModal = false;
             $('#jobInfoModal').modal('hide');
+            this.editedUrl = '';
             this.loadJobExamInfo();
         },
         addExamInfo(){

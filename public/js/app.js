@@ -2524,25 +2524,59 @@ __webpack_require__.r(__webpack_exports__);
       })
     };
   },
+  mounted: function mounted() {
+    if (this.selectedUrl) {
+      this.getEditData();
+    }
+  },
   methods: {
-    submit: function submit() {
+    getEditData: function getEditData() {
       var _this = this;
+
+      this.axios.get(this.selectedUrl).then(function (response) {
+        _this.formData = response.data;
+        _this.form.job_title = _this.formData.job_title;
+        _this.form.exam_date = _this.formData.exam_date;
+        _this.form.exam_time = _this.formData.exam_time;
+      })["catch"](function (error) {});
+    },
+    submit: function submit() {
+      var _this2 = this;
 
       this.axios.post('jobs-info', this.form).then(function (response) {
         toast.fire({
           icon: 'success',
           title: 'Job info created successfully'
         });
-        _this.form.job_title = '';
-        _this.form.exam_date = '';
-        _this.form.exam_time = '';
 
-        _this.closeModal();
+        _this2.closeModal();
       })["catch"](function () {
-        _this.closeModal();
+        _this2.closeModal();
       });
     },
+    update: function update() {
+      var _this3 = this;
+
+      this.axios.patch(this.selectedUrl, this.form).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'Job exam info updated successfully'
+        });
+
+        _this3.closeModal();
+      })["catch"](function () {
+        _this3.selectedUrl = '';
+
+        _this3.closeModal();
+      });
+    },
+    initState: function initState() {
+      this.form.job_title = '';
+      this.form.exam_date = '';
+      this.form.exam_time = '';
+    },
     closeModal: function closeModal() {
+      this.initState();
       this.$emit("close-modal", this.modalId);
     }
   }
@@ -2659,6 +2693,7 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal(modalId) {
       this.isJobInfoModal = false;
       $('#jobInfoModal').modal('hide');
+      this.editedUrl = '';
       this.loadJobExamInfo();
     },
     addExamInfo: function addExamInfo() {
@@ -5122,7 +5157,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".modal-lg[data-v-5f50e34b] {\n  max-width: 48%;\n}\n", ""]);
+exports.push([module.i, ".modal-lg[data-v-5f50e34b] {\n  max-width: 48%;\n}\r\n", ""]);
 
 // exports
 
@@ -51501,7 +51536,24 @@ var render = function() {
                     _vm._v("Add job exam info")
                   ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button", "aria-label": "Close" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.closeModal($event)
+                    }
+                  }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("×")
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
@@ -51617,7 +51669,13 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-danger",
-                  attrs: { type: "button", "data-dismiss": "modal" }
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.closeModal($event)
+                    }
+                  }
                 },
                 [_vm._v("\n                    Cancel\n                ")]
               ),
@@ -51627,7 +51685,13 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.update($event)
+                        }
+                      }
                     },
                     [_vm._v("\n                    Update\n                ")]
                   )
@@ -51652,25 +51716,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

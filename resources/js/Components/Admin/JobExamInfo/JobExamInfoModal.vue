@@ -8,7 +8,7 @@
                 <div class="modal-header">
                     <h5 v-if="selectedUrl" class="modal-title">Edit job exam info</h5>
                     <h5 v-else class="modal-title">Add job exam info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" @click.prevent="closeModal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -39,10 +39,10 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" @click.prevent="closeModal">
                         Cancel
                     </button>
-                    <button v-if="selectedUrl" type="submit" class="btn btn-primary">
+                    <button v-if="selectedUrl" type="submit" class="btn btn-primary" @click.prevent="update">
                         Update
                     </button>
                     <button v-else type="submit" class="btn btn-primary" @click.prevent="submit">
@@ -68,7 +68,23 @@ export default {
             })
         }
     },
+    mounted() {
+        if (this.selectedUrl){
+            this.getEditData();
+        }
+    },
     methods:{
+        getEditData(){
+            this.axios.get(this.selectedUrl)
+                .then((response) => {
+                    this.formData = response.data;
+                    this.form.job_title = this.formData.job_title;
+                    this.form.exam_date = this.formData.exam_date;
+                    this.form.exam_time = this.formData.exam_time;
+                }).catch((error) => {
+
+            });
+        },
         submit(){
             this.axios.post('jobs-info', this.form)
                 .then((response) => {
@@ -76,15 +92,31 @@ export default {
                         icon: 'success',
                         title: 'Job info created successfully'
                     });
-                    this.form.job_title = '';
-                    this.form.exam_date = '';
-                    this.form.exam_time = '';
                     this.closeModal();
                 }).catch(()=>{
                 this.closeModal();
             });
         },
+        update(){
+            this.axios.patch(this.selectedUrl, this.form)
+                .then((response) => {
+                    toast.fire({
+                        icon: 'success',
+                        title: 'Job exam info updated successfully'
+                    });
+                    this.closeModal();
+                }).catch(()=>{
+                this.selectedUrl = '';
+                this.closeModal();
+            });
+        },
+        initState(){
+            this.form.job_title = '';
+            this.form.exam_date = '';
+            this.form.exam_time = '';
+        },
         closeModal(){
+            this.initState();
             this.$emit("close-modal", this.modalId);
         }
     }
