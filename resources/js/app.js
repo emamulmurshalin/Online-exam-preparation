@@ -76,6 +76,7 @@ import ModelTest from './Components/FrontEnd/Quiz/ModelTest.vue';
 import Login from './Components/FrontEnd/Register/Login.vue';
 import Registration from './Components/FrontEnd/Register/Registration.vue';
 import ShowJobExam from './Components/Admin/JobExamInfo/ShowJobExamInfo.vue';
+import ShowQuizMarks from './Components/Admin/QuizInfo/ShowQuizInfo.vue';
 
 
 let routes = [
@@ -92,6 +93,7 @@ let routes = [
     { path: '/user/login', component: Login },
     { path: '/user/registration', component: Registration },
     { path: '/show-exam-info', component: ShowJobExam },
+    { path: '/users/quiz-info/list', component: ShowQuizMarks },
 ];
 
 Vue.use(VueAxios, axios);
@@ -171,7 +173,10 @@ Vue.component(
 );
 
 
-
+Vue.component(
+    'app-quiz-info',
+    require('./Components/Admin/QuizInfo/ShowQuizInfo').default
+);
 Vue.component(
     'contact-info',
     require('./Components/Admin/ContactInfo/ContactsInfo').default

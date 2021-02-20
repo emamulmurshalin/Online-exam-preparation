@@ -96,6 +96,11 @@ Route::middleware([Authenticate::class])->group(function () {
     });
 
 });
+Route::get('/users/quiz-info/list', function () {
+    return view('layouts.admin.users.user');
+});
+
+
 
 //Api for data get post edit delete
 //User
@@ -109,6 +114,7 @@ Route::patch('/profile/{id}', [UserController::class, 'updateProfile']);
 //Quiz
 Route::resource('quiz', QuizController::class);
 Route::resource('quiz-mark', QuizMarksController::class);
+Route::get('/find-quiz-mark', [QuizMarksController::class, 'search']);
 Route::post('/quiz-answer', [QuizController::class, 'addQuizAnswer'])
     ->name('question');
 Route::get('/find-quiz', [QuizController::class, 'search']);

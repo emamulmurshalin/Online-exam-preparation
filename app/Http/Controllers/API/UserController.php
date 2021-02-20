@@ -22,8 +22,7 @@ class UserController extends Controller
     {
         Gate::authorize('isAdmin');
         return User::with('status')
-            ->latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 
     /**
@@ -149,12 +148,11 @@ class UserController extends Controller
                 $query->where('email', 'LIKE', '%'.$search.'%')
                     ->orWhere('first_name', 'LIKE', '%'.$search.'%')
                     ->orWhere('last_name', 'LIKE', '%'.$search.'%');
-                })->paginate(5);
+                })->paginate(10);
             return $users;
         }
         return User::with('status')
-            ->latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 
     public function loginUser(Request $request)

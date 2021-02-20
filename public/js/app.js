@@ -4199,6 +4199,145 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ShowQuizInfo",
+  data: function data() {
+    return {
+      search: '',
+      quizMarkInfo: {}
+    };
+  },
+  methods: {
+    searchIt: function searchIt() {
+      var _this = this;
+
+      this.axios.get('/find-quiz-mark?search=' + this.search).then(function (response) {
+        _this.quizMarkInfo = response.data;
+      })["catch"](function (error) {});
+    },
+    loadQuizInfo: function loadQuizInfo() {
+      var _this2 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      this.axios.get('/quiz-mark?page=' + page).then(function (response) {
+        _this2.quizMarkInfo = response.data;
+      })["catch"](function (error) {});
+    },
+    deleteQuizInfo: function deleteQuizInfo(id) {
+      var _this3 = this;
+
+      swal.fire({
+        title: 'Are you sure',
+        text: "This content will be deleted permanently!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this3.axios["delete"]("/quiz-mark/".concat(id)).then(function (response) {
+            _this3.loadQuizInfo();
+
+            swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          })["catch"](function (error) {
+            swal.fire('Failed!', 'Something went wrong.', 'warning');
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.loadQuizInfo();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Users/UserModal.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/Users/UserModal.vue?vue&type=script&lang=js& ***!
@@ -55676,6 +55815,350 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=template&id=2f99c0f1&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=template&id=2f99c0f1& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "card" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          {
+            staticClass: "dataTables_wrapper dt-bootstrap4",
+            attrs: { id: "example1_wrapper" }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "dataTables_filter",
+                    attrs: { id: "example1_filter" }
+                  },
+                  [
+                    _c("label", [
+                      _vm._v(
+                        "\n                                Search:\n                                "
+                      ),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.search,
+                            expression: "search"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: {
+                          type: "search",
+                          placeholder: "",
+                          "aria-controls": "example1"
+                        },
+                        domProps: { value: _vm.search },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.searchIt($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.search = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-sm-12" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-bordered table-striped dataTable dtr-inline",
+                    attrs: {
+                      id: "example1",
+                      role: "grid",
+                      "aria-describedby": "example1_info"
+                    }
+                  },
+                  [
+                    _c("thead", [
+                      _c("tr", { attrs: { role: "row" } }, [
+                        _c(
+                          "th",
+                          {
+                            attrs: {
+                              tabindex: "0",
+                              "aria-controls": "example1",
+                              rowspan: "1",
+                              colspan: "1",
+                              "aria-sort": "ascending"
+                            }
+                          },
+                          [_vm._v("ID")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            attrs: {
+                              tabindex: "0",
+                              "aria-controls": "example1",
+                              rowspan: "1",
+                              colspan: "1"
+                            }
+                          },
+                          [_vm._v("Marks")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            attrs: {
+                              tabindex: "0",
+                              "aria-controls": "example1",
+                              rowspan: "1",
+                              colspan: "1"
+                            }
+                          },
+                          [_vm._v("Total marks")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            attrs: {
+                              tabindex: "0",
+                              "aria-controls": "example1",
+                              rowspan: "1",
+                              colspan: "1"
+                            }
+                          },
+                          [_vm._v("Percentage")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "th",
+                          {
+                            attrs: {
+                              tabindex: "0",
+                              "aria-controls": "example1",
+                              rowspan: "1",
+                              colspan: "1"
+                            }
+                          },
+                          [_vm._v("User name")]
+                        ),
+                        _vm._v(" "),
+                        _vm.$gate.isAdmin()
+                          ? _c(
+                              "th",
+                              {
+                                attrs: {
+                                  tabindex: "0",
+                                  "aria-controls": "example1",
+                                  rowspan: "1",
+                                  colspan: "1"
+                                }
+                              },
+                              [_vm._v("Action")]
+                            )
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.quizMarkInfo.data, function(quizInfo) {
+                        return _c(
+                          "tr",
+                          {
+                            key: quizInfo.id,
+                            staticClass: "even",
+                            attrs: { role: "row" }
+                          },
+                          [
+                            _c(
+                              "td",
+                              {
+                                staticClass: "sorting_1",
+                                attrs: { tabindex: "0" }
+                              },
+                              [_vm._v(_vm._s(quizInfo.id))]
+                            ),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(quizInfo.marks))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(quizInfo.total_marks))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(quizInfo.marks) +
+                                  " / " +
+                                  _vm._s(quizInfo.total_marks)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                _vm._s(quizInfo.user.first_name) +
+                                  " " +
+                                  _vm._s(quizInfo.user.last_name)
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm.$gate.isAdmin()
+                              ? _c("td", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          if (
+                                            !$event.type.indexOf("key") &&
+                                            _vm._k(
+                                              $event.keyCode,
+                                              "preven",
+                                              undefined,
+                                              $event.key,
+                                              undefined
+                                            )
+                                          ) {
+                                            return null
+                                          }
+                                          return _vm.deleteQuizInfo(quizInfo.id)
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fas fa-trash" })]
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card-footer" },
+        [
+          _c(
+            "pagination",
+            {
+              attrs: { data: _vm.quizMarkInfo },
+              on: { "pagination-change-page": _vm.loadQuizInfo }
+            },
+            [
+              _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+                _vm._v("< Previous")
+              ]),
+              _vm._v(" "),
+              _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+                _vm._v("Next >")
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Quiz marks List view")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+      _c(
+        "div",
+        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
+        [
+          _c("label", [
+            _vm._v("Show "),
+            _c(
+              "select",
+              {
+                staticClass:
+                  "custom-select custom-select-sm form-control form-control-sm",
+                attrs: { name: "example1_length", "aria-controls": "example1" }
+              },
+              [
+                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
+              ]
+            ),
+            _vm._v(" entries")
+          ])
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Users/UserModal.vue?vue&type=template&id=2a75d4a0&scoped=true&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/Users/UserModal.vue?vue&type=template&id=2a75d4a0&scoped=true& ***!
@@ -79643,6 +80126,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ShowQuizInfo_vue_vue_type_template_id_2f99c0f1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ShowQuizInfo.vue?vue&type=template&id=2f99c0f1& */ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=template&id=2f99c0f1&");
+/* harmony import */ var _ShowQuizInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShowQuizInfo.vue?vue&type=script&lang=js& */ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ShowQuizInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ShowQuizInfo_vue_vue_type_template_id_2f99c0f1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ShowQuizInfo_vue_vue_type_template_id_2f99c0f1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowQuizInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShowQuizInfo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowQuizInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=template&id=2f99c0f1&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=template&id=2f99c0f1& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowQuizInfo_vue_vue_type_template_id_2f99c0f1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./ShowQuizInfo.vue?vue&type=template&id=2f99c0f1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue?vue&type=template&id=2f99c0f1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowQuizInfo_vue_vue_type_template_id_2f99c0f1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowQuizInfo_vue_vue_type_template_id_2f99c0f1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Components/Admin/Users/UserModal.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/Components/Admin/Users/UserModal.vue ***!
@@ -80257,6 +80809,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FrontEnd_Register_Login_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./Components/FrontEnd/Register/Login.vue */ "./resources/js/Components/FrontEnd/Register/Login.vue");
 /* harmony import */ var _Components_FrontEnd_Register_Registration_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./Components/FrontEnd/Register/Registration.vue */ "./resources/js/Components/FrontEnd/Register/Registration.vue");
 /* harmony import */ var _Components_Admin_JobExamInfo_ShowJobExamInfo_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./Components/Admin/JobExamInfo/ShowJobExamInfo.vue */ "./resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue");
+/* harmony import */ var _Components_Admin_QuizInfo_ShowQuizInfo_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./Components/Admin/QuizInfo/ShowQuizInfo.vue */ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -80340,6 +80893,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_progressbar__WEBPACK_IMPORTED
 
 
 
+
 var routes = [{
   path: '/users/list/view',
   component: _Components_Admin_Users_Users_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -80379,6 +80933,9 @@ var routes = [{
 }, {
   path: '/show-exam-info',
   component: _Components_Admin_JobExamInfo_ShowJobExamInfo_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
+}, {
+  path: '/users/quiz-info/list',
+  component: _Components_Admin_QuizInfo_ShowQuizInfo_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
 }];
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_3___default.a, axios__WEBPACK_IMPORTED_MODULE_2___default.a);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__["default"]({
@@ -80427,6 +80984,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-option-modal', __
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-answer-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizAnswerModal */ "./resources/js/Components/Admin/Quiz/QuizAnswerModal.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-question-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizQuestionModal */ "./resources/js/Components/Admin/Quiz/QuizQuestionModal.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-edit-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizEditModal */ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-info', __webpack_require__(/*! ./Components/Admin/QuizInfo/ShowQuizInfo */ "./resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('contact-info', __webpack_require__(/*! ./Components/Admin/ContactInfo/ContactsInfo */ "./resources/js/Components/Admin/ContactInfo/ContactsInfo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('blog-post', __webpack_require__(/*! ./Components/Admin/Blog/Blogs */ "./resources/js/Components/Admin/Blog/Blogs.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-profile', __webpack_require__(/*! ./Components/Admin/Profile/Profile */ "./resources/js/Components/Admin/Profile/Profile.vue")["default"]);

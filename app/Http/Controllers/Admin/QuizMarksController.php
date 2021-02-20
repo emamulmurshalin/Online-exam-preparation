@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Exam\Front\QuizMark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class QuizMarksController extends Controller
 {
@@ -16,7 +17,14 @@ class QuizMarksController extends Controller
      */
     public function index()
     {
-        //
+        $authUser = Auth::user();
+        if ($authUser->role == 'User'){
+            return QuizMark::with(['user'])
+                ->where('user_id', $authUser->id)
+                ->paginate(10);
+        }
+        return QuizMark::with(['user'])
+            ->paginate(10);
     }
 
     /**
@@ -76,7 +84,7 @@ class QuizMarksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -87,6 +95,26 @@ class QuizMarksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quizMark = QuizMark::findOrFail($id);
+        $quizMark->delete();
+        return [
+            'status' => 200,
+            'message' => 'Quiz info deleted successfully',
+        ];
+    }
+
+    public function search()
+    {
+        if ($search = \Request::get('search')){
+            $quizMark = QuizMark::with('user')
+                ->where(function ($query) use ($search){
+                    $query->where('marks', 'LIKE', '%'.$search.'%')
+                        ->orWhere('total_marks', 'LIKE', '%'.$search.'%');
+                })->paginate(10);
+            return $quizMark;
+        }
+        return QuizMark::with('user')
+            ->latest()
+            ->paginate(10);
     }
 }

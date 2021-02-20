@@ -81,6 +81,12 @@
                 </li>
                 @endcan
                 <li class="nav-item">
+                    <a href="/users/quiz-info/list" class="nav-link">
+                        <i class="fas fa-poll"></i>
+                        <p>Quiz info</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="/users/profile" class="nav-link">
                         <i class="fas fa-user"></i>
                         <p>Profile</p>
