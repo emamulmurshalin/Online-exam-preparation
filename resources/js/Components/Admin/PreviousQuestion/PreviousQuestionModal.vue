@@ -8,7 +8,7 @@
                 <div class="modal-header">
                     <h5 v-if="selectedUrl" class="modal-title">Edit previous question</h5>
                     <h5 v-else class="modal-title">Add previous question</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" @click.prevent="closeModal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -52,7 +52,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <button type="button" class="btn btn-danger" @click.prevent="closeModal">
                         Cancel
                     </button>
                     <button v-if="selectedUrl" type="submit" class="btn btn-primary" @click.prevent="update">
@@ -112,6 +112,12 @@ export default {
 
             });
         },
+        initState(){
+            this.form.question_title = '';
+            this.form.question_types_id = '';
+            this.form.question_years_id = '';
+            this.form.file = '';
+        },
         submit(){
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
@@ -128,25 +134,12 @@ export default {
                         icon: 'success',
                         title: 'Question added successfully'
                     });
-                    this.form.question_title = '';
-                    this.form.question_types_id = '';
-                    this.form.question_years_id = '';
-                    this.form.file = '';
                     this.closeModal();
                 }).catch(()=>{
                 this.closeModal();
             });
         },
         update(){
-            const config = {
-                headers: { 'content-type': 'multipart/form-data' }
-            }
-            let formData = new FormData();
-            formData.append('file', this.form.file);
-            formData.append('question_title', this.form.question_title);
-            formData.append('question_years_id', this.form.question_years_id);
-            formData.append('question_types_id', this.form.question_types_id);
-
             this.axios.put(this.selectedUrl, {
                 params: {
                     data: this.form
@@ -160,10 +153,6 @@ export default {
                         icon: 'success',
                         title: 'Question updated successfully'
                     });
-                    this.form.question_title = '';
-                    this.form.question_types_id = '';
-                    this.form.question_years_id = '';
-                    this.form.file = '';
                     this.closeModal();
                 }).catch(()=>{
                 this.closeModal();
@@ -181,6 +170,7 @@ export default {
             });
         },
         closeModal(){
+            this.initState();
             this.$emit("close-modal", this.modalId);
         }
     }

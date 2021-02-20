@@ -5,7 +5,7 @@
                 <div class="modal-header">
                     <h5 v-if="selectedUrl" class="modal-title">Edit user</h5>
                     <h5 v-else class="modal-title">Add user</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" @click.prevent="closeModal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -74,7 +74,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <button type="button" class="btn btn-danger" @click.prevent="closeModal">
                         Cancel
                     </button>
                     <button v-if="selectedUrl" type="submit" class="btn btn-primary" @click.prevent="update">
@@ -124,6 +124,17 @@
 
                 });
             },
+            initState(){
+                this.form.first_name = '';
+                this.form.last_name = '';
+                this.form.email = '';
+                this.form.role = '';
+                this.form.status_id = '';
+                this.form.bio = '';
+                this.form.status_id = '';
+                this.form.password = '';
+                this.form.confirm_password = '';
+            },
             submit(){
                 this.axios.post('/users', this.form)
                     .then((response) => {
@@ -131,15 +142,6 @@
                             icon: 'success',
                             title: 'User created successfully'
                         });
-                        this.form.first_name = '';
-                        this.form.last_name = '';
-                        this.form.email = '';
-                        this.form.role = '';
-                        this.form.status_id = '';
-                        this.form.bio = '';
-                        this.form.status_id = '';
-                        this.form.password = '';
-                        this.form.confirm_password = '';
                         this.closeModal();
                 }).catch(()=>{
                     this.closeModal();
@@ -172,6 +174,7 @@
                 });
             },
             closeModal(){
+                this.initState();
                 this.$emit("close-modal", this.modalId);
             }
         },

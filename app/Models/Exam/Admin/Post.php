@@ -20,16 +20,16 @@ class Post extends Model
     }
     public function category()
     {
-        return $this->belongsTo(PostCatergory::class);
+        return $this->belongsTo(PostCatergory::class, 'category_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Status::class, 'status_id');
     }
     protected $fillable = [
         'title',

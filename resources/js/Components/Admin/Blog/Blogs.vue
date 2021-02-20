@@ -105,6 +105,7 @@
             closeModal(modalId){
                 this.isPostModal = false;
                 $('#postModal').modal('hide');
+                this.editedUrl= '';
                 this.loadPost();
             },
             searchIt(){

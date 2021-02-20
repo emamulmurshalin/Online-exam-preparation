@@ -8,7 +8,7 @@
                 <div class="modal-header">
                     <h5 v-if="selectedUrl" class="modal-title">Edit post</h5>
                     <h5 v-else class="modal-title">Add post</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" @click.prevent="closeModal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -57,10 +57,10 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    <button type="button" class="btn btn-danger" @click.prevent="closeModal">
                         Cancel
                     </button>
-                    <button v-if="selectedUrl" type="submit" class="btn btn-primary">
+                    <button v-if="selectedUrl" type="submit" class="btn btn-primary" @click.prevent="update">
                         Update
                     </button>
                     <button v-else type="submit" class="btn btn-primary" @click.prevent="submit">
@@ -80,6 +80,7 @@ export default {
         return{
             categoryData: {},
             statusData: {},
+            formData: {},
             form: new Form({
                 title: '',
                 content: '',
@@ -91,6 +92,9 @@ export default {
     mounted() {
         this.getCategory();
         this.getStatus();
+        if (this.selectedUrl){
+            this.getEditData();
+        }
     },
     methods:{
         getCategory(){
@@ -109,6 +113,12 @@ export default {
 
             });
         },
+        initState(){
+            this.form.title = '';
+            this.form.content = '';
+            this.form.category_id = '';
+            this.form.status_id = '';
+        },
         submit(){
             this.axios.post('/blogs', this.form)
                 .then((response) => {
@@ -116,17 +126,37 @@ export default {
                         icon: 'success',
                         title: 'Post created successfully'
                     });
-                    this.form.title = '';
-                    this.form.content = '';
-                    this.form.category_id = '';
-                    this.form.status_id = '';
                     this.closeModal();
                 }).catch(()=>{
                 this.closeModal();
             });
         },
+        getEditData(){
+            this.axios.get(this.selectedUrl)
+                .then((response) => {
+                    this.formData = response.data;
+                    this.form.title = this.formData.title;
+                    this.form.content = this.formData.content;
+                    this.form.category_id = this.formData.category_id;
+                    this.form.status_id = this.formData.status_id;
+                }).catch((error) => {
 
+            });
+        },
+        update(){
+            this.axios.patch(this.selectedUrl, this.form)
+                .then((response) => {
+                    toast.fire({
+                        icon: 'success',
+                        title: 'Post updated successfully'
+                    });
+                    this.closeModal();
+                }).catch(()=>{
+                this.closeModal();
+            });
+        },
         closeModal(){
+            this.initState();
             this.$emit("close-modal", this.modalId);
         }
     }

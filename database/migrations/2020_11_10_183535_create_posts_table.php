@@ -21,10 +21,9 @@ class CreatePostsTable extends Migration
             $table->string("title");
             $table->longText("content");
             $table->timestamps();
-            $table->foreign('category_id')->references('id')->on('post_catergories')
-                ->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('category_id')->references('id')->on('post_catergories');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

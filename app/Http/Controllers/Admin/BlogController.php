@@ -44,6 +44,8 @@ class BlogController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
+            'category_id' => 'required',
+            'status_id' => 'required',
         ]);
         $request['user_id'] = Auth::user()->id;
         $post->create($request->all());
@@ -61,8 +63,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        return $post;
+        return Post::with(['comments', 'status', 'postLike', 'category', 'user'])->findOrFail($id);
     }
 
     /**
@@ -73,7 +74,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('layouts.admin.blog.add-post', compact('id'));
+
     }
 
     /**
@@ -85,7 +86,19 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $post = Post::findOrFail($id);
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required',
+            'status_id' => 'required',
+        ]);
+        $request['user_id'] = Auth::user()->id;
+        $post->update($request->all());
+        return [
+            'status' => 200,
+            'message' => 'Post updated successfully',
+        ];
     }
 
     /**
