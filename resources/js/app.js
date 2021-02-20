@@ -165,6 +165,10 @@ Vue.component(
     'app-quiz-question-modal',
     require('./Components/Admin/Quiz/QuizQuestionModal').default
 );
+Vue.component(
+    'app-quiz-edit-modal',
+    require('./Components/Admin/Quiz/QuizEditModal').default
+);
 
 
 

@@ -107,6 +107,11 @@
             <app-quiz-answer-modal v-if="isAnswerModal"
                                    @close-modal="answerCloseModal">
             </app-quiz-answer-modal>
+
+            <app-quiz-edit-modal v-if="isQuizEditModal"
+                                   v-bind:selected-url="editedUrl"
+                                   @close-modal="quizEditCloseModal">
+            </app-quiz-edit-modal>
             <!-- /.card-body -->
         </div>
     </div>
@@ -119,13 +124,14 @@
             return{
                 quizes: {},
                 search: '',
+                editedUrl: '',
                 isQuestionModal: false,
                 isOptionModal: false,
                 isAnswerModal: false,
-
+                isQuizEditModal: false,
             }
         },
-        created(){
+        mounted(){
             this.getAllQuiz();
         },
         methods:{
@@ -142,6 +148,12 @@
             answerCloseModal(modalId){
                 this.isAnswerModal = false;
                 $('#quizAnswerModal').modal('hide');
+                this.getAllQuiz();
+            },
+            quizEditCloseModal(modalId){
+                this.isQuizEditModal = false;
+                $('#quizEditModal').modal('hide');
+                this.editedUrl= '';
                 this.getAllQuiz();
             },
             addQuestion(){
@@ -171,7 +183,11 @@
                 });
             },
             editQuiz(id){
-                console.log(id, 'edit');
+                this.editedUrl = `/quiz/${id}`;
+                this.isQuizEditModal = true;
+                setTimeout(()=> {
+                    $('#quizEditModal').modal('show');
+                })
             },
             deleteQuiz(id){
                 swal.fire({

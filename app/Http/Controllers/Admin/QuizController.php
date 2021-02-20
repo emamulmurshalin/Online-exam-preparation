@@ -92,7 +92,9 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        //
+        return Quiz::with([
+            'quizOption', 'quizAnswer', 'questionType', 'subject'])
+            ->findOrFail($id);
     }
 
     /**
@@ -115,7 +117,7 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($request->all(), $id);
     }
 
     /**

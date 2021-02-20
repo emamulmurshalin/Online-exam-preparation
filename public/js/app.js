@@ -3525,6 +3525,205 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "QuizEditModal",
+  props: ['selectedUrl'],
+  data: function data() {
+    return {
+      getEditedData: false,
+      id: '',
+      formData: {},
+      subjectData: {},
+      typeData: {},
+      form: new Form({
+        quiz_question: '',
+        subject_id: '',
+        question_types_id: '',
+        answer: '',
+        option1: '',
+        option2: '',
+        option3: '',
+        option4: ''
+      })
+    };
+  },
+  mounted: function mounted() {
+    this.getSubject();
+    this.getTypes();
+
+    if (this.selectedUrl) {
+      this.getEditData();
+    }
+  },
+  methods: {
+    initState: function initState() {
+      this.form.quiz_question = '';
+      this.form.question_types_id = '';
+      this.form.subject_id = '';
+    },
+    getEditData: function getEditData() {
+      var _this = this;
+
+      this.axios.get(this.selectedUrl).then(function (response) {
+        _this.formData = response.data;
+        _this.getEditedData = true;
+        _this.id = _this.formData.id;
+        _this.form.quiz_question = _this.formData.quiz_question;
+        _this.form.subject_id = _this.formData.subject_id;
+        _this.form.question_types_id = _this.formData.question_types_id;
+        _this.form.answer = _this.formData.quiz_answer.answer;
+      })["catch"](function (error) {});
+    },
+    closeModal: function closeModal() {
+      this.initState();
+      this.$emit("close-modal", this.modalId);
+    },
+    getSubject: function getSubject() {
+      var _this2 = this;
+
+      this.axios.get('/get-subject').then(function (response) {
+        _this2.subjectData = response.data;
+      })["catch"](function () {});
+    },
+    getTypes: function getTypes() {
+      var _this3 = this;
+
+      this.axios.get('/get-types').then(function (response) {
+        _this3.typeData = response.data;
+      })["catch"](function () {});
+    },
+    update: function update() {
+      var _this4 = this;
+
+      this.axios.patch(this.selectedUrl, this.form).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'Quiz info updated successfully'
+        });
+
+        _this4.closeModal();
+      })["catch"](function () {
+        _this4.closeModal();
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Quiz/QuizList.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/Quiz/QuizList.vue?vue&type=script&lang=js& ***!
@@ -3648,18 +3847,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "QuizList",
   data: function data() {
     return {
       quizes: {},
       search: '',
+      editedUrl: '',
       isQuestionModal: false,
       isOptionModal: false,
-      isAnswerModal: false
+      isAnswerModal: false,
+      isQuizEditModal: false
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     this.getAllQuiz();
   },
   methods: {
@@ -3676,6 +3882,12 @@ __webpack_require__.r(__webpack_exports__);
     answerCloseModal: function answerCloseModal(modalId) {
       this.isAnswerModal = false;
       $('#quizAnswerModal').modal('hide');
+      this.getAllQuiz();
+    },
+    quizEditCloseModal: function quizEditCloseModal(modalId) {
+      this.isQuizEditModal = false;
+      $('#quizEditModal').modal('hide');
+      this.editedUrl = '';
       this.getAllQuiz();
     },
     addQuestion: function addQuestion() {
@@ -3704,7 +3916,11 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {});
     },
     editQuiz: function editQuiz(id) {
-      console.log(id, 'edit');
+      this.editedUrl = "/quiz/".concat(id);
+      this.isQuizEditModal = true;
+      setTimeout(function () {
+        $('#quizEditModal').modal('show');
+      });
     },
     deleteQuiz: function deleteQuiz(id) {
       var _this2 = this;
@@ -53949,6 +54165,480 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=template&id=194a7dbf&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=template&id=194a7dbf& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade bd-example-modal-lg",
+      attrs: {
+        id: "quizEditModal",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "myLargeModalLabel",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog mt-0 modal-lg modal-dialog-scrollable",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("h5", { staticClass: "modal-title" }, [_vm._v("Edit quiz")]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: { type: "button", "aria-label": "Close" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.closeModal($event)
+                    }
+                  }
+                },
+                [
+                  _c("span", { attrs: { "aria-hidden": "true" } }, [
+                    _vm._v("×")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("form", { attrs: { role: "form", id: "quickForm" } }, [
+                _c(
+                  "div",
+                  { staticClass: "card-body" },
+                  [
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("label", { staticClass: "col-sm-3" }, [
+                        _vm._v("Question")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.quiz_question,
+                              expression: "form.quiz_question"
+                            }
+                          ],
+                          staticClass:
+                            "form-control d-flex justify-content-center",
+                          attrs: {
+                            name: "question",
+                            placeholder: "Enter question title"
+                          },
+                          domProps: { value: _vm.form.quiz_question },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "quiz_question",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+                        _vm._v("Question type")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.question_types_id,
+                                expression: "form.question_types_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "question_types_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          _vm._l(_vm.typeData, function(questionType, index) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: {
+                                  value: questionType.id,
+                                  selected: index === 0 ? "selected" : ""
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(questionType.type) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+                        _vm._v("Quiz subject")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.subject_id,
+                                expression: "form.subject_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "subject_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          _vm._l(_vm.subjectData, function(subject, index) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: {
+                                  value: subject.id,
+                                  selected: index === 0 ? "selected" : ""
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(subject.name) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.getEditedData
+                      ? [
+                          this.formData.quiz_option.length > 0
+                            ? _c("div", { staticClass: "form-group row" }, [
+                                _c("label", { staticClass: "col-sm-3" }, [
+                                  _vm._v("Option")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-sm-9" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.option1,
+                                        expression: "form.option1"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "answer",
+                                      placeholder: "Enter quiz option"
+                                    },
+                                    domProps: { value: _vm.form.option1 },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "option1",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.formData.quiz_option.length > 1
+                            ? _c("div", { staticClass: "form-group row" }, [
+                                _c("label", { staticClass: "col-sm-3" }, [
+                                  _vm._v("Option")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-sm-9" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.option2,
+                                        expression: "form.option2"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "answer",
+                                      placeholder: "Enter quiz option"
+                                    },
+                                    domProps: { value: _vm.form.option2 },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "option2",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.formData.quiz_option.length > 2
+                            ? _c("div", { staticClass: "form-group row" }, [
+                                _c("label", { staticClass: "col-sm-3" }, [
+                                  _vm._v("Option")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-sm-9" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.option3,
+                                        expression: "form.option3"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "answer",
+                                      placeholder: "Enter quiz option"
+                                    },
+                                    domProps: { value: _vm.form.option3 },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "option3",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          this.formData.quiz_option.length > 3
+                            ? _c("div", { staticClass: "form-group row" }, [
+                                _c("label", { staticClass: "col-sm-3" }, [
+                                  _vm._v("Option")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-sm-9" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.option4,
+                                        expression: "form.option4"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "answer",
+                                      placeholder: "Enter quiz option"
+                                    },
+                                    domProps: { value: _vm.form.option4 },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "option4",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            : _vm._e()
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c("label", { staticClass: "col-sm-3" }, [
+                        _vm._v("Answer")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.answer,
+                              expression: "form.answer"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "answer",
+                            placeholder: "Enter quiz answer"
+                          },
+                          domProps: { value: _vm.form.answer },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "answer", $event.target.value)
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ],
+                  2
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.closeModal($event)
+                    }
+                  }
+                },
+                [_vm._v("\n                    Cancel\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.update($event)
+                    }
+                  }
+                },
+                [_vm._v("\n                    Update\n                ")]
+              )
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Quiz/QuizList.vue?vue&type=template&id=7eb1985c&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/Admin/Quiz/QuizList.vue?vue&type=template&id=7eb1985c& ***!
@@ -54276,6 +54966,13 @@ var render = function() {
             _vm.isAnswerModal
               ? _c("app-quiz-answer-modal", {
                   on: { "close-modal": _vm.answerCloseModal }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isQuizEditModal
+              ? _c("app-quiz-edit-modal", {
+                  attrs: { "selected-url": _vm.editedUrl },
+                  on: { "close-modal": _vm.quizEditCloseModal }
                 })
               : _vm._e()
           ],
@@ -78489,6 +79186,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/Components/Admin/Quiz/QuizEditModal.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _QuizEditModal_vue_vue_type_template_id_194a7dbf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuizEditModal.vue?vue&type=template&id=194a7dbf& */ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=template&id=194a7dbf&");
+/* harmony import */ var _QuizEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuizEditModal.vue?vue&type=script&lang=js& */ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _QuizEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _QuizEditModal_vue_vue_type_template_id_194a7dbf___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _QuizEditModal_vue_vue_type_template_id_194a7dbf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Components/Admin/Quiz/QuizEditModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./QuizEditModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizEditModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=template&id=194a7dbf&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=template&id=194a7dbf& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizEditModal_vue_vue_type_template_id_194a7dbf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./QuizEditModal.vue?vue&type=template&id=194a7dbf& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/Admin/Quiz/QuizEditModal.vue?vue&type=template&id=194a7dbf&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizEditModal_vue_vue_type_template_id_194a7dbf___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_QuizEditModal_vue_vue_type_template_id_194a7dbf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Components/Admin/Quiz/QuizList.vue":
 /*!*********************************************************!*\
   !*** ./resources/js/Components/Admin/Quiz/QuizList.vue ***!
@@ -79479,6 +80245,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-previous-question-moda
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-option-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizOptionModal */ "./resources/js/Components/Admin/Quiz/QuizOptionModal.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-answer-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizAnswerModal */ "./resources/js/Components/Admin/Quiz/QuizAnswerModal.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-question-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizQuestionModal */ "./resources/js/Components/Admin/Quiz/QuizQuestionModal.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('app-quiz-edit-modal', __webpack_require__(/*! ./Components/Admin/Quiz/QuizEditModal */ "./resources/js/Components/Admin/Quiz/QuizEditModal.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('contact-info', __webpack_require__(/*! ./Components/Admin/ContactInfo/ContactsInfo */ "./resources/js/Components/Admin/ContactInfo/ContactsInfo.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('blog-post', __webpack_require__(/*! ./Components/Admin/Blog/Blogs */ "./resources/js/Components/Admin/Blog/Blogs.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-profile', __webpack_require__(/*! ./Components/Admin/Profile/Profile */ "./resources/js/Components/Admin/Profile/Profile.vue")["default"]);
