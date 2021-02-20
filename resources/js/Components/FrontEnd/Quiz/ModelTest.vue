@@ -58,7 +58,7 @@
                         <h3 align="center" style="margin-top: 5px; font-weight: bold;" class="justify-content-center">
                             {{ quiz.quiz_question}} </h3>
                     </div>
-                    <div align="center" class="justify-content-center" style="height: 270px">
+                    <div align="center" class="justify-content-center" style="height: 250px">
                         <template v-if="quiz.quiz_option[0]">
                             <input type="radio" id="first"
                                    v-bind:value="quiz.quiz_option[0].option" v-model="form.answer"
@@ -83,6 +83,15 @@
                             <label for="fourth">{{ quiz.quiz_option[3].option }}</label>
                         </template>
                     </div>
+
+                    <div align="center" class="justify-content-center" style="height: 50px">
+                        <button @click.prevent="over"
+                                style="padding: 17px 40px; margin-left: 5px; font-size: 25px;
+                            background-color: #00C794"
+                                class="btn btn-success">
+                            Over
+                        </button>
+                    </div>
                 </template>
 
             </div>
@@ -98,7 +107,12 @@
                         Congratulations, you are right!</h2>
                 </div>
                 <div align="center" class="justify-content-center" style="height: 70px">
-                    <button @click.prevent="continueNewQuestion"
+                    <button v-if="quizNumber == (quizes.length - 1)" @click.prevent="startAgain"
+                            style="padding: 17px 40px; font-size: 25px; background-color: #00C794"
+                            class="btn btn-success">
+                        Restart
+                    </button>
+                    <button v-else @click.prevent="continueNewQuestion"
                             style="padding: 17px 40px; font-size: 25px; background-color: #00C794"
                             class="btn btn-success">
                         Continue
@@ -123,7 +137,12 @@
                         Good try, but you answer was wrong!</h2>
                 </div>
                 <div align="center" class="justify-content-center" style="height: 70px">
-                    <button @click.prevent="continueNewQuestion"
+                    <button v-if="quizNumber == (quizes.length - 1)" @click.prevent="startAgain"
+                            style="padding: 17px 40px; font-size: 25px; background-color: #00C794"
+                            class="btn btn-success">
+                        Restart
+                    </button>
+                    <button v-else @click.prevent="continueNewQuestion"
                             style="padding: 17px 40px; font-size: 25px; background-color: #00C794"
                             class="btn btn-success">
                         Continue
@@ -146,16 +165,22 @@
                 <div style="height: 70px; margin-top: 25px">
                     <h2 align="center" style="color: black; font-weight: bold;"
                         class="justify-content-center">
-                        Marks: {{ marks }} out of {{ quizes.length }}</h2>
+                        Marks: {{ marks }} out of {{ totalQuiz }}</h2>
                 </div>
-<!--                <div align="center" class="justify-content-center" style="height: 70px">-->
-<!--                    <button @click.prevent="startAgain"-->
-<!--                            style="padding: 17px 40px; margin-left: 5px; font-size: 25px;-->
-<!--                            background-color: #00C794"-->
-<!--                            class="btn btn-success">-->
-<!--                        START AGAIN-->
-<!--                    </button>-->
-<!--                </div>-->
+                <div align="center" class="justify-content-center" style="height: 70px">
+                    <button @click.prevent="startAgain"
+                            style="padding: 17px 40px; margin-left: 5px; font-size: 25px;
+                            background-color: #00C794"
+                            class="btn btn-success">
+                        Restart
+                    </button>
+                    <button @click.prevent="exit"
+                            style="padding: 17px 40px; margin-left: 5px; font-size: 25px;
+                            background-color: #00C794"
+                            class="btn btn-success">
+                        Exits
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -184,7 +209,8 @@ import { ModelListSelect  } from 'vue-search-select'
                 typeData: [],
                 subjectData: [],
                 marks: 0,
-                quizNumber: 0
+                quizNumber: 0,
+                totalQuiz: 3
             }
         },
         mounted(){
@@ -193,12 +219,34 @@ import { ModelListSelect  } from 'vue-search-select'
             this.getSubject();
         },
         methods:{
-            startAgain(){
-                this.getAllQuiz();
-                this.isResult = false;
-                this.isStartQuiz = true;
+            exit(){
+                this.form.marks = this.marks;
+                this.form.total_marks = this.totalQuiz;
+                this.axios.post('/quiz-mark', this.form)
+                    .then((response) => {
+                        toast.fire({
+                            icon: 'success',
+                            title: 'Model test info save successfully'
+                        });
+                        window.location.replace('/');
+                    }).catch(()=>{
+
+                });
+            },
+            over(){
+                this.isStartQuiz = false;
                 this.answerWrong = false;
                 this.answerRight = false;
+                this.isResult = true;
+            },
+            startAgain(){
+                this.isResult = false;
+                this.answerWrong = false;
+                this.answerRight = false;
+                this.quizNumber = 0;
+                this.totalQuiz = this.totalQuiz + 3;;
+                this.isStartQuiz = true;
+                this.getAllQuiz();
             },
             showResult(){
                 if (this.quizNumber == (this.quizes.length - 1)){

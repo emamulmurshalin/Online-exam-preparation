@@ -5,7 +5,7 @@
                 <h3 class="card-title">Show question</h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
+            <div class="card-body" style="margin-left: 20px; margin-right: 20px;">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row" style="padding-top: 10px; padding-bottom: 15px;">
                         <div class="col-sm-2" align="center">
@@ -41,19 +41,19 @@
                             <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                                 <thead>
                                 <tr role="row">
-                                    <th>ID</th>
-                                    <th>Qquestion title</th>
-                                    <th>Year</th>
-                                    <th>Type</th>
-                                    <th>Action</th>
+                                    <th class="table-header-color">ID</th>
+                                    <th class="table-header-color">Qquestion title</th>
+                                    <th class="table-header-color">Year</th>
+                                    <th class="table-header-color">Type</th>
+                                    <th class="table-header-color">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr role="row" class="even" v-for="question in questions.data" :key="question.id">
-                                    <td class="sorting_1" tabindex="0">{{question.id}}</td>
-                                    <td>{{question.question_title}}</td>
-                                    <td>{{question.question_year.year}}</td>
-                                    <td>{{question.question_type.type}}</td>
+                                    <td class="sorting_1 table-header-color" tabindex="0">{{question.id}}</td>
+                                    <td class="table-text-color">{{question.question_title}}</td>
+                                    <td class="table-text-color">{{question.question_year.year}}</td>
+                                    <td class="table-text-color">{{question.question_type.type}}</td>
                                     <td>
                                         <a :href="'/exam/question/'+ question.id + '/preview'" target="_blank">
                                             <i class="fas fa-eye"></i>
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="card-footer">
+            <div style="margin-left: 20px; margin-right: 20px; float: right" class="card-footer">
                 <pagination :data="questions" @pagination-change-page="getAllQuestion">
                     <span slot="prev-nav">&lt; Previous</span>
                     <span slot="next-nav">Next &gt;</span>
@@ -109,7 +109,12 @@ export default {
         },
         methods:{
             searchIt(){
-                console.log('search');
+                this.axios.get('/find-previous-question?search=' + this.search)
+                    .then(response => {
+                        this.questions = response.data;
+                    }).catch((error) => {
+
+                });
             },
             getTypes(){
                 this.axios.get('/get-types')
@@ -148,6 +153,13 @@ export default {
     background-color: #F5F5F5;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.table-header-color{
+    color: black;
+    font-weight: bold;
+}
+.table-text-color{
+    color: black;
 }
 
 </style>

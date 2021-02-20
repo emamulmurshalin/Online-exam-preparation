@@ -18,7 +18,7 @@ class JobExamInfoController extends Controller
     public function index()
     {
         return JobExamInfo::latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 
     /**
@@ -117,9 +117,9 @@ class JobExamInfoController extends Controller
         if ($search = \Request::get('search')){
             $examInfo = JobExamInfo::where(function ($query) use ($search){
                     $query->where('job_title', 'LIKE', '%'.$search.'%');
-                })->paginate(5);
+                })->paginate(10);
             return $examInfo;
         }
-        return JobExamInfo::latest()->paginate(5);
+        return JobExamInfo::latest()->paginate(10);
     }
 }

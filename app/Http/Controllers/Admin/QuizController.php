@@ -21,7 +21,7 @@ class QuizController extends Controller
         return Quiz::with([
             'quizOption', 'quizAnswer', 'questionType', 'subject'])
             ->latest()
-            ->paginate(15);
+            ->paginate(10);
     }
 
     public function getQuiz(Request $request)
@@ -162,13 +162,13 @@ class QuizController extends Controller
                 'quizOption', 'quizAnswer', 'questionType', 'subject'])
                 ->where(function ($query) use ($search){
                 $query->where('quiz_question', 'LIKE', '%'.$search.'%');
-            })->paginate(5);
+            })->paginate(10);
             return $quiz;
         }
         return Quiz::with([
             'quizOption', 'quizAnswer', 'questionType', 'subject'])
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 
     public function getOptionByQuiz($id)

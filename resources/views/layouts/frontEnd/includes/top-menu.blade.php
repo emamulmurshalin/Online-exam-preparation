@@ -20,7 +20,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <nav class="link-effect-2" id="link-effect-2">
                         <ul class="nav navbar-nav">
-                            <li class="active">
+                            <li>
                                 <a href="/" class="effect-3">Home</a>
                             </li>
                             <li>

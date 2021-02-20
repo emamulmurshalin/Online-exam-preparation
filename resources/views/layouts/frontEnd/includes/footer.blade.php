@@ -43,11 +43,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- footer-button-info -->
-            <div class="footer-middle-thanks">
-                <h2>Thanks For watching</h2>
-            </div>
-            <!-- footer-button-info -->
         </div>
     </div>
     <div class="footer-copy-right">

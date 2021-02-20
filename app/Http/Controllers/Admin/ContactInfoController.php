@@ -16,7 +16,7 @@ class ContactInfoController extends Controller
     public function index()
     {
         return ContactInfo::with('status')->latest()
-            ->paginate(15);
+            ->paginate(10);
     }
 
     /**
@@ -111,11 +111,11 @@ class ContactInfoController extends Controller
                     $query->where('name', 'LIKE', '%'.$search.'%')
                         ->orWhere('phone', 'LIKE', '%'.$search.'%')
                         ->orWhere('email', 'LIKE', '%'.$search.'%');
-                })->paginate(5);
+                })->paginate(10);
             return $contactInfo;
         }
         return ContactInfo::with('status')
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 }

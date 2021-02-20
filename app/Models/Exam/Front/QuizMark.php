@@ -14,4 +14,10 @@ class QuizMark extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = [
+        'user_id',
+        'marks',
+        'total_marks'
+    ];
 }

@@ -4818,31 +4818,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     searchIt: function searchIt() {
-      console.log('search');
-    },
-    getTypes: function getTypes() {
       var _this = this;
 
+      this.axios.get('/find-previous-question?search=' + this.search).then(function (response) {
+        _this.questions = response.data;
+      })["catch"](function (error) {});
+    },
+    getTypes: function getTypes() {
+      var _this2 = this;
+
       this.axios.get('/get-types').then(function (response) {
-        _this.typeData = response.data;
+        _this2.typeData = response.data;
       })["catch"](function () {});
     },
     getYears: function getYears() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.axios.get('/get-years').then(function (response) {
-        _this2.yearData = response.data;
+        _this3.yearData = response.data;
       })["catch"](function () {});
     },
     showFilterData: function showFilterData() {
       this.getAllQuestion();
     },
     getAllQuestion: function getAllQuestion() {
-      var _this3 = this;
+      var _this4 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
       this.axios.get('/previous-question?page=' + page + '&type=' + this.form.question_type + '&year=' + this.form.question_year).then(function (response) {
-        _this3.questions = response.data;
+        _this4.questions = response.data;
       })["catch"](function (error) {});
     }
   }
@@ -4861,6 +4865,31 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
 /* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5046,7 +5075,8 @@ __webpack_require__.r(__webpack_exports__);
       typeData: [],
       subjectData: [],
       marks: 0,
-      quizNumber: 0
+      quizNumber: 0,
+      totalQuiz: 3
     };
   },
   mounted: function mounted() {
@@ -5055,12 +5085,32 @@ __webpack_require__.r(__webpack_exports__);
     this.getSubject();
   },
   methods: {
-    startAgain: function startAgain() {
-      this.getAllQuiz();
-      this.isResult = false;
-      this.isStartQuiz = true;
+    exit: function exit() {
+      this.form.marks = this.marks;
+      this.form.total_marks = this.totalQuiz;
+      this.axios.post('/quiz-mark', this.form).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'Model test info save successfully'
+        });
+        window.location.replace('/');
+      })["catch"](function () {});
+    },
+    over: function over() {
+      this.isStartQuiz = false;
       this.answerWrong = false;
       this.answerRight = false;
+      this.isResult = true;
+    },
+    startAgain: function startAgain() {
+      this.isResult = false;
+      this.answerWrong = false;
+      this.answerRight = false;
+      this.quizNumber = 0;
+      this.totalQuiz = this.totalQuiz + 3;
+      ;
+      this.isStartQuiz = true;
+      this.getAllQuiz();
     },
     showResult: function showResult() {
       if (this.quizNumber == this.quizes.length - 1) {
@@ -5450,7 +5500,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".bg-color[data-v-7a88a4ba] {\n  width: 100%;\n  background-color: #F5F5F5;\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n\n", ""]);
+exports.push([module.i, ".bg-color[data-v-7a88a4ba] {\n  width: 100%;\n  background-color: #F5F5F5;\n  margin-top: 10px;\n  margin-bottom: 10px;\n}\n.table-header-color[data-v-7a88a4ba]{\n  color: black;\n  font-weight: bold;\n}\n.table-text-color[data-v-7a88a4ba]{\n  color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -56723,234 +56773,253 @@ var render = function() {
     _c("div", { staticClass: "card bg-color" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "div",
-          {
-            staticClass: "dataTables_wrapper dt-bootstrap4",
-            attrs: { id: "example1_wrapper" }
-          },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "row",
-                staticStyle: { "padding-top": "10px", "padding-bottom": "15px" }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "col-sm-2", attrs: { align: "center" } },
-                  [
-                    _c("model-list-select", {
-                      attrs: {
-                        list: _vm.typeData,
-                        "option-value": "type",
-                        "option-text": "type",
-                        placeholder: "Select question type"
-                      },
-                      model: {
-                        value: _vm.form.question_type,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "question_type", $$v)
+      _c(
+        "div",
+        {
+          staticClass: "card-body",
+          staticStyle: { "margin-left": "20px", "margin-right": "20px" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_wrapper dt-bootstrap4",
+              attrs: { id: "example1_wrapper" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "row",
+                  staticStyle: {
+                    "padding-top": "10px",
+                    "padding-bottom": "15px"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-2", attrs: { align: "center" } },
+                    [
+                      _c("model-list-select", {
+                        attrs: {
+                          list: _vm.typeData,
+                          "option-value": "type",
+                          "option-text": "type",
+                          placeholder: "Select question type"
                         },
-                        expression: "form.question_type"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-2", attrs: { align: "center" } },
-                  [
-                    _c("model-list-select", {
-                      attrs: {
-                        list: _vm.yearData,
-                        "option-value": "year",
-                        "option-text": "year",
-                        placeholder: "Select question year"
-                      },
-                      model: {
-                        value: _vm.form.question_year,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "question_year", $$v)
-                        },
-                        expression: "form.question_year"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-2", attrs: { align: "center" } },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-info pr-4 pl-4",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.showFilterData($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            Filter Data\n                        "
-                        )
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-2", attrs: { align: "center" } },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.search,
-                          expression: "search"
-                        }
-                      ],
-                      staticClass: "form-control form-control-sm",
-                      attrs: {
-                        type: "search",
-                        placeholder: "Search here",
-                        "aria-controls": "example1"
-                      },
-                      domProps: { value: _vm.search },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
-                          }
-                          return _vm.searchIt($event)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.search = $event.target.value
-                        }
-                      }
-                    })
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-12" }, [
-                _c(
-                  "table",
-                  {
-                    staticClass:
-                      "table table-bordered table-striped dataTable dtr-inline",
-                    attrs: {
-                      id: "example1",
-                      role: "grid",
-                      "aria-describedby": "example1_info"
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.questions.data, function(question) {
-                        return _c(
-                          "tr",
-                          {
-                            key: question.id,
-                            staticClass: "even",
-                            attrs: { role: "row" }
+                        model: {
+                          value: _vm.form.question_type,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "question_type", $$v)
                           },
-                          [
-                            _c(
-                              "td",
-                              {
-                                staticClass: "sorting_1",
-                                attrs: { tabindex: "0" }
-                              },
-                              [_vm._v(_vm._s(question.id))]
-                            ),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(question.question_title))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(question.question_year.year))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(question.question_type.type))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href:
-                                      "/exam/question/" +
-                                      question.id +
-                                      "/preview",
-                                    target: "_blank"
-                                  }
-                                },
-                                [_c("i", { staticClass: "fas fa-eye" })]
-                              ),
-                              _vm._v(
-                                "\n                                    /\n                                    "
-                              ),
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href:
-                                      "/exam/question/" +
-                                      question.id +
-                                      "/download",
-                                    target: "_blank"
-                                  }
-                                },
-                                [_c("i", { staticClass: "fas fa-download" })]
+                          expression: "form.question_type"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-2", attrs: { align: "center" } },
+                    [
+                      _c("model-list-select", {
+                        attrs: {
+                          list: _vm.yearData,
+                          "option-value": "year",
+                          "option-text": "year",
+                          placeholder: "Select question year"
+                        },
+                        model: {
+                          value: _vm.form.question_year,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "question_year", $$v)
+                          },
+                          expression: "form.question_year"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-2", attrs: { align: "center" } },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-info pr-4 pl-4",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.showFilterData($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Filter Data\n                        "
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-2", attrs: { align: "center" } },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.search,
+                            expression: "search"
+                          }
+                        ],
+                        staticClass: "form-control form-control-sm",
+                        attrs: {
+                          type: "search",
+                          placeholder: "Search here",
+                          "aria-controls": "example1"
+                        },
+                        domProps: { value: _vm.search },
+                        on: {
+                          keyup: function($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
                               )
-                            ])
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                            ) {
+                              return null
+                            }
+                            return _vm.searchIt($event)
+                          },
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.search = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-12" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-striped dataTable dtr-inline",
+                      attrs: {
+                        id: "example1",
+                        role: "grid",
+                        "aria-describedby": "example1_info"
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.questions.data, function(question) {
+                          return _c(
+                            "tr",
+                            {
+                              key: question.id,
+                              staticClass: "even",
+                              attrs: { role: "row" }
+                            },
+                            [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "sorting_1 table-header-color",
+                                  attrs: { tabindex: "0" }
+                                },
+                                [_vm._v(_vm._s(question.id))]
+                              ),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "table-text-color" }, [
+                                _vm._v(_vm._s(question.question_title))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "table-text-color" }, [
+                                _vm._v(_vm._s(question.question_year.year))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "table-text-color" }, [
+                                _vm._v(_vm._s(question.question_type.type))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "/exam/question/" +
+                                        question.id +
+                                        "/preview",
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-eye" })]
+                                ),
+                                _vm._v(
+                                  "\n                                    /\n                                    "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "/exam/question/" +
+                                        question.id +
+                                        "/download",
+                                      target: "_blank"
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-download" })]
+                                )
+                              ])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
-            ])
-          ]
-        )
-      ]),
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "card-footer" },
+        {
+          staticClass: "card-footer",
+          staticStyle: {
+            "margin-left": "20px",
+            "margin-right": "20px",
+            float: "right"
+          }
+        },
         [
           _c(
             "pagination",
@@ -56991,15 +57060,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { attrs: { role: "row" } }, [
-        _c("th", [_vm._v("ID")]),
+        _c("th", { staticClass: "table-header-color" }, [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Qquestion title")]),
+        _c("th", { staticClass: "table-header-color" }, [
+          _vm._v("Qquestion title")
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("Year")]),
+        _c("th", { staticClass: "table-header-color" }, [_vm._v("Year")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Type")]),
+        _c("th", { staticClass: "table-header-color" }, [_vm._v("Type")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", { staticClass: "table-header-color" }, [_vm._v("Action")])
       ])
     ])
   }
@@ -57134,11 +57205,7 @@ var render = function() {
                       }
                     }
                   },
-                  [
-                    _vm._v(
-                      "\n                        START QUIZ\n                    "
-                    )
-                  ]
+                  [_vm._v("\n                    START QUIZ\n                ")]
                 )
               ]
             )
@@ -57168,7 +57235,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            Think you are prepared for exam?"
+                                "\n                        Think you are prepared for exam?"
                               )
                             ]
                           )
@@ -57193,7 +57260,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            " +
+                                "\n                        " +
                                   _vm._s(quiz.quiz_question) +
                                   " "
                               )
@@ -57206,7 +57273,7 @@ var render = function() {
                         "div",
                         {
                           staticClass: "justify-content-center",
-                          staticStyle: { height: "270px" },
+                          staticStyle: { height: "250px" },
                           attrs: { align: "center" }
                         },
                         [
@@ -57359,6 +57426,40 @@ var render = function() {
                             : _vm._e()
                         ],
                         2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "justify-content-center",
+                          staticStyle: { height: "50px" },
+                          attrs: { align: "center" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              staticStyle: {
+                                padding: "17px 40px",
+                                "margin-left": "5px",
+                                "font-size": "25px",
+                                "background-color": "#00C794"
+                              },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.over($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Over\n                    "
+                              )
+                            ]
+                          )
+                        ]
                       )
                     ]
                   : _vm._e()
@@ -57396,28 +57497,51 @@ var render = function() {
                 attrs: { align: "center" }
               },
               [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    staticStyle: {
-                      padding: "17px 40px",
-                      "font-size": "25px",
-                      "background-color": "#00C794"
-                    },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.continueNewQuestion($event)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Continue\n                    "
+                _vm.quizNumber == _vm.quizes.length - 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          padding: "17px 40px",
+                          "font-size": "25px",
+                          "background-color": "#00C794"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.startAgain($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Restart\n                "
+                        )
+                      ]
                     )
-                  ]
-                ),
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          padding: "17px 40px",
+                          "font-size": "25px",
+                          "background-color": "#00C794"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.continueNewQuestion($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Continue\n                "
+                        )
+                      ]
+                    ),
                 _vm._v(" "),
                 _vm.quizNumber == _vm.quizes.length - 1
                   ? _c(
@@ -57437,11 +57561,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                        Result\n                    "
-                        )
-                      ]
+                      [_vm._v("\n                    Result\n                ")]
                     )
                   : _vm._e()
               ]
@@ -57477,28 +57597,51 @@ var render = function() {
                 attrs: { align: "center" }
               },
               [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    staticStyle: {
-                      padding: "17px 40px",
-                      "font-size": "25px",
-                      "background-color": "#00C794"
-                    },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.continueNewQuestion($event)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Continue\n                    "
+                _vm.quizNumber == _vm.quizes.length - 1
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          padding: "17px 40px",
+                          "font-size": "25px",
+                          "background-color": "#00C794"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.startAgain($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Restart\n                "
+                        )
+                      ]
                     )
-                  ]
-                ),
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          padding: "17px 40px",
+                          "font-size": "25px",
+                          "background-color": "#00C794"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.continueNewQuestion($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Continue\n                "
+                        )
+                      ]
+                    ),
                 _vm._v(" "),
                 _vm.quizNumber == _vm.quizes.length - 1
                   ? _c(
@@ -57518,11 +57661,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                        Result\n                    "
-                        )
-                      ]
+                      [_vm._v("\n                    Result\n                ")]
                     )
                   : _vm._e()
               ]
@@ -57561,12 +57700,62 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                        Marks: " +
+                      "\n                    Marks: " +
                         _vm._s(_vm.marks) +
                         " out of " +
-                        _vm._s(_vm.quizes.length)
+                        _vm._s(_vm.totalQuiz)
                     )
                   ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "justify-content-center",
+                staticStyle: { height: "70px" },
+                attrs: { align: "center" }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: {
+                      padding: "17px 40px",
+                      "margin-left": "5px",
+                      "font-size": "25px",
+                      "background-color": "#00C794"
+                    },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.startAgain($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Restart\n                ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: {
+                      padding: "17px 40px",
+                      "margin-left": "5px",
+                      "font-size": "25px",
+                      "background-color": "#00C794"
+                    },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.exit($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Exits\n                ")]
                 )
               ]
             )
@@ -57588,7 +57777,7 @@ var staticRenderFns = [
           staticStyle: { "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [_vm._v("\n                        Think you are prepared for exam?")]
+        [_vm._v("\n                    Think you are prepared for exam?")]
       ),
       _vm._v(" "),
       _c(
@@ -57598,11 +57787,7 @@ var staticRenderFns = [
           staticStyle: { "margin-top": "5px", "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [
-          _vm._v(
-            "\n                        Take the challenge today and prove it!"
-          )
-        ]
+        [_vm._v("\n                    Take the challenge today and prove it!")]
       )
     ])
   },
@@ -57618,7 +57803,7 @@ var staticRenderFns = [
           staticStyle: { color: "black", "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [_vm._v("\n                        Congratulations, you are right!")]
+        [_vm._v("\n                    Congratulations, you are right!")]
       )
     ])
   },
@@ -57634,11 +57819,7 @@ var staticRenderFns = [
           staticStyle: { color: "black", "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [
-          _vm._v(
-            "\n                        Good try, but you answer was wrong!"
-          )
-        ]
+        [_vm._v("\n                    Good try, but you answer was wrong!")]
       )
     ])
   }

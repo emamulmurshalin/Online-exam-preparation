@@ -20,7 +20,7 @@ class BlogController extends Controller
     {
         return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 
     /**
@@ -133,11 +133,11 @@ class BlogController extends Controller
             $post = Post::with(['comments', 'status', 'postLike', 'category', 'user'])
                 ->where(function ($query) use ($search){
                     $query->where('title', 'LIKE', '%'.$search.'%');
-                })->paginate(5);
+                })->paginate(10);
             return $post;
         }
         return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
             ->latest()
-            ->paginate(5);
+            ->paginate(10);
     }
 }

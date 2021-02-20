@@ -30,8 +30,7 @@ class PreviousQuestionController extends Controller
                     $q->where('year', '=', $request->year);
                 }
             })
-            ->latest()
-            ->paginate(15);
+            ->paginate(10);
     }
 
     /**
@@ -177,13 +176,12 @@ class PreviousQuestionController extends Controller
                 'questionType'
             ])->where(function ($query) use ($search){
                     $query->where('question_title', 'LIKE', '%'.$search.'%');
-                })->paginate(5);
+                })->paginate(10);
             return $question;
         }
         return PreviousQuestion::with([
             'questionYear',
             'questionType'
-        ])->latest()
-            ->paginate(5);
+        ])->paginate(10);
     }
 }

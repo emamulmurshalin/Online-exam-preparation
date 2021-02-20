@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\QuestionTypeController;
 use App\Http\Controllers\Admin\QuestionYearController;
 use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Admin\QuizManageController;
+use App\Http\Controllers\Admin\QuizMarksController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Middleware\Authenticate;
@@ -107,6 +108,7 @@ Route::patch('/profile/{id}', [UserController::class, 'updateProfile']);
 
 //Quiz
 Route::resource('quiz', QuizController::class);
+Route::resource('quiz-mark', QuizMarksController::class);
 Route::post('/quiz-answer', [QuizController::class, 'addQuizAnswer'])
     ->name('question');
 Route::get('/find-quiz', [QuizController::class, 'search']);
