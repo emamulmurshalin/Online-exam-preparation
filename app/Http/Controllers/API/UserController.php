@@ -181,7 +181,7 @@ class UserController extends Controller
     public function loginAdmin(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'sometimes|required|string|min:6'
         ]);
 

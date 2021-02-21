@@ -77,6 +77,7 @@ import Login from './Components/FrontEnd/Register/Login.vue';
 import Registration from './Components/FrontEnd/Register/Registration.vue';
 import ShowJobExam from './Components/Admin/JobExamInfo/ShowJobExamInfo.vue';
 import ShowQuizMarks from './Components/Admin/QuizInfo/ShowQuizInfo.vue';
+import AdminLogin from './Components/Admin/Users/AdminLogin.vue';
 
 
 let routes = [
@@ -94,6 +95,7 @@ let routes = [
     { path: '/user/registration', component: Registration },
     { path: '/show-exam-info', component: ShowJobExam },
     { path: '/users/quiz-info/list', component: ShowQuizMarks },
+    { path: '/admin/login', component: AdminLogin },
 ];
 
 Vue.use(VueAxios, axios);
@@ -227,6 +229,10 @@ Vue.component(
 Vue.component(
     'app-login',
     require('./Components/FrontEnd/Register/Login').default
+);
+Vue.component(
+    'app-admin-login',
+    require('./Components/Admin/Users/AdminLogin').default
 );
 Vue.component(
     'app-registration',

@@ -1,5 +1,5 @@
 @extends('layouts.frontEnd.index')
-@section('title', 'Model test')
+@section('title', 'Login page')
 @section('content')
     @include('layouts.frontEnd.banner')
     <!-- short-->

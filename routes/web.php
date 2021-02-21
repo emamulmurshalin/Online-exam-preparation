@@ -99,7 +99,9 @@ Route::middleware([Authenticate::class])->group(function () {
 Route::get('/users/quiz-info/list', function () {
     return view('layouts.admin.users.user');
 });
-
+Route::get('/admin/login', function () {
+    return view('layouts.admin.users.admin-login');
+})->name('admin');
 
 
 //Api for data get post edit delete

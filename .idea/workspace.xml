@@ -6,20 +6,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/AdminLogin.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/admin/users/admin-login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Dashboard/Dashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Dashboard/Dashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/NotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/NotFound.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Profile/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Profile/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/includes/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/includes/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/register/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/register/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
