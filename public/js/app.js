@@ -5622,14 +5622,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     register: function register() {
-      var _this = this;
-
       this.axios.post('/users', this.form).then(function (response) {
         toast.fire({
           icon: 'success',
-          title: 'User created successfully'
+          title: 'Registration successfully'
         });
-        _this.form = '';
+        window.location.replace('/');
       })["catch"](function () {});
     },
     checkMatchPassword: function checkMatchPassword() {

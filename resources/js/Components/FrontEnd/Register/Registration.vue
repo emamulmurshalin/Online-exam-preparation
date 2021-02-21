@@ -96,9 +96,9 @@ export default {
                 .then((response) => {
                     toast.fire({
                         icon: 'success',
-                        title: 'User created successfully'
+                        title: 'Registration successfully'
                     });
-                    this.form = '';
+                    window.location.replace('/');
                 }).catch(()=>{
 
             });
