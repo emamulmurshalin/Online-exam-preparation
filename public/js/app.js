@@ -4438,11 +4438,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserModal",
   props: ['selectedUrl'],
   data: function data() {
     return {
+      roleData: [{
+        id: 1,
+        name: 'Admin'
+      }, {
+        id: 2,
+        name: 'User'
+      }],
       modalId: 'userModal',
       formData: {},
       statusData: {},
@@ -4451,7 +4469,7 @@ __webpack_require__.r(__webpack_exports__);
         first_name: '',
         last_name: '',
         email: '',
-        role: 'Admin',
+        role: '',
         password: '',
         status_id: '',
         photo: '',
@@ -4521,6 +4539,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.form.last_name = _this4.formData.last_name;
         _this4.form.email = _this4.formData.email;
         _this4.form.bio = _this4.formData.bio;
+        _this4.form.role = _this4.formData.role;
         _this4.form.status_id = _this4.formData.status_id;
       })["catch"](function (error) {});
     },
@@ -56361,6 +56380,66 @@ var render = function() {
                           }
                         }
                       })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("label", { staticClass: "col-sm-3" }, [_vm._v("Role")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.role,
+                              expression: "form.role"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "role",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.roleData, function(role, index) {
+                          return _c(
+                            "option",
+                            {
+                              key: index,
+                              domProps: {
+                                value: role.name,
+                                selected: index === 0 ? "selected" : ""
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(role.name) +
+                                  "\n                                    "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
                     ])
                   ]),
                   _vm._v(" "),

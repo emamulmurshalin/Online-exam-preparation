@@ -43,6 +43,17 @@
                             </div>
 
                             <div class="form-group row">
+                                <label class="col-sm-3">Role</label>
+                                <div class="col-sm-9">
+                                    <select v-model="form.role" class="form-control">
+                                        <option v-for="(role, index) in roleData" v-bind:value="role.name" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                            {{ role.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label class="col-sm-3">Status</label>
                                 <div class="col-sm-9">
                                     <select v-model="form.status_id" class="form-control">
@@ -95,6 +106,16 @@
         props: ['selectedUrl'],
         data(){
             return{
+                roleData:[
+                    {
+                        id: 1,
+                        name: 'Admin'
+                    },
+                    {
+                        id: 2,
+                        name: 'User'
+                    }
+                ],
                 modalId: 'userModal',
                 formData: {},
                 statusData: {},
@@ -103,7 +124,7 @@
                     first_name: '',
                     last_name: '',
                     email: '',
-                    role: 'Admin',
+                    role: '',
                     password: '',
                     status_id: '',
                     photo: '',
@@ -168,6 +189,7 @@
                         this.form.last_name = this.formData.last_name;
                         this.form.email = this.formData.email;
                         this.form.bio = this.formData.bio;
+                        this.form.role = this.formData.role;
                         this.form.status_id = this.formData.status_id;
                     }).catch((error) => {
 
