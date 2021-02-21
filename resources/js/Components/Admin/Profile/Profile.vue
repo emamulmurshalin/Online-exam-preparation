@@ -182,8 +182,10 @@
                 });
             },
             getProfileImage(){
-                if (this.form.photo.length > 200){
-                    return this.form.photo;
+                if (this.form.photo){
+                    if (this.form.photo.length > 200){
+                        return this.form.photo;
+                    }
                 }
                 return '/img/profile/'+this.formData.photo;
             },

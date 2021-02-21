@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="card" v-if="$gate.isAdmin()">
+        <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Blog post</h3>
                 <div class="float-right">
@@ -39,7 +39,7 @@
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Status</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Category</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Created by</th>
-                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
+                                    <th v-if="$gate.isAdmin()" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,7 +51,7 @@
                                     <td>{{post.status.name}}</td>
                                     <td>{{post.category.name}}</td>
                                     <td>{{post.user.first_name}} {{post.user.last_name}}</td>
-                                    <td>
+                                    <td v-if="$gate.isAdmin()">
                                         <a href="#" @click.preven="editPost(post.id)">
                                             <i class="fas fa-edit"></i>
                                         </a>
@@ -165,9 +165,7 @@
             }
         },
         created() {
-            if (this.$gate.isAdmin()){
-                this.loadPost();
-            }
+            this.loadPost();
         }
     }
 </script>

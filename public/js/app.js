@@ -2067,9 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    if (this.$gate.isAdmin()) {
-      this.loadPost();
-    }
+    this.loadPost();
   }
 });
 
@@ -2260,6 +2258,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2736,9 +2742,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    if (this.$gate.isAdmin()) {
-      this.loadJobExamInfo();
-    }
+    this.loadJobExamInfo();
   }
 });
 
@@ -2764,8 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "NotFound",
-  mounted: {}
+  name: "NotFound"
 });
 
 /***/ }),
@@ -2970,6 +2973,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3335,8 +3346,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {});
     },
     getProfileImage: function getProfileImage() {
-      if (this.form.photo.length > 200) {
-        return this.form.photo;
+      if (this.form.photo) {
+        if (this.form.photo.length > 200) {
+          return this.form.photo;
+        }
       }
 
       return '/img/profile/' + this.formData.photo;
@@ -3714,6 +3727,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4541,6 +4562,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50728,160 +50757,265 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm.$gate.isAdmin()
-      ? _c(
-          "div",
-          { staticClass: "card" },
-          [
-            _c("div", { staticClass: "card-header" }, [
-              _c("h3", { staticClass: "card-title" }, [_vm._v("Blog post")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "float-right" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: { "data-toggle": "modal" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.addPost($event)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                    Add post\n                ")]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "dataTables_wrapper dt-bootstrap4",
-                  attrs: { id: "example1_wrapper" }
-                },
-                [
-                  _c("div", { staticClass: "row" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "dataTables_filter",
-                          attrs: { id: "example1_filter" }
-                        },
-                        [
-                          _c("label", [
-                            _vm._v(
-                              "\n                                Search:\n                                "
-                            ),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.search,
-                                  expression: "search"
-                                }
-                              ],
-                              staticClass: "form-control form-control-sm",
-                              attrs: {
-                                type: "search",
-                                placeholder: "",
-                                "aria-controls": "example1"
-                              },
-                              domProps: { value: _vm.search },
-                              on: {
-                                keyup: function($event) {
-                                  if (
-                                    !$event.type.indexOf("key") &&
-                                    _vm._k(
-                                      $event.keyCode,
-                                      "enter",
-                                      13,
-                                      $event.key,
-                                      "Enter"
-                                    )
-                                  ) {
-                                    return null
-                                  }
-                                  return _vm.searchIt($event)
-                                },
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.search = $event.target.value
-                                }
-                              }
-                            })
-                          ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-sm-12" }, [
-                      _c(
-                        "table",
-                        {
-                          staticClass:
-                            "table table-bordered table-striped dataTable dtr-inline",
+    _c(
+      "div",
+      { staticClass: "card" },
+      [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Blog post")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "float-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                attrs: { "data-toggle": "modal" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.addPost($event)
+                  }
+                }
+              },
+              [_vm._v("\n                    Add post\n                ")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_wrapper dt-bootstrap4",
+              attrs: { id: "example1_wrapper" }
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dataTables_filter",
+                      attrs: { id: "example1_filter" }
+                    },
+                    [
+                      _c("label", [
+                        _vm._v(
+                          "\n                                Search:\n                                "
+                        ),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.search,
+                              expression: "search"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
                           attrs: {
-                            id: "example1",
-                            role: "grid",
-                            "aria-describedby": "example1_info"
+                            type: "search",
+                            placeholder: "",
+                            "aria-controls": "example1"
+                          },
+                          domProps: { value: _vm.search },
+                          on: {
+                            keyup: function($event) {
+                              if (
+                                !$event.type.indexOf("key") &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "enter",
+                                  13,
+                                  $event.key,
+                                  "Enter"
+                                )
+                              ) {
+                                return null
+                              }
+                              return _vm.searchIt($event)
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.search = $event.target.value
+                            }
                           }
-                        },
-                        [
-                          _vm._m(1),
+                        })
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-12" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-striped dataTable dtr-inline",
+                      attrs: {
+                        id: "example1",
+                        role: "grid",
+                        "aria-describedby": "example1_info"
+                      }
+                    },
+                    [
+                      _c("thead", [
+                        _c("tr", { attrs: { role: "row" } }, [
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1",
+                                "aria-sort": "ascending"
+                              }
+                            },
+                            [_vm._v("ID")]
+                          ),
                           _vm._v(" "),
                           _c(
-                            "tbody",
-                            _vm._l(_vm.posts.data, function(post) {
-                              return _c(
-                                "tr",
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Title")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Content")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Total comment")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Status")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Category")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Created by")]
+                          ),
+                          _vm._v(" "),
+                          _vm.$gate.isAdmin()
+                            ? _c(
+                                "th",
                                 {
-                                  key: post.id,
-                                  staticClass: "even",
-                                  attrs: { role: "row" }
+                                  attrs: {
+                                    tabindex: "0",
+                                    "aria-controls": "example1",
+                                    rowspan: "1",
+                                    colspan: "1"
+                                  }
                                 },
-                                [
-                                  _c(
-                                    "td",
-                                    {
-                                      staticClass: "sorting_1",
-                                      attrs: { tabindex: "0" }
-                                    },
-                                    [_vm._v(_vm._s(post.id))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(post.title))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(post.content))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(post.comments.length))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(post.status.name))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(post.category.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(post.user.first_name) +
-                                        " " +
-                                        _vm._s(post.user.last_name)
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
+                                [_vm._v("Action")]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.posts.data, function(post) {
+                          return _c(
+                            "tr",
+                            {
+                              key: post.id,
+                              staticClass: "even",
+                              attrs: { role: "row" }
+                            },
+                            [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "sorting_1",
+                                  attrs: { tabindex: "0" }
+                                },
+                                [_vm._v(_vm._s(post.id))]
+                              ),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(post.title))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(post.content))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(post.comments.length))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(post.status.name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(post.category.name))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(post.user.first_name) +
+                                    " " +
+                                    _vm._s(post.user.last_name)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.$gate.isAdmin()
+                                ? _c("td", [
                                     _c(
                                       "a",
                                       {
@@ -50934,57 +51068,53 @@ var render = function() {
                                       [_c("i", { staticClass: "fas fa-trash" })]
                                     )
                                   ])
-                                ]
-                              )
-                            }),
-                            0
+                                : _vm._e()
+                            ]
                           )
-                        ]
+                        }),
+                        0
                       )
-                    ])
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-footer" },
+          [
             _c(
-              "div",
-              { staticClass: "card-footer" },
+              "pagination",
+              {
+                attrs: { data: _vm.posts },
+                on: { "pagination-change-page": _vm.loadPost }
+              },
               [
-                _c(
-                  "pagination",
-                  {
-                    attrs: { data: _vm.posts },
-                    on: { "pagination-change-page": _vm.loadPost }
-                  },
-                  [
-                    _c(
-                      "span",
-                      { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
-                      [_vm._v("< Previous")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { attrs: { slot: "next-nav" }, slot: "next-nav" },
-                      [_vm._v("Next >")]
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm.isPostModal
-              ? _c("app-post-modal", {
-                  attrs: { "selected-url": _vm.editedUrl },
-                  on: { "close-modal": _vm.closeModal }
-                })
-              : _vm._e()
+                _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+                  _vm._v("< Previous")
+                ]),
+                _vm._v(" "),
+                _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+                  _vm._v("Next >")
+                ])
+              ]
+            )
           ],
           1
-        )
-      : _vm._e()
+        ),
+        _vm._v(" "),
+        _vm.isPostModal
+          ? _c("app-post-modal", {
+              attrs: { "selected-url": _vm.editedUrl },
+              on: { "close-modal": _vm.closeModal }
+            })
+          : _vm._e()
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -50997,119 +51127,6 @@ var staticRenderFns = [
         staticClass: "dataTables_length",
         attrs: { id: "example1_length" }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", { attrs: { role: "row" } }, [
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1",
-              "aria-sort": "ascending"
-            }
-          },
-          [_vm._v("ID")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Title")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Content")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Total comment")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Status")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Category")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Created by")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Action")]
-        )
-      ])
     ])
   }
 ]
@@ -51669,7 +51686,16 @@ var render = function() {
             1
           )
         ])
-      : _vm._e()
+      : _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c(
+              "div",
+              { staticClass: "card card-default" },
+              [_c("not-found")],
+              1
+            )
+          ])
+        ])
   ])
 }
 var staticRenderFns = [
@@ -51824,9 +51850,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
         _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Dashboard")])
-          ])
+          _c("div", { staticClass: "card card-default" })
         ])
       ])
     ])
@@ -52086,161 +52110,221 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm.$gate.isAdmin()
-      ? _c(
-          "div",
-          { staticClass: "card" },
-          [
-            _c("div", { staticClass: "card-header" }, [
-              _c("h3", { staticClass: "card-title" }, [
-                _vm._v("Job exam info")
+    _c(
+      "div",
+      { staticClass: "card" },
+      [
+        _c("div", { staticClass: "card-header" }, [
+          _c("h3", { staticClass: "card-title" }, [_vm._v("Job exam info")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "float-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.addExamInfo($event)
+                  }
+                }
+              },
+              [_vm._v("\n                    Add exam info\n                ")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            {
+              staticClass: "dataTables_wrapper dt-bootstrap4",
+              attrs: { id: "example1_wrapper" }
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-12 col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dataTables_filter",
+                      attrs: { id: "example1_filter" }
+                    },
+                    [
+                      _c("label", [
+                        _vm._v(
+                          "\n                                Search:\n                                "
+                        ),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.search,
+                              expression: "search"
+                            }
+                          ],
+                          staticClass: "form-control form-control-sm",
+                          attrs: {
+                            type: "search",
+                            placeholder: "",
+                            "aria-controls": "example1"
+                          },
+                          domProps: { value: _vm.search },
+                          on: {
+                            keyup: function($event) {
+                              if (
+                                !$event.type.indexOf("key") &&
+                                _vm._k(
+                                  $event.keyCode,
+                                  "enter",
+                                  13,
+                                  $event.key,
+                                  "Enter"
+                                )
+                              ) {
+                                return null
+                              }
+                              return _vm.searchIt($event)
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.search = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "float-right" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.addExamInfo($event)
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-12" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-striped dataTable dtr-inline",
+                      attrs: {
+                        id: "example1",
+                        role: "grid",
+                        "aria-describedby": "example1_info"
                       }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                    Add exam info\n                "
-                    )
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c(
-                "div",
-                {
-                  staticClass: "dataTables_wrapper dt-bootstrap4",
-                  attrs: { id: "example1_wrapper" }
-                },
-                [
-                  _c("div", { staticClass: "row" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "dataTables_filter",
-                          attrs: { id: "example1_filter" }
-                        },
-                        [
-                          _c("label", [
-                            _vm._v(
-                              "\n                                Search:\n                                "
-                            ),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.search,
-                                  expression: "search"
-                                }
-                              ],
-                              staticClass: "form-control form-control-sm",
+                    },
+                    [
+                      _c("thead", [
+                        _c("tr", { attrs: { role: "row" } }, [
+                          _c(
+                            "th",
+                            {
                               attrs: {
-                                type: "search",
-                                placeholder: "",
-                                "aria-controls": "example1"
-                              },
-                              domProps: { value: _vm.search },
-                              on: {
-                                keyup: function($event) {
-                                  if (
-                                    !$event.type.indexOf("key") &&
-                                    _vm._k(
-                                      $event.keyCode,
-                                      "enter",
-                                      13,
-                                      $event.key,
-                                      "Enter"
-                                    )
-                                  ) {
-                                    return null
-                                  }
-                                  return _vm.searchIt($event)
-                                },
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.search = $event.target.value
-                                }
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1",
+                                "aria-sort": "ascending"
                               }
-                            })
-                          ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-sm-12" }, [
-                      _c(
-                        "table",
-                        {
-                          staticClass:
-                            "table table-bordered table-striped dataTable dtr-inline",
-                          attrs: {
-                            id: "example1",
-                            role: "grid",
-                            "aria-describedby": "example1_info"
-                          }
-                        },
-                        [
-                          _vm._m(1),
+                            },
+                            [_vm._v("ID")]
+                          ),
                           _vm._v(" "),
                           _c(
-                            "tbody",
-                            _vm._l(_vm.jobExamInfo.data, function(jobExam) {
-                              return _c(
-                                "tr",
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Title")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Date")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              attrs: {
+                                tabindex: "0",
+                                "aria-controls": "example1",
+                                rowspan: "1",
+                                colspan: "1"
+                              }
+                            },
+                            [_vm._v("Time")]
+                          ),
+                          _vm._v(" "),
+                          _vm.$gate.isAdmin()
+                            ? _c(
+                                "th",
                                 {
-                                  key: jobExam.id,
-                                  staticClass: "even",
-                                  attrs: { role: "row" }
+                                  attrs: {
+                                    tabindex: "0",
+                                    "aria-controls": "example1",
+                                    rowspan: "1",
+                                    colspan: "1"
+                                  }
                                 },
-                                [
-                                  _c(
-                                    "td",
-                                    {
-                                      staticClass: "sorting_1",
-                                      attrs: { tabindex: "0" }
-                                    },
-                                    [_vm._v(_vm._s(jobExam.id))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(jobExam.job_title))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("localDate")(jobExam.exam_date)
-                                      )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm._f("localTime")(jobExam.exam_time)
-                                      )
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
+                                [_vm._v("Action")]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.jobExamInfo.data, function(jobExam) {
+                          return _c(
+                            "tr",
+                            {
+                              key: jobExam.id,
+                              staticClass: "even",
+                              attrs: { role: "row" }
+                            },
+                            [
+                              _c(
+                                "td",
+                                {
+                                  staticClass: "sorting_1",
+                                  attrs: { tabindex: "0" }
+                                },
+                                [_vm._v(_vm._s(jobExam.id))]
+                              ),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(jobExam.job_title))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(_vm._f("localDate")(jobExam.exam_date))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(_vm._f("localTime")(jobExam.exam_time))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.$gate.isAdmin()
+                                ? _c("td", [
                                     _c(
                                       "a",
                                       {
@@ -52282,57 +52366,53 @@ var render = function() {
                                       [_c("i", { staticClass: "fas fa-trash" })]
                                     )
                                   ])
-                                ]
-                              )
-                            }),
-                            0
+                                : _vm._e()
+                            ]
                           )
-                        ]
+                        }),
+                        0
                       )
-                    ])
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-footer" },
+          [
             _c(
-              "div",
-              { staticClass: "card-footer" },
+              "pagination",
+              {
+                attrs: { data: _vm.jobExamInfo },
+                on: { "pagination-change-page": _vm.loadJobExamInfo }
+              },
               [
-                _c(
-                  "pagination",
-                  {
-                    attrs: { data: _vm.jobExamInfo },
-                    on: { "pagination-change-page": _vm.loadJobExamInfo }
-                  },
-                  [
-                    _c(
-                      "span",
-                      { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
-                      [_vm._v("< Previous")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { attrs: { slot: "next-nav" }, slot: "next-nav" },
-                      [_vm._v("Next >")]
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm.isJobInfoModal
-              ? _c("app-job-exam-info-modal", {
-                  attrs: { "selected-url": _vm.editedUrl },
-                  on: { "close-modal": _vm.closeModal }
-                })
-              : _vm._e()
+                _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+                  _vm._v("< Previous")
+                ]),
+                _vm._v(" "),
+                _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+                  _vm._v("Next >")
+                ])
+              ]
+            )
           ],
           1
-        )
-      : _vm._e()
+        ),
+        _vm._v(" "),
+        _vm.isJobInfoModal
+          ? _c("app-job-exam-info-modal", {
+              attrs: { "selected-url": _vm.editedUrl },
+              on: { "close-modal": _vm.closeModal }
+            })
+          : _vm._e()
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -52345,80 +52425,6 @@ var staticRenderFns = [
         staticClass: "dataTables_length",
         attrs: { id: "example1_length" }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", { attrs: { role: "row" } }, [
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1",
-              "aria-sort": "ascending"
-            }
-          },
-          [_vm._v("ID")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Title")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Date")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Time")]
-        ),
-        _vm._v(" "),
-        _c(
-          "th",
-          {
-            attrs: {
-              tabindex: "0",
-              "aria-controls": "example1",
-              rowspan: "1",
-              colspan: "1"
-            }
-          },
-          [_vm._v("Action")]
-        )
-      ])
     ])
   }
 ]
@@ -53541,7 +53547,16 @@ var render = function() {
           ],
           1
         )
-      : _vm._e()
+      : _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c(
+              "div",
+              { staticClass: "card card-default" },
+              [_c("not-found")],
+              1
+            )
+          ])
+        ])
   ])
 }
 var staticRenderFns = [
@@ -55063,7 +55078,16 @@ var render = function() {
           ],
           1
         )
-      : _vm._e()
+      : _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c(
+              "div",
+              { staticClass: "card card-default" },
+              [_c("not-found")],
+              1
+            )
+          ])
+        ])
   ])
 }
 var staticRenderFns = [
@@ -56750,7 +56774,16 @@ var render = function() {
           ],
           1
         )
-      : _vm._e()
+      : _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c(
+              "div",
+              { staticClass: "card card-default" },
+              [_c("not-found")],
+              1
+            )
+          ])
+        ])
   ])
 }
 var staticRenderFns = [

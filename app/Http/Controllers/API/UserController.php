@@ -101,6 +101,9 @@ class UserController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        if (!$user->photo){
+            $user->photo = "default.png";
+        }
         return $user;
     }
     public function updateProfile(Request $request, $id)

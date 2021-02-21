@@ -57,14 +57,13 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="/show-exam-info" class="nav-link">
-                        <i class="fas fa-stream"></i>
-                        <p>
-                            Job exam info
-                        </p>
+                <li class="nav-item">
+                    <a href="/users/contact-info" class="nav-link">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <p>Contact info</p>
                     </a>
                 </li>
+                @endcan
                 <li class="nav-item has-treeview">
                     <a href="/users/blog-post" class="nav-link">
                         <i class="fas fa-blog"></i>
@@ -73,13 +72,14 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/users/contact-info" class="nav-link">
-                        <i class="fas fa-envelope-open-text"></i>
-                        <p>Contact info</p>
+                <li class="nav-item has-treeview">
+                    <a href="/show-exam-info" class="nav-link">
+                        <i class="fas fa-stream"></i>
+                        <p>
+                            Job exam info
+                        </p>
                     </a>
                 </li>
-                @endcan
                 <li class="nav-item">
                     <a href="/users/quiz-info/list" class="nav-link">
                         <i class="fas fa-poll"></i>

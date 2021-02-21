@@ -80,6 +80,14 @@
                       @close-modal="closeModal">
             </add-user>
         </div>
+
+        <div v-else class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-default">
+                    <not-found></not-found>
+                </div>
+            </div>
+        </div>
     </div>
 
 </template>

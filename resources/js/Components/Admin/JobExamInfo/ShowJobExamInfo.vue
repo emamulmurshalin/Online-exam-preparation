@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="card" v-if="$gate.isAdmin()">
+        <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Job exam info</h3>
                 <div class="float-right">
@@ -36,7 +36,7 @@
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Title</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Date</th>
                                     <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Time</th>
-                                    <th tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
+                                    <th v-if="$gate.isAdmin()" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -45,7 +45,7 @@
                                     <td>{{jobExam.job_title}}</td>
                                     <td>{{jobExam.exam_date | localDate }}</td>
                                     <td>{{jobExam.exam_time | localTime}}</td>
-                                    <td>
+                                    <td v-if="$gate.isAdmin()">
                                         <a href="#" @click.prevent="editJobInfo(jobExam.id)">
                                             <i class="fas fa-edit"></i>
                                         </a>
@@ -159,9 +159,7 @@ export default {
         },
     },
     mounted() {
-        if (this.$gate.isAdmin()){
-            this.loadJobExamInfo();
-        }
+        this.loadJobExamInfo();
     }
 }
 </script>
