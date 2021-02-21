@@ -1995,11 +1995,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Blogs",
   data: function data() {
@@ -2265,11 +2260,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2674,11 +2664,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowJobExamInfo",
   data: function data() {
@@ -2985,10 +2970,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -3848,10 +3829,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "QuizList",
   data: function data() {
@@ -4277,10 +4254,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowQuizInfo",
   data: function data() {
@@ -4568,10 +4541,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -51024,33 +50993,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   },
   function() {
@@ -51740,33 +51686,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   },
   function() {
@@ -52418,33 +52341,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   },
   function() {
@@ -53650,33 +53550,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   },
   function() {
@@ -55195,33 +55072,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   },
   function() {
@@ -56142,33 +55996,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   }
 ]
@@ -56928,33 +56759,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12 col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "dataTables_length", attrs: { id: "example1_length" } },
-        [
-          _c("label", [
-            _vm._v("Show "),
-            _c(
-              "select",
-              {
-                staticClass:
-                  "custom-select custom-select-sm form-control form-control-sm",
-                attrs: { name: "example1_length", "aria-controls": "example1" }
-              },
-              [
-                _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "25" } }, [_vm._v("25")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "100" } }, [_vm._v("100")])
-              ]
-            ),
-            _vm._v(" entries")
-          ])
-        ]
-      )
+      _c("div", {
+        staticClass: "dataTables_length",
+        attrs: { id: "example1_length" }
+      })
     ])
   },
   function() {

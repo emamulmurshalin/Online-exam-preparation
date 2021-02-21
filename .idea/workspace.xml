@@ -7,9 +7,14 @@
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/UserModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/UserModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/ContactInfo/ContactsInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/JobExamInfo/ShowJobExamInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/PreviousQuestion/ShowQuestion.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Quiz/QuizList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/QuizInfo/ShowQuizInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Users/Users.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
