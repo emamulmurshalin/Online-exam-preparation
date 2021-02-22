@@ -23,9 +23,11 @@
                             <li>
                                 <a href="/" class="effect-3">Home</a>
                             </li>
+                            @if(auth()->user())
                             <li>
                                 <a href="/exam/model-test" class="effect-3">Model test</a>
                             </li>
+                            @endif
                             <li>
                                 <a href="/exam/question" class="effect-3">Question</a>
                             </li>

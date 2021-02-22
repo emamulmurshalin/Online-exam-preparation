@@ -7,8 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Register/Registration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Register/Registration.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-menu.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
