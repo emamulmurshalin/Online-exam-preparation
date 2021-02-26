@@ -43,7 +43,7 @@ class QuizController extends Controller
                     }
                 })
                 ->inRandomOrder()
-                ->limit(3)
+                ->limit(5)
                 ->get();
 
     }

@@ -5251,57 +5251,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5316,15 +5265,12 @@ __webpack_require__.r(__webpack_exports__);
         quiz_subject: ''
       }),
       isStartQuiz: false,
-      answerRight: false,
-      answerWrong: false,
       isResult: false,
       quizes: {},
       typeData: [],
       subjectData: [],
       marks: 0,
-      quizNumber: 0,
-      totalQuiz: 3
+      totalQuiz: 5
     };
   },
   mounted: function mounted() {
@@ -5344,19 +5290,9 @@ __webpack_require__.r(__webpack_exports__);
         window.location.replace('/');
       })["catch"](function () {});
     },
-    over: function over() {
-      this.isStartQuiz = false;
-      this.answerWrong = false;
-      this.answerRight = false;
-      this.isResult = true;
-    },
     startAgain: function startAgain() {
       this.isResult = false;
-      this.answerWrong = false;
-      this.answerRight = false;
-      this.quizNumber = 0;
-      this.totalQuiz = this.totalQuiz + 3;
-      ;
+      this.totalQuiz = this.totalQuiz + 5;
       this.isStartQuiz = true;
       this.getAllQuiz();
     },
@@ -5365,26 +5301,20 @@ __webpack_require__.r(__webpack_exports__);
         this.isResult = true;
       }
     },
-    continueNewQuestion: function continueNewQuestion() {
-      this.answerWrong = false;
-      this.answerRight = false;
-      this.quizNumber = ++this.quizNumber;
-    },
-    countMarks: function countMarks() {
-      var _this = this;
-
-      setTimeout(function () {
-        if (_this.form.answer === _this.quizes[_this.quizNumber].quiz_answer.answer) {
-          _this.marks = ++_this.marks;
-          _this.answerWrong = false;
-          _this.answerRight = true;
-          _this.form.answer = '';
-        } else {
-          _this.answerRight = false;
-          _this.answerWrong = true;
-          _this.form.answer = '';
-        }
-      });
+    countMarks: function countMarks(index, checked, answer) {
+      console.log(index, checked, answer, 'aise'); // setTimeout(()=> {
+      //     if (this.form.answer === this.quizes[this.quizNumber].quiz_answer.answer){
+      //         this.marks = ++this.marks;
+      //         this.answerWrong = false;
+      //         this.answerRight = true;
+      //         this.form.answer = '';
+      //
+      //     }else {
+      //         this.answerRight = false;
+      //         this.answerWrong = true;
+      //         this.form.answer = '';
+      //     }
+      // })
     },
     startQuiz: function startQuiz() {
       this.getAllQuiz();
@@ -5393,34 +5323,28 @@ __webpack_require__.r(__webpack_exports__);
     getImage: function getImage() {
       return '/img/quiz.jpg';
     },
-    getRightImage: function getRightImage() {
-      return '/img/right.png';
-    },
-    getWrongImage: function getWrongImage() {
-      return '/img/wrong.jpg';
-    },
     getResultImage: function getResultImage() {
       return '/img/result.png';
     },
     getAllQuiz: function getAllQuiz() {
-      var _this2 = this;
+      var _this = this;
 
       this.axios.get('/get-quiz?type=' + this.form.quiz_type + '&subject=' + this.form.quiz_subject).then(function (response) {
-        _this2.quizes = response.data;
+        _this.quizes = response.data;
       })["catch"](function (error) {});
     },
     getTypes: function getTypes() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.axios.get('/get-types').then(function (response) {
-        _this3.typeData = response.data;
+        _this2.typeData = response.data;
       })["catch"](function () {});
     },
     getSubject: function getSubject() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.axios.get('/get-subject').then(function (response) {
-        _this4.subjectData = response.data;
+        _this3.subjectData = response.data;
       })["catch"](function () {});
     }
   }
@@ -5765,7 +5689,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".bg-color[data-v-48f86a63] {\n  height: 470px;\n  width: 100%;\n  background-color: #F5F5F5;\n}\ninput[type=\"radio\"][data-v-48f86a63]{\n  display: none;\n}\nlabel[data-v-48f86a63]{\n  margin-left: 20px;\n  margin-right: 20px;\n  position: relative;\n  color: #01cc65;\n  font-family: 'Poppins',sans-serif;\n  font-size: 20px;\n  border: 2px solid #01cc65;\n  padding: 10px 20px;\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\nlabel[data-v-48f86a63]:before{\n  content: \"\";\n  height: 30px;\n  width: 30px;\n  border: 2px solid #01cc65;\n  border-radius: 50%;\n  margin-right: 20px;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]{\n  background-color: #01cc65 !important;\n  color: white;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]:before{\n  height: 16px;\n  width: 16px;\n  border: 10px solid white;\n  background-color: #01cc65 !important;\n}\n\n", ""]);
+exports.push([module.i, ".bg-color[data-v-48f86a63] {\n  width: 100%;\n  background-color: #F5F5F5;\n  margin-bottom: 15px;\n}\n.question-header[data-v-48f86a63]{\n  padding: 20px;\n  margin-top: 15px;\n  background: radial-gradient(#7ecbd3, transparent);\n  font-size: 30px;\n  font-weight: bold;\n  font-style: italic;\n}\ninput[type=\"radio\"][data-v-48f86a63]{\n  display: none;\n}\nlabel[data-v-48f86a63]{\n  margin-left: 20px;\n  margin-right: 20px;\n  position: relative;\n  color: #01cc65;\n  font-family: 'Poppins',sans-serif;\n  font-size: 20px;\n  border: 2px solid #01cc65;\n  padding: 10px 20px;\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\nlabel[data-v-48f86a63]:before{\n  content: \"\";\n  height: 30px;\n  width: 30px;\n  border: 2px solid #01cc65;\n  border-radius: 50%;\n  margin-right: 20px;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]{\n  background-color: #01cc65 !important;\n  color: white;\n}\ninput[type=\"radio\"]:checked + label[data-v-48f86a63]:before{\n  height: 16px;\n  width: 16px;\n  border: 10px solid white;\n  background-color: #01cc65 !important;\n}\n\n", ""]);
 
 // exports
 
@@ -57740,11 +57664,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-10 mb-10" }, [
     _c("div", { staticClass: "card bg-color" }, [
-      !_vm.isStartQuiz && !_vm.answerRight && !_vm.answerWrong && !_vm.isResult
+      !_vm.isStartQuiz && !_vm.isResult
         ? _c("div", [
             _c(
               "div",
-              { staticStyle: { height: "230px" }, attrs: { align: "center" } },
+              {
+                staticStyle: { height: "230px", "margin-top": "15px" },
+                attrs: { align: "center" }
+              },
               [
                 _c("img", {
                   staticClass: "justify-content-center",
@@ -57827,7 +57754,7 @@ var render = function() {
               "div",
               {
                 staticClass: "justify-content-center",
-                staticStyle: { height: "70px", "margin-top": "12px" },
+                staticStyle: { height: "82px", "margin-top": "12px" },
                 attrs: { align: "center" }
               },
               [
@@ -57847,468 +57774,335 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                    START QUIZ\n                ")]
+                  [
+                    _vm._v(
+                      "\n                        START QUIZ\n                    "
+                    )
+                  ]
                 )
               ]
             )
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.isStartQuiz && !_vm.answerRight && !_vm.answerWrong && !_vm.isResult
+      _vm.isStartQuiz && !_vm.isResult
         ? _c(
             "div",
             [
+              _c(
+                "h4",
+                {
+                  staticClass: "question-header justify-content-center",
+                  attrs: { align: "center" }
+                },
+                [
+                  _vm._v(
+                    "\n                    Think you are prepared for exam?"
+                  )
+                ]
+              ),
+              _vm._v(" "),
               _vm._l(_vm.quizes, function(quiz, index) {
-                return index == _vm.quizNumber
-                  ? [
+                return [
+                  _c(
+                    "div",
+                    { staticStyle: { height: "50px", "margin-top": "30px" } },
+                    [
                       _c(
-                        "div",
-                        {
-                          staticStyle: { height: "50px" },
-                          attrs: { align: "center" }
-                        },
-                        [
-                          _c(
-                            "h4",
-                            {
-                              staticClass: "justify-content-center",
-                              staticStyle: { "padding-top": "30px" },
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Think you are prepared for exam?"
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticStyle: { height: "50px", "margin-top": "30px" }
-                        },
-                        [
-                          _c(
-                            "h3",
-                            {
-                              staticClass: "justify-content-center",
-                              staticStyle: {
-                                "margin-top": "5px",
-                                "font-weight": "bold"
-                              },
-                              attrs: { align: "center" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(quiz.quiz_question) +
-                                  " "
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
+                        "h3",
                         {
                           staticClass: "justify-content-center",
-                          staticStyle: { height: "250px" },
+                          staticStyle: {
+                            "margin-top": "5px",
+                            "font-weight": "bold"
+                          },
                           attrs: { align: "center" }
                         },
                         [
-                          quiz.quiz_option[0]
-                            ? [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.answer,
-                                      expression: "form.answer"
-                                    }
-                                  ],
-                                  attrs: { type: "radio", id: "first" },
-                                  domProps: {
-                                    value: quiz.quiz_option[0].option,
-                                    checked: _vm._q(
-                                      _vm.form.answer,
-                                      quiz.quiz_option[0].option
-                                    )
-                                  },
-                                  on: {
-                                    click: _vm.countMarks,
-                                    change: function($event) {
-                                      return _vm.$set(
-                                        _vm.form,
-                                        "answer",
-                                        quiz.quiz_option[0].option
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("label", { attrs: { for: "first" } }, [
-                                  _vm._v(_vm._s(quiz.quiz_option[0].option))
-                                ])
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          quiz.quiz_option[1]
-                            ? [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.answer,
-                                      expression: "form.answer"
-                                    }
-                                  ],
-                                  attrs: { type: "radio", id: "second" },
-                                  domProps: {
-                                    value: quiz.quiz_option[1].option,
-                                    checked: _vm._q(
-                                      _vm.form.answer,
-                                      quiz.quiz_option[1].option
-                                    )
-                                  },
-                                  on: {
-                                    click: _vm.countMarks,
-                                    change: function($event) {
-                                      return _vm.$set(
-                                        _vm.form,
-                                        "answer",
-                                        quiz.quiz_option[1].option
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("label", { attrs: { for: "second" } }, [
-                                  _vm._v(_vm._s(quiz.quiz_option[1].option))
-                                ])
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          quiz.quiz_option[2]
-                            ? [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.answer,
-                                      expression: "form.answer"
-                                    }
-                                  ],
-                                  attrs: { type: "radio", id: "third" },
-                                  domProps: {
-                                    value: quiz.quiz_option[2].option,
-                                    checked: _vm._q(
-                                      _vm.form.answer,
-                                      quiz.quiz_option[2].option
-                                    )
-                                  },
-                                  on: {
-                                    click: _vm.countMarks,
-                                    change: function($event) {
-                                      return _vm.$set(
-                                        _vm.form,
-                                        "answer",
-                                        quiz.quiz_option[2].option
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("label", { attrs: { for: "third" } }, [
-                                  _vm._v(_vm._s(quiz.quiz_option[2].option))
-                                ])
-                              ]
-                            : _vm._e(),
-                          _vm._v(" "),
-                          quiz.quiz_option[3]
-                            ? [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.answer,
-                                      expression: "form.answer"
-                                    }
-                                  ],
-                                  attrs: { type: "radio", id: "fourth" },
-                                  domProps: {
-                                    value: quiz.quiz_option[3].option,
-                                    checked: _vm._q(
-                                      _vm.form.answer,
-                                      quiz.quiz_option[3].option
-                                    )
-                                  },
-                                  on: {
-                                    click: _vm.countMarks,
-                                    change: function($event) {
-                                      return _vm.$set(
-                                        _vm.form,
-                                        "answer",
-                                        quiz.quiz_option[3].option
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("label", { attrs: { for: "fourth" } }, [
-                                  _vm._v(_vm._s(quiz.quiz_option[3].option))
-                                ])
-                              ]
-                            : _vm._e()
-                        ],
-                        2
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "justify-content-center",
-                          staticStyle: { height: "50px" },
-                          attrs: { align: "center" }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success",
-                              staticStyle: {
-                                padding: "17px 40px",
-                                "margin-left": "5px",
-                                "font-size": "25px",
-                                "background-color": "#00C794"
-                              },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.over($event)
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Over\n                    "
-                              )
-                            ]
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(quiz.quiz_question) +
+                              "  " +
+                              _vm._s(index) +
+                              " " +
+                              _vm._s(index)
                           )
                         ]
                       )
                     ]
-                  : _vm._e()
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "justify-content-center",
+                      staticStyle: { height: "250px" },
+                      attrs: { align: "center" }
+                    },
+                    [
+                      quiz.quiz_option[0]
+                        ? [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form[quiz.id],
+                                  expression: "form[quiz.id]"
+                                }
+                              ],
+                              key: quiz.quiz_option[0].id,
+                              attrs: {
+                                type: "radio",
+                                id:
+                                  "radio-" +
+                                  quiz.id +
+                                  "-" +
+                                  quiz.quiz_option[0].id,
+                                name: quiz.quiz_option[0].id
+                              },
+                              domProps: {
+                                value: quiz.quiz_option[0].id,
+                                checked: _vm._q(
+                                  _vm.form[quiz.id],
+                                  quiz.quiz_option[0].id
+                                )
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    return _vm.$set(
+                                      _vm.form,
+                                      quiz.id,
+                                      quiz.quiz_option[0].id
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.countMarks(
+                                      index,
+                                      quiz.quiz_option[0].option,
+                                      quiz.quiz_answer.answer
+                                    )
+                                  }
+                                ]
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                attrs: {
+                                  for:
+                                    "radio-" +
+                                    quiz.id +
+                                    "-" +
+                                    quiz.quiz_option[0].id
+                                }
+                              },
+                              [_vm._v(_vm._s(quiz.quiz_option[0].option))]
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      quiz.quiz_option[1]
+                        ? [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form[quiz.id],
+                                  expression: "form[quiz.id]"
+                                }
+                              ],
+                              key: quiz.quiz_option[1].id,
+                              attrs: {
+                                type: "radio",
+                                id:
+                                  "radio-" +
+                                  quiz.id +
+                                  "-" +
+                                  quiz.quiz_option[1].id,
+                                name: quiz.quiz_option[1].id
+                              },
+                              domProps: {
+                                value: quiz.quiz_option[1].id,
+                                checked: _vm._q(
+                                  _vm.form[quiz.id],
+                                  quiz.quiz_option[1].id
+                                )
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    return _vm.$set(
+                                      _vm.form,
+                                      quiz.id,
+                                      quiz.quiz_option[1].id
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.countMarks(
+                                      index,
+                                      quiz.quiz_option[1].option,
+                                      quiz.quiz_answer.answer
+                                    )
+                                  }
+                                ]
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                attrs: {
+                                  for:
+                                    "radio-" +
+                                    quiz.id +
+                                    "-" +
+                                    quiz.quiz_option[1].id
+                                }
+                              },
+                              [_vm._v(_vm._s(quiz.quiz_option[1].option))]
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      quiz.quiz_option[2]
+                        ? [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form[quiz.id],
+                                  expression: "form[quiz.id]"
+                                }
+                              ],
+                              key: quiz.quiz_option[2].id,
+                              attrs: {
+                                type: "radio",
+                                id:
+                                  "radio-" +
+                                  quiz.id +
+                                  "-" +
+                                  quiz.quiz_option[2].id,
+                                name: quiz.quiz_option[2].id
+                              },
+                              domProps: {
+                                value: quiz.quiz_option[2].id,
+                                checked: _vm._q(
+                                  _vm.form[quiz.id],
+                                  quiz.quiz_option[2].id
+                                )
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    return _vm.$set(
+                                      _vm.form,
+                                      quiz.id,
+                                      quiz.quiz_option[2].id
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.countMarks(
+                                      index,
+                                      quiz.quiz_option[2].option,
+                                      quiz.quiz_answer.answer
+                                    )
+                                  }
+                                ]
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                attrs: {
+                                  for:
+                                    "radio-" +
+                                    quiz.id +
+                                    "-" +
+                                    quiz.quiz_option[2].id
+                                }
+                              },
+                              [_vm._v(_vm._s(quiz.quiz_option[2].option))]
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      quiz.quiz_option[3]
+                        ? [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form[quiz.id],
+                                  expression: "form[quiz.id]"
+                                }
+                              ],
+                              key: quiz.quiz_option[3].id,
+                              attrs: {
+                                type: "radio",
+                                id:
+                                  "radio-" +
+                                  quiz.id +
+                                  "-" +
+                                  quiz.quiz_option[3].id,
+                                name: quiz.quiz_option[3].id
+                              },
+                              domProps: {
+                                value: quiz.quiz_option[3].id,
+                                checked: _vm._q(
+                                  _vm.form[quiz.id],
+                                  quiz.quiz_option[3].id
+                                )
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    return _vm.$set(
+                                      _vm.form,
+                                      quiz.id,
+                                      quiz.quiz_option[3].id
+                                    )
+                                  },
+                                  function($event) {
+                                    return _vm.countMarks(
+                                      index,
+                                      quiz.quiz_option[3].option,
+                                      quiz.quiz_answer.answer
+                                    )
+                                  }
+                                ]
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                attrs: {
+                                  for:
+                                    "radio-" +
+                                    quiz.id +
+                                    "-" +
+                                    quiz.quiz_option[3].id
+                                }
+                              },
+                              [_vm._v(_vm._s(quiz.quiz_option[3].option))]
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ]
               })
             ],
             2
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.answerRight && !_vm.isResult
-        ? _c("div", [
-            _c(
-              "div",
-              { staticStyle: { height: "180px" }, attrs: { align: "center" } },
-              [
-                _c("img", {
-                  staticClass: "justify-content-center",
-                  staticStyle: { "margin-top": "25px", width: "10%" },
-                  attrs: {
-                    align: "center",
-                    src: _vm.getRightImage(),
-                    alt: "User Avatar"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "justify-content-center",
-                staticStyle: { height: "70px" },
-                attrs: { align: "center" }
-              },
-              [
-                _vm.quizNumber == _vm.quizes.length - 1
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          padding: "17px 40px",
-                          "font-size": "25px",
-                          "background-color": "#00C794"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.startAgain($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Restart\n                "
-                        )
-                      ]
-                    )
-                  : _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          padding: "17px 40px",
-                          "font-size": "25px",
-                          "background-color": "#00C794"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.continueNewQuestion($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Continue\n                "
-                        )
-                      ]
-                    ),
-                _vm._v(" "),
-                _vm.quizNumber == _vm.quizes.length - 1
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          padding: "17px 40px",
-                          "margin-left": "5px",
-                          "font-size": "25px",
-                          "background-color": "#00C794"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.showResult($event)
-                          }
-                        }
-                      },
-                      [_vm._v("\n                    Result\n                ")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.answerWrong && !_vm.isResult
-        ? _c("div", [
-            _c(
-              "div",
-              { staticStyle: { height: "180px" }, attrs: { align: "center" } },
-              [
-                _c("img", {
-                  staticClass: "justify-content-center",
-                  staticStyle: { "margin-top": "25px", width: "10%" },
-                  attrs: {
-                    align: "center",
-                    src: _vm.getWrongImage(),
-                    alt: "User Avatar"
-                  }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "justify-content-center",
-                staticStyle: { height: "70px" },
-                attrs: { align: "center" }
-              },
-              [
-                _vm.quizNumber == _vm.quizes.length - 1
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          padding: "17px 40px",
-                          "font-size": "25px",
-                          "background-color": "#00C794"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.startAgain($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Restart\n                "
-                        )
-                      ]
-                    )
-                  : _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          padding: "17px 40px",
-                          "font-size": "25px",
-                          "background-color": "#00C794"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.continueNewQuestion($event)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Continue\n                "
-                        )
-                      ]
-                    ),
-                _vm._v(" "),
-                _vm.quizNumber == _vm.quizes.length - 1
-                  ? _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          padding: "17px 40px",
-                          "margin-left": "5px",
-                          "font-size": "25px",
-                          "background-color": "#00C794"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.showResult($event)
-                          }
-                        }
-                      },
-                      [_vm._v("\n                    Result\n                ")]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ])
         : _vm._e(),
       _vm._v(" "),
       _vm.isResult
@@ -58342,7 +58136,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                    Marks: " +
+                      "\n                        Marks: " +
                         _vm._s(_vm.marks) +
                         " out of " +
                         _vm._s(_vm.totalQuiz)
@@ -58377,7 +58171,11 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                    Restart\n                ")]
+                  [
+                    _vm._v(
+                      "\n                        Restart\n                    "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -58397,7 +58195,11 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                    Exits\n                ")]
+                  [
+                    _vm._v(
+                      "\n                        Exits\n                    "
+                    )
+                  ]
                 )
               ]
             )
@@ -58419,7 +58221,7 @@ var staticRenderFns = [
           staticStyle: { "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [_vm._v("\n                    Think you are prepared for exam?")]
+        [_vm._v("\n                        Think you are prepared for exam?")]
       ),
       _vm._v(" "),
       _c(
@@ -58429,39 +58231,11 @@ var staticRenderFns = [
           staticStyle: { "margin-top": "5px", "font-weight": "bold" },
           attrs: { align: "center" }
         },
-        [_vm._v("\n                    Take the challenge today and prove it!")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { height: "100px" } }, [
-      _c(
-        "h2",
-        {
-          staticClass: "justify-content-center",
-          staticStyle: { color: "black", "font-weight": "bold" },
-          attrs: { align: "center" }
-        },
-        [_vm._v("\n                    Congratulations, you are right!")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticStyle: { height: "100px" } }, [
-      _c(
-        "h2",
-        {
-          staticClass: "justify-content-center",
-          staticStyle: { color: "black", "font-weight": "bold" },
-          attrs: { align: "center" }
-        },
-        [_vm._v("\n                    Good try, but you answer was wrong!")]
+        [
+          _vm._v(
+            "\n                        Take the challenge today and prove it!"
+          )
+        ]
       )
     ])
   }
