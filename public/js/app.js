@@ -5265,12 +5265,13 @@ __webpack_require__.r(__webpack_exports__);
       }),
       answerData: [],
       isStartQuiz: false,
+      notSame: false,
       isResult: false,
       quizes: {},
       typeData: [],
       subjectData: [],
       marks: 0,
-      totalQuiz: 5
+      totalQuiz: 0
     };
   },
   mounted: function mounted() {
@@ -5297,22 +5298,27 @@ __webpack_require__.r(__webpack_exports__);
       this.getAllQuiz();
     },
     showResult: function showResult() {
+      var _this = this;
+
+      this.answerData.map(function (item) {
+        if (item.check === item.answer) {
+          return _this.marks = _this.marks + 1;
+        }
+      });
       this.isResult = true;
     },
     countMarks: function countMarks(index, checked, answer) {
-      var _this = this;
+      var items = {
+        'id': Number(index),
+        'check': checked,
+        'answer': answer
+      };
 
-      if (checked === answer) {
-        this.marks = this.marks + 1;
+      if (typeof this.answerData[index] === 'undefined') {
+        this.answerData[index] = items;
+      } else {
+        this.answerData[index].check = checked;
       }
-
-      setTimeout(function () {
-        _this.answerData.push({
-          'id': index,
-          'check': checked,
-          'answer': answer
-        });
-      });
     },
     startQuiz: function startQuiz() {
       this.getAllQuiz();
@@ -5329,6 +5335,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get('/get-quiz?type=' + this.form.quiz_type + '&subject=' + this.form.quiz_subject).then(function (response) {
         _this2.quizes = response.data;
+        _this2.totalQuiz = _this2.quizes.length;
       })["catch"](function (error) {});
     },
     getTypes: function getTypes() {

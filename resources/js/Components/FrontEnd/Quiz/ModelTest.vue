@@ -151,12 +151,13 @@ import { ModelListSelect  } from 'vue-search-select'
                 }),
                 answerData: [],
                 isStartQuiz: false,
+                notSame: false,
                 isResult: false,
                 quizes: {},
                 typeData: [],
                 subjectData: [],
                 marks: 0,
-                totalQuiz: 5
+                totalQuiz: 0
             }
         },
         mounted(){
@@ -186,19 +187,26 @@ import { ModelListSelect  } from 'vue-search-select'
                 this.getAllQuiz();
             },
             showResult(){
+                this.answerData.map((item) => {
+                    if (item.check === item.answer){
+                        return this.marks = this.marks + 1;
+                    }
+                });
                 this.isResult = true;
             },
             countMarks(index, checked, answer){
-                if (checked === answer){
-                    this.marks = this.marks + 1;
+                let items = {
+                    'id': Number(index),
+                    'check': checked,
+                    'answer': answer
                 }
-                setTimeout(()=> {
-                    this.answerData.push({
-                        'id': index,
-                        'check': checked,
-                        'answer': answer
-                    })
-                });
+                if(typeof this.answerData[index] === 'undefined') {
+                    this.answerData[index] = items;
+                }
+                else {
+                    this.answerData[index].check = checked;
+                }
+
             },
             startQuiz(){
                 this.getAllQuiz();
@@ -214,6 +222,7 @@ import { ModelListSelect  } from 'vue-search-select'
                 this.axios.get('/get-quiz?type=' + this.form.quiz_type + '&subject=' + this.form.quiz_subject)
                     .then(response => {
                         this.quizes = response.data;
+                        this.totalQuiz = this.quizes.length;
                     }).catch((error) => {
 
                 });

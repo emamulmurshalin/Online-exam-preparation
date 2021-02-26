@@ -563,7 +563,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/Components/FrontEnd/Quiz/ModelTest.vue</url>
-          <line>243</line>
+          <line>252</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
