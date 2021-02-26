@@ -5250,7 +5250,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5264,6 +5263,7 @@ __webpack_require__.r(__webpack_exports__);
         quiz_type: '',
         quiz_subject: ''
       }),
+      answerData: [],
       isStartQuiz: false,
       isResult: false,
       quizes: {},
@@ -5297,24 +5297,22 @@ __webpack_require__.r(__webpack_exports__);
       this.getAllQuiz();
     },
     showResult: function showResult() {
-      if (this.quizNumber == this.quizes.length - 1) {
-        this.isResult = true;
-      }
+      this.isResult = true;
     },
     countMarks: function countMarks(index, checked, answer) {
-      console.log(index, checked, answer, 'aise'); // setTimeout(()=> {
-      //     if (this.form.answer === this.quizes[this.quizNumber].quiz_answer.answer){
-      //         this.marks = ++this.marks;
-      //         this.answerWrong = false;
-      //         this.answerRight = true;
-      //         this.form.answer = '';
-      //
-      //     }else {
-      //         this.answerRight = false;
-      //         this.answerWrong = true;
-      //         this.form.answer = '';
-      //     }
-      // })
+      var _this = this;
+
+      if (checked === answer) {
+        this.marks = this.marks + 1;
+      }
+
+      setTimeout(function () {
+        _this.answerData.push({
+          'id': index,
+          'check': checked,
+          'answer': answer
+        });
+      });
     },
     startQuiz: function startQuiz() {
       this.getAllQuiz();
@@ -5327,24 +5325,24 @@ __webpack_require__.r(__webpack_exports__);
       return '/img/result.png';
     },
     getAllQuiz: function getAllQuiz() {
-      var _this = this;
+      var _this2 = this;
 
       this.axios.get('/get-quiz?type=' + this.form.quiz_type + '&subject=' + this.form.quiz_subject).then(function (response) {
-        _this.quizes = response.data;
+        _this2.quizes = response.data;
       })["catch"](function (error) {});
     },
     getTypes: function getTypes() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.axios.get('/get-types').then(function (response) {
-        _this2.typeData = response.data;
+        _this3.typeData = response.data;
       })["catch"](function () {});
     },
     getSubject: function getSubject() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.axios.get('/get-subject').then(function (response) {
-        _this3.subjectData = response.data;
+        _this4.subjectData = response.data;
       })["catch"](function () {});
     }
   }
@@ -58099,14 +58097,47 @@ var render = function() {
                     2
                   )
                 ]
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "justify-content-center",
+                  staticStyle: { "padding-bottom": "12px" },
+                  attrs: { align: "center" }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      staticStyle: {
+                        padding: "13px 30px",
+                        "font-size": "25px",
+                        "background-color": "#00C794"
+                      },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.showResult($event)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Result\n                    "
+                      )
+                    ]
+                  )
+                ]
+              )
             ],
             2
           )
         : _vm._e(),
       _vm._v(" "),
       _vm.isResult
-        ? _c("div", [
+        ? _c("div", { staticStyle: { "margin-top": "15px" } }, [
             _c(
               "div",
               { staticStyle: { height: "230px" }, attrs: { align: "center" } },
@@ -58150,7 +58181,7 @@ var render = function() {
               "div",
               {
                 staticClass: "justify-content-center",
-                staticStyle: { height: "70px" },
+                staticStyle: { height: "70px", "padding-bottom": "12px" },
                 attrs: { align: "center" }
               },
               [
@@ -58159,31 +58190,7 @@ var render = function() {
                   {
                     staticClass: "btn btn-success",
                     staticStyle: {
-                      padding: "17px 40px",
-                      "margin-left": "5px",
-                      "font-size": "25px",
-                      "background-color": "#00C794"
-                    },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.startAgain($event)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        Restart\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    staticStyle: {
-                      padding: "17px 40px",
+                      padding: "13px 30px",
                       "margin-left": "5px",
                       "font-size": "25px",
                       "background-color": "#00C794"

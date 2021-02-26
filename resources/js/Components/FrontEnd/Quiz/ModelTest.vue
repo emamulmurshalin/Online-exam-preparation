@@ -91,20 +91,18 @@
                             <label :for="'radio-' + quiz.id + '-' + quiz.quiz_option[3].id">{{ quiz.quiz_option[3].option }}</label>
                         </template>
                     </div>
-
-<!--                    <div align="center" class="justify-content-center" style="height: 50px">-->
-<!--                        <button @click.prevent="over"-->
-<!--                                style="padding: 17px 40px; margin-left: 5px; font-size: 25px;-->
-<!--                            background-color: #00C794"-->
-<!--                                class="btn btn-success">-->
-<!--                            Over-->
-<!--                        </button>-->
-<!--                    </div>-->
                 </template>
-
+                <div align="center" class="justify-content-center" style="padding-bottom: 12px;">
+                    <button @click.prevent="showResult"
+                            style="padding: 13px 30px; font-size: 25px;
+                            background-color: #00C794"
+                            class="btn btn-success">
+                        Result
+                    </button>
+                </div>
             </div>
 
-            <div v-if="isResult">
+            <div v-if="isResult" style="margin-top: 15px;">
                 <div align="center" style="height: 230px">
                     <img style="margin-top: 25px; width: 30%"
                          align="center"
@@ -116,15 +114,16 @@
                         class="justify-content-center">
                         Marks: {{ marks }} out of {{ totalQuiz }}</h2>
                 </div>
-                <div align="center" class="justify-content-center" style="height: 70px">
-                    <button @click.prevent="startAgain"
-                            style="padding: 17px 40px; margin-left: 5px; font-size: 25px;
-                            background-color: #00C794"
-                            class="btn btn-success">
-                        Restart
-                    </button>
+                <div align="center" class="justify-content-center"
+                     style="height: 70px; padding-bottom: 12px;">
+<!--                    <button @click.prevent="startAgain"-->
+<!--                            style="padding: 17px 40px; margin-left: 5px; font-size: 25px;-->
+<!--                            background-color: #00C794"-->
+<!--                            class="btn btn-success">-->
+<!--                        Restart-->
+<!--                    </button>-->
                     <button @click.prevent="exit"
-                            style="padding: 17px 40px; margin-left: 5px; font-size: 25px;
+                            style="padding: 13px 30px; margin-left: 5px; font-size: 25px;
                             background-color: #00C794"
                             class="btn btn-success">
                         Exits
@@ -150,6 +149,7 @@ import { ModelListSelect  } from 'vue-search-select'
                     quiz_type: '',
                     quiz_subject: '',
                 }),
+                answerData: [],
                 isStartQuiz: false,
                 isResult: false,
                 quizes: {},
@@ -186,26 +186,19 @@ import { ModelListSelect  } from 'vue-search-select'
                 this.getAllQuiz();
             },
             showResult(){
-                if (this.quizNumber == (this.quizes.length - 1)){
-                    this.isResult = true;
-                }
+                this.isResult = true;
             },
             countMarks(index, checked, answer){
-                console.log(index, checked, answer, 'aise');
-                // setTimeout(()=> {
-                //     if (this.form.answer === this.quizes[this.quizNumber].quiz_answer.answer){
-                //         this.marks = ++this.marks;
-                //         this.answerWrong = false;
-                //         this.answerRight = true;
-                //         this.form.answer = '';
-                //
-                //     }else {
-                //         this.answerRight = false;
-                //         this.answerWrong = true;
-                //         this.form.answer = '';
-                //     }
-                // })
-
+                if (checked === answer){
+                    this.marks = this.marks + 1;
+                }
+                setTimeout(()=> {
+                    this.answerData.push({
+                        'id': index,
+                        'check': checked,
+                        'answer': answer
+                    })
+                });
             },
             startQuiz(){
                 this.getAllQuiz();
