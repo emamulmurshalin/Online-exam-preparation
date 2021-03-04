@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SignUpMail;
 use App\Models\Exam\Admin\PreviousQuestion;
 use App\Models\Exam\Admin\Quiz;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -41,6 +43,14 @@ class UserController extends Controller
         ]);
         $request['password'] = Hash::make($request->password);
          $user = User::create($request->all());
+
+        $details = [
+            'title' => 'Email verification mail',
+            'body' => 'verification code: 123456'
+        ];
+
+        Mail::to("emamul727@gmail.com")
+            ->send(new SignUpMail($details));
 
         return [
             'status' => 200,
