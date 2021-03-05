@@ -17,7 +17,7 @@ class QuestionTypeSeeder extends Seeder
         );
         DB::table('question_types')->insert(
             [
-                'type' => 'Bank job',
+                'type' => 'Govt teacher',
             ]
         );
     }

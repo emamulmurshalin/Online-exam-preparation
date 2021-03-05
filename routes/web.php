@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactInfoController;
+use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\JobExamInfoController;
 use App\Http\Controllers\Admin\PreviousQuestionController;
 use App\Http\Controllers\Admin\QuestionTypeController;
@@ -178,3 +179,7 @@ Route::post('/user-login', [UserController::class, 'loginUser'])
     ->name('user_login');
 Route::post('/admin-login', [UserController::class, 'loginAdmin'])
     ->name('admin_login');
+
+//Home page API
+Route::get('/get-quiz-question-info', [HomePageController::class, 'quizQuestion'])
+    ->name('get_quiz_question');

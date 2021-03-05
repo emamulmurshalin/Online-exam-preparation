@@ -239,6 +239,25 @@ Vue.component(
     require('./Components/FrontEnd/Register/Registration').default
 );
 
+//Home page
+Vue.component(
+    'app-about-our',
+    require('./Components/FrontEnd/HomePage/AboutOur').default
+);
+Vue.component(
+    'app-our-service',
+    require('./Components/FrontEnd/HomePage/OurService').default
+);
+Vue.component(
+    'app-information',
+    require('./Components/FrontEnd/HomePage/Information').default
+);
+Vue.component(
+    'app-user-say',
+    require('./Components/FrontEnd/HomePage/UserSay').default
+);
+//Home page
+
 const app = new Vue({
     el: '#app',
     router,
