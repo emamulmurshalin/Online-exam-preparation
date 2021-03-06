@@ -58060,58 +58060,56 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "testimonials" }, [
-    _c(
-      "div",
-      { staticClass: "container" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { attrs: { id: "flexiselDemo1" } },
         _vm._l(_vm.formData.data, function(contact) {
-          return _c("ul", { attrs: { id: "flexiselDemo1" } }, [
-            _c("li", [
-              _c("div", { staticClass: "three_testimonials_grid_main" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-xs-3 three_testimonials_grid_pos" },
-                  [
-                    _c("div", { staticClass: "grid-test-allah-agile" }, [
-                      _c("img", {
-                        staticClass: "img-responsive",
-                        staticStyle: {
-                          height: "200px",
-                          width: "300px",
-                          "border-radius": "50%"
-                        },
-                        attrs: { src: _vm.getImage(), alt: " " }
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-xs-9 three_testimonials_grid" }, [
-                  _c("div", { staticClass: "three_testimonials_grid1" }, [
-                    _c("h5", [_vm._v(_vm._s(contact.name))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("User")])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(contact.message) +
-                        "\n                        "
-                    )
+          return _c("li", [
+            _c("div", { staticClass: "three_testimonials_grid_main" }, [
+              _c(
+                "div",
+                { staticClass: "col-xs-3 three_testimonials_grid_pos" },
+                [
+                  _c("div", { staticClass: "grid-test-allah-agile" }, [
+                    _c("img", {
+                      staticClass: "img-responsive",
+                      staticStyle: {
+                        height: "200px",
+                        width: "300px",
+                        "border-radius": "50%"
+                      },
+                      attrs: { src: _vm.getImage(), alt: " " }
+                    })
                   ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-xs-9 three_testimonials_grid" }, [
+                _c("div", { staticClass: "three_testimonials_grid1" }, [
+                  _c("h5", [_vm._v(_vm._s(contact.name))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("User")])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "clearfix" })
-              ])
+                _c("p", [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(contact.message) +
+                      "\n                        "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "clearfix" })
             ])
           ])
-        })
-      ],
-      2
-    )
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
