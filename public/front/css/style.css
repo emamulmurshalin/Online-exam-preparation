@@ -344,39 +344,43 @@ label {
 /*-- banner --*/
 
 .carousel .item {
-    background: url(../images/banner1.png) no-repeat center;
+    background: url(../images/background1.png) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+    height: 600px;
 }
 
 .carousel .item.item2 {
-    background: url(../images/banner2.png) no-repeat center;
+    background: url(../images/background5.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+    height: 600px;
 }
 
 .carousel .item.item3 {
-    background: url(../images/banner1.png) no-repeat center;
+    background: url(../images/backgroud3.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+    height: 600px;
 }
 
 .carousel .item.item4 {
-    background: url(../images/banner1.png) no-repeat center;
+    background: url(../images/background4.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+    height: 600px;
 }
 
 .carousel-caption h3 {
@@ -513,7 +517,7 @@ h3.tittle span {
 /*-- stats --*/
 
 .stats-info-agile {
-    background: url(../images/banner1.png) no-repeat center;
+    background: url(../images/backgroud3.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -918,7 +922,7 @@ h3.tittle span {
 /* middle section */
 
 .middle-sec-agile {
-    background: url(../images/banner1.png) no-repeat center;
+    background: url(../images/backgroud3.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1010,7 +1014,7 @@ a.button-style:hover {
 /*-- footer --*/
 
 .mkl_footer {
-    background: url(../images/banner1.png) no-repeat center;
+    background: url(../images/backgroud3.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -3200,7 +3204,7 @@ h3.title-w3l.w3l-2:before {
     }
     .contact-text1 h4 {
         font-size: 27px;
-    }    
+    }
     .login-form {
         padding: 30px;
     }
@@ -3224,7 +3228,7 @@ h3.title-w3l.w3l-2:before {
         margin: 22px 0 0;
     }
     .anim {
-        margin: 8px 0 20px;    
+        margin: 8px 0 20px;
     }
     .login-agileits-bottom {
         margin: .8em 0;
@@ -3362,7 +3366,7 @@ h3.title-w3l.w3l-2:before {
     label.header {
         font-size: 17px;
         margin: 2px 0px 3px;
-        padding-left: 7px;        
+        padding-left: 7px;
     }
     .w3gallery-grids {
         width: 50%;
@@ -3676,7 +3680,7 @@ h3.title-w3l.w3l-2:before {
     .middle-right {
         float: left;
         width: 93%;
-    }    
+    }
     .midle-left-w3l {
         width: 7%;
     }
@@ -3931,7 +3935,7 @@ h3.title-w3l.w3l-2:before {
     }
     .address-grid ul li {
         font-size: 13px;
-        margin-bottom: 20px;    
+        margin-bottom: 20px;
     }
     .w3_address span {
         margin-right: .7em;

@@ -11,8 +11,8 @@
 
                 </div>
             </div>
-            <ul id="flexiselDemo1">
-                <li v-for="contact in formData.data">
+            <ul v-for="contact in formData.data" id="flexiselDemo1">
+                <li>
                     <div class="three_testimonials_grid_main">
                         <div class="col-xs-3 three_testimonials_grid_pos">
                             <div class="grid-test-allah-agile">
