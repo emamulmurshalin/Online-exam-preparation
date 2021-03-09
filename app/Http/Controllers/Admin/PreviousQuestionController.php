@@ -51,17 +51,22 @@ class PreviousQuestionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'question_title' => 'required',
+        ]);
         if($file = $request->file('file')){
             //$name =  $file->getClientOriginalName();
             $fileName = time().'.'.$file->getClientOriginalExtension();
             $request['question_file_path'] = $fileName;
             if($file->move('Question',$fileName))
             {
-                PreviousQuestion::create($request->all());
-                return [
-                    'status' => 200,
-                    'message' => 'Question info created successfully',
-                ];
+                $question = PreviousQuestion::create($request->all());
+                if ($question){
+                    return [
+                        'status' => 200,
+                        'message' => 'Question info created successfully',
+                    ];
+                }
             } else
             {
                 return 'file not uploaded';
@@ -105,17 +110,23 @@ class PreviousQuestionController extends Controller
      */
     public function update(Request $request, PreviousQuestion $previousQuestion)
     {
+        $this->validate($request, [
+            'question_title' => 'required',
+        ]);
         if($file = $request->file('file')){
             //$name =  $file->getClientOriginalName();
             $fileName = time().'.'.$file->getClientOriginalExtension();
             $request['question_file_path'] = $fileName;
             if($file->move('Question',$fileName))
             {
-                $previousQuestion->update($request->all());
-                return [
-                    'status' => 200,
-                    'message' => 'Question info updated successfully',
-                ];
+                $question = $previousQuestion->update($request->all());
+                if ($question)
+                {
+                    return [
+                        'status' => 200,
+                        'message' => 'Question info updated successfully',
+                    ];
+                }
             } else
             {
                 return 'file not uploaded';
@@ -139,11 +150,13 @@ class PreviousQuestionController extends Controller
     {
         Gate::authorize('isAdmin');
         $question = PreviousQuestion::findOrFail($id);
-        $question->delete();
-        return [
-            'status' => 200,
-            'message' => 'Question deleted successfully',
-        ];
+        if ($question->delete())
+        {
+            return [
+                'status' => 200,
+                'message' => 'Question deleted successfully',
+            ];
+        }
     }
 
     public function download($id)

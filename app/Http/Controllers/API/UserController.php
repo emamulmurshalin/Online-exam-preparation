@@ -87,11 +87,14 @@ class UserController extends Controller
             'email' => 'required|string|email|max:191',
             'password' => 'required|min:6'
         ]);
-        $user->update($request->all());
-        return [
-            'status' => 200,
-            'message' => 'User updated successfully',
-        ];
+        $updatUser = $user->update($request->all());
+        if ($updatUser)
+        {
+            return [
+                'status' => 200,
+                'message' => 'User updated successfully',
+            ];
+        }
     }
 
     /**
@@ -104,11 +107,13 @@ class UserController extends Controller
     {
         Gate::authorize('isAdmin');
         $user = User::findOrFail($id);
-        $user->delete();
-        return [
-            'status' => 200,
-            'message' => 'User deleted successfully',
-        ];
+        if ($user->delete())
+        {
+            return [
+                'status' => 200,
+                'message' => 'User deleted successfully',
+            ];
+        }
     }
 
     public function profile()

@@ -18,20 +18,36 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Question title</label>
                                 <div class="col-sm-9">
-                                    <input type="text" v-model="form.question_title" class="form-control" placeholder="Enter title">
+                                    <input type="text"
+                                           v-model="form.question_title"
+                                           class="form-control"
+                                           placeholder="Enter title">
+                                </div>
+                                <div class="col-sm-12">
+                                    <p
+                                        v-if="errors.question_title"
+                                        class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                        style="font-size: 12px"
+                                    >
+                                        {{ errors.question_title[0] }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Upload question</label>
                                 <div class="col-sm-9">
-                                    <input v-on:change="selectFile" type="file" placeholder="Photo">
+                                    <input v-on:change="selectFile"
+                                           type="file"
+                                           placeholder="Photo">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Question year</label>
                                 <div class="col-sm-9">
                                     <select v-model="form.question_years_id" class="form-control">
-                                        <option v-for="(questionYear, index) in yearData" v-bind:value="questionYear.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                        <option v-for="(questionYear, index) in yearData"
+                                                v-bind:value="questionYear.id" :key="index"
+                                                :selected="index === 0 ? 'selected' : ''">
                                             {{questionYear.year}}
                                         </option>
                                     </select>
@@ -41,7 +57,9 @@
                                 <label class="col-sm-3 col-form-label">Question type</label>
                                 <div class="col-sm-9">
                                     <select v-model="form.question_types_id" class="form-control">
-                                        <option v-for="(questionType, index) in typeData" v-bind:value="questionType.id" :key="index" :selected="index === 0 ? 'selected' : ''">
+                                        <option v-for="(questionType, index) in typeData"
+                                                v-bind:value="questionType.id" :key="index"
+                                                :selected="index === 0 ? 'selected' : ''">
                                             {{questionType.type}}
                                         </option>
                                     </select>
@@ -76,6 +94,7 @@ export default {
             yearData: {},
             typeData: {},
             formData: {},
+            errors: {},
             form: new Form({
                 question_title: '',
                 question_years_id: '',
@@ -100,6 +119,7 @@ export default {
             this.axios.get('get-years')
                 .then((response) => {
                     this.yearData = response.data;
+                    this.form.question_years_id = this.yearData[0].id;
                 }).catch(()=>{
 
             });
@@ -108,6 +128,7 @@ export default {
             this.axios.get('get-types')
                 .then((response) => {
                     this.typeData = response.data;
+                    this.form.question_types_id = this.typeData[0].id;
                 }).catch(()=>{
 
             });
@@ -135,8 +156,10 @@ export default {
                         title: 'Question added successfully'
                     });
                     this.closeModal();
-                }).catch(()=>{
-                this.closeModal();
+                }).catch(error=>{
+                this.errors = error.response.data.errors;
+            }).finally(()=>{
+
             });
         },
         update(){
@@ -154,8 +177,10 @@ export default {
                         title: 'Question updated successfully'
                     });
                     this.closeModal();
-                }).catch(()=>{
-                this.closeModal();
+                }).catch(error=>{
+                this.errors = error.response.data.errors;
+            }).finally(()=>{
+
             });
         },
         getEditData(){

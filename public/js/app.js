@@ -2851,6 +2851,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PreviousQuestionModal",
   props: ['selectedUrl'],
@@ -2859,6 +2877,7 @@ __webpack_require__.r(__webpack_exports__);
       yearData: {},
       typeData: {},
       formData: {},
+      errors: {},
       form: new Form({
         question_title: '',
         question_years_id: '',
@@ -2885,6 +2904,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get('get-years').then(function (response) {
         _this.yearData = response.data;
+        _this.form.question_years_id = _this.yearData[0].id;
       })["catch"](function () {});
     },
     getTypes: function getTypes() {
@@ -2892,6 +2912,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get('get-types').then(function (response) {
         _this2.typeData = response.data;
+        _this2.form.question_types_id = _this2.typeData[0].id;
       })["catch"](function () {});
     },
     initState: function initState() {
@@ -2920,9 +2941,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this3.closeModal();
-      })["catch"](function () {
-        _this3.closeModal();
-      });
+      })["catch"](function (error) {
+        _this3.errors = error.response.data.errors;
+      })["finally"](function () {});
     },
     update: function update() {
       var _this4 = this;
@@ -2941,9 +2962,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this4.closeModal();
-      })["catch"](function () {
-        _this4.closeModal();
-      });
+      })["catch"](function (error) {
+        _this4.errors = error.response.data.errors;
+      })["finally"](function () {});
     },
     getEditData: function getEditData() {
       var _this5 = this;
@@ -53409,6 +53430,26 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12" }, [
+                      _vm.errors.question_title
+                        ? _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-danger col-sm-9 mt-1 mb-0 float-right",
+                              staticStyle: { "font-size": "12px" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.question_title[0]) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
