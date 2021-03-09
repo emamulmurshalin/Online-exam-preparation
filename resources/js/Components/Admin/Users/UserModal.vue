@@ -18,6 +18,15 @@
                                     <input v-model="form.first_name" type="text" name="first_name"
                                            class="form-control" placeholder="Enter first name" required>
                                 </div>
+                                <div class="col-sm-12">
+                                    <p
+                                        v-if="errors.first_name"
+                                        class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                        style="font-size: 12px"
+                                    >
+                                        {{ errors.first_name[0] }}
+                                    </p>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3">Last name</label>
@@ -25,12 +34,30 @@
                                     <input v-model="form.last_name" type="text" name="last_name"
                                            class="form-control" placeholder="Enter last name">
                                 </div>
+                                <div class="col-sm-12">
+                                    <p
+                                        v-if="errors.last_name"
+                                        class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                        style="font-size: 12px"
+                                    >
+                                        {{ errors.last_name[0] }}
+                                    </p>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3">Email</label>
                                 <div class="col-sm-9">
                                     <input v-model="form.email" type="email" name="email"
                                            class="form-control" placeholder="Enter email">
+                                </div>
+                                <div class="col-sm-12">
+                                    <p
+                                        v-if="errors.email"
+                                        class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                        style="font-size: 12px"
+                                    >
+                                        {{ errors.email[0] }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -70,6 +97,15 @@
                                     <input v-model="form.password" type="password" name="password"
                                            class="form-control d-flex justify-content-center" @input="checkMatchPassword"
                                            placeholder="Password">
+                                </div>
+                                <div class="col-sm-12">
+                                    <p
+                                        v-if="errors.password"
+                                        class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                        style="font-size: 12px"
+                                    >
+                                        {{ errors.password[0] }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -118,15 +154,16 @@
                 ],
                 modalId: 'userModal',
                 formData: {},
+                errors: {},
                 statusData: {},
                 dataLoaded: false,
                 form: new Form({
                     first_name: '',
                     last_name: '',
                     email: '',
-                    role: '',
+                    role: 'User',
                     password: '',
-                    status_id: '',
+                    status_id: 3,
                     photo: '',
                     bio: '',
                     remember: false
@@ -164,8 +201,10 @@
                             title: 'User created successfully'
                         });
                         this.closeModal();
-                }).catch(()=>{
-                    this.closeModal();
+                }).catch(error=>{
+                    this.errors = error.response.data.errors;
+                }).finally(()=>{
+
                 });
             },
             update(){
@@ -176,9 +215,8 @@
                             title: 'User updated successfully'
                         });
                         this.closeModal();
-                    }).catch(()=>{
-                    this.selectedUrl = '';
-                    this.closeModal();
+                    }).catch(error=>{
+                        this.errors = error.response.data.errors;
                 });
             },
             getEditData(){

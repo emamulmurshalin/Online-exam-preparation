@@ -4535,6 +4535,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserModal",
   props: ['selectedUrl'],
@@ -4549,15 +4585,16 @@ __webpack_require__.r(__webpack_exports__);
       }],
       modalId: 'userModal',
       formData: {},
+      errors: {},
       statusData: {},
       dataLoaded: false,
       form: new Form({
         first_name: '',
         last_name: '',
         email: '',
-        role: '',
+        role: 'User',
         password: '',
-        status_id: '',
+        status_id: 3,
         photo: '',
         bio: '',
         remember: false
@@ -4596,9 +4633,9 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.closeModal();
-      })["catch"](function () {
-        _this2.closeModal();
-      });
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
+      })["finally"](function () {});
     },
     update: function update() {
       var _this3 = this;
@@ -4610,10 +4647,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this3.closeModal();
-      })["catch"](function () {
-        _this3.selectedUrl = '';
-
-        _this3.closeModal();
+      })["catch"](function (error) {
+        _this3.errors = error.response.data.errors;
       });
     },
     getEditData: function getEditData() {
@@ -56611,6 +56646,26 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12" }, [
+                      _vm.errors.first_name
+                        ? _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-danger col-sm-9 mt-1 mb-0 float-right",
+                              staticStyle: { "font-size": "12px" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.first_name[0]) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -56645,6 +56700,26 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12" }, [
+                      _vm.errors.last_name
+                        ? _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-danger col-sm-9 mt-1 mb-0 float-right",
+                              staticStyle: { "font-size": "12px" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.last_name[0]) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -56677,6 +56752,26 @@ var render = function() {
                           }
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12" }, [
+                      _vm.errors.email
+                        ? _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-danger col-sm-9 mt-1 mb-0 float-right",
+                              staticStyle: { "font-size": "12px" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.email[0]) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),
@@ -56873,6 +56968,26 @@ var render = function() {
                           ]
                         }
                       })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-12" }, [
+                      _vm.errors.password
+                        ? _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-danger col-sm-9 mt-1 mb-0 float-right",
+                              staticStyle: { "font-size": "12px" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.password[0]) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),

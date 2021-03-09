@@ -52,10 +52,13 @@ class UserController extends Controller
         Mail::to("emamul727@gmail.com")
             ->send(new SignUpMail($details));
 
-        return [
-            'status' => 200,
-            'message' => 'User created successfully',
-        ];
+        if ($user)
+        {
+            return [
+                'status' => 200,
+                'message' => 'User created successfully',
+            ];
+        }
     }
 
     /**
