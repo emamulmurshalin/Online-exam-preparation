@@ -40,6 +40,8 @@ class User extends Authenticatable
         'photo',
         'bio',
         'password',
+        'verification_code',
+        'verified'
     ];
 
     /**

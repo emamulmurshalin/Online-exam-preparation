@@ -1,2 +1,2 @@
-<h1>{{ $details['title'] }}</h1>
-<p>{{ $details['body'] }}</p>
+<h4>{{ $details['title'] }}</h4>
+<h3>{{ $details['body'] }}</h3>

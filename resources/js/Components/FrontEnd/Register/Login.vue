@@ -61,14 +61,17 @@ export default {
                 .then((response) => {
                     console.log(response);
                     if (response.data.status == 200){
-                        console.log('ljkljk');
                         toast.fire({
                             icon: 'success',
                             title: 'User login successfully'
                         });
                         window.location.replace('/');
-                    }else {
-                        console.log('wrong');
+                    }else if (response.data.status == 403){
+                        toast.fire({
+                            icon: 'error',
+                            title: 'You are not verified yet'
+                        });
+                    } else {
                         toast.fire({
                             icon: 'error',
                             title: 'Login information wrong'

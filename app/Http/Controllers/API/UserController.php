@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -41,15 +42,22 @@ class UserController extends Controller
             'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|min:6'
         ]);
+        $randomCode = mt_rand(100000, 999999);
         $request['password'] = Hash::make($request->password);
-         $user = User::create($request->all());
+        $request['verification_code'] = $randomCode;
+
+        $user = User::create($request->all());
+        Session::put('userId', $user->id);
 
         $details = [
-            'title' => 'Email verification mail',
-            'body' => 'verification code: 123456'
+            'title' => 'Hi There, Hope this mail finds you well and healthy.
+            We are informing you that you\'ve been registered to our application
+            by own. It\'ll be a great opportunity to work with you. We send a varification
+            code for you to verified your email',
+            'body' => 'verification code: '.$randomCode
         ];
 
-        Mail::to("emamul727@gmail.com")
+        Mail::to($request->email)
             ->send(new SignUpMail($details));
 
         if ($user)
@@ -183,15 +191,25 @@ class UserController extends Controller
             'password' => 'sometimes|required|string|min:6'
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        $userInfo = User::where('email', $request->email)->first()->verified;
+
+        if ($userInfo == 1)
+        {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'You are logged in successfully'
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Incorrect login details'
+                ]);
+            }
+        } else{
             return response()->json([
-                'status' => 200,
-                'message' => 'You are logged in successfully'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 404,
-                'message' => 'Incorrect login details'
+                'status' => 403,
+                'message' => 'You are not verified yet'
             ]);
         }
     }
@@ -203,15 +221,47 @@ class UserController extends Controller
             'password' => 'sometimes|required|string|min:6'
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        $userInfo = User::where('email', $request->email)->first()->verified;
+
+        if ($userInfo == 1)
+        {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'You are logged in successfully'
+                ]);
+            }else{
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Incorrect login details'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 403,
+                'message' => 'You are not verified yet'
+            ]);
+        }
+    }
+
+    public function userVerified(Request $request, User $user)
+    {
+        $userId = Session::get('userId');
+        $userData = User::with('status')->findOrFail($userId);
+        if ($userData->verification_code == $request->verification_code)
+        {
+            $request['verified'] = 1;
+            $request['status_id'] = 1;
+            $userData->update($request->all());
+            Session::forget('userId');
             return response()->json([
                 'status' => 200,
-                'message' => 'You are logged in successfully'
+                'message' => 'You are now verified'
             ]);
         }else{
             return response()->json([
                 'status' => 404,
-                'message' => 'Incorrect login details'
+                'message' => 'Verification code don\'t matched'
             ]);
         }
     }

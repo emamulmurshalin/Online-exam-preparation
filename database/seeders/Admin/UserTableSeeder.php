@@ -18,6 +18,8 @@ class UserTableSeeder extends Seeder
                 'role' => 'Admin',
                 'status_id' => 1,
                 'photo' => 'default.png',
+                'verification_code' => '123456',
+                'verified' => 1,
                 'password' => Hash::make('123456'),
                 'created_at' => now(),
             ]
@@ -30,6 +32,8 @@ class UserTableSeeder extends Seeder
                 'role' => 'User',
                 'status_id' => 2,
                 'photo' => 'default.png',
+                'verification_code' => '654321',
+                'verified' => 1,
                 'password' => Hash::make('123456'),
                 'created_at' => now(),
             ]

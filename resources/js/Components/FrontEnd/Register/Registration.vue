@@ -86,6 +86,7 @@ export default {
                 status_id: 2,
                 photo: '',
                 bio: '',
+                verified: 0,
                 remember: false
             })
         }
@@ -98,7 +99,7 @@ export default {
                         icon: 'success',
                         title: 'Registration successfully'
                     });
-                    window.location.replace('/');
+                    window.location.replace('/user/verification');
                 }).catch(()=>{
 
             });

@@ -30,7 +30,7 @@ class SignUpMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Email verification')
+        return $this->subject('User invitation form Online exam preparation')
             ->view('layouts.admin.profile.send-mail');
     }
 }
