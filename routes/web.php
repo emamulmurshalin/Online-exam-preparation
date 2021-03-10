@@ -58,6 +58,12 @@ Route::get('/user/registration', function () {
 Route::get('/user/verification', function () {
     return view('layouts.frontEnd.register.verification');
 });
+Route::get('/user/resend/code', function () {
+    return view('layouts.frontEnd.register.resend');
+});
+Route::get('/user/forgot/password', function () {
+    return view('layouts.frontEnd.register.reset-password');
+});
 
 //Admin view
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -116,6 +122,8 @@ Route::get('/find-user', [UserController::class, 'search']);
 Route::get('/profile', [UserController::class, 'profile']);
 Route::patch('/profile/{id}', [UserController::class, 'updateProfile']);
 Route::post('/user/verified', [UserController::class, 'userVerified']);
+Route::post('/user/resend-code', [UserController::class, 'userResendCode']);
+Route::post('/user/reset-password', [UserController::class, 'userPasswordReset']);
 
 //Quiz
 Route::resource('quiz', QuizController::class);

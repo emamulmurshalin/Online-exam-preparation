@@ -27,7 +27,12 @@
                     </label>
                     <div class="login-agileits-bottom wthree">
                         <h6>
-                            <a href="#">Forgot password?</a>
+                            <a href="/user/resend/code">Resend code</a>
+                        </h6>
+                    </div>
+                    <div class="login-agileits-bottom wthree" style="margin-right: 30px;">
+                        <h6>
+                            <a href="/user/forgot/password">Forgot password?</a>
                         </h6>
                     </div>
                     <input @click.prevent="loginUser" type="submit" value="Login">

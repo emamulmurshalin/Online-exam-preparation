@@ -79,6 +79,8 @@ import ShowJobExam from './Components/Admin/JobExamInfo/ShowJobExamInfo.vue';
 import ShowQuizMarks from './Components/Admin/QuizInfo/ShowQuizInfo.vue';
 import AdminLogin from './Components/Admin/Users/AdminLogin.vue';
 import UserVerification from './Components/FrontEnd/Register/Verification.vue';
+import UserResendCode from './Components/FrontEnd/Register/ResendCode.vue';
+import UserResetPassword from './Components/FrontEnd/Register/ResetPassword.vue';
 
 
 let routes = [
@@ -98,6 +100,8 @@ let routes = [
     { path: '/users/quiz-info/list', component: ShowQuizMarks },
     { path: '/admin/login', component: AdminLogin },
     { path: '/user/verification', component: UserVerification },
+    { path: '/user/resend/code', component: UserResendCode },
+    { path: '/user/forgot/password', component: UserResetPassword },
 ];
 
 Vue.use(VueAxios, axios);
@@ -243,6 +247,14 @@ Vue.component(
 Vue.component(
     'app-verification',
     require('./Components/FrontEnd/Register/Verification').default
+);
+Vue.component(
+    'app-resend',
+    require('./Components/FrontEnd/Register/ResendCode').default
+);
+Vue.component(
+    'app-reset-password',
+    require('./Components/FrontEnd/Register/ResetPassword').default
 );
 
 //Home page
