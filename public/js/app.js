@@ -6085,12 +6085,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     resetPassword: function resetPassword() {
-      this.axios.post('/user/reset-password', this.form).then(function (response) {
-        toast.fire({
-          icon: 'success',
-          title: 'You are now verified'
-        }); //window.location.replace('/user/login');
-      })["catch"](function () {});
+      if (this.form.password || this.form.password_recover_code) {
+        this.axios.post('/user/set/new/password', this.form).then(function (response) {
+          toast.fire({
+            icon: 'success',
+            title: 'Your password is changed'
+          });
+          window.location.replace('/user/login');
+        })["catch"](function () {});
+      } else {
+        this.axios.post('/user/reset-password', this.form).then(function (response) {
+          toast.fire({
+            icon: 'success',
+            title: 'Your password send to your email'
+          });
+          window.location.reload();
+        })["catch"](function () {});
+      }
     }
   }
 });

@@ -66,16 +66,29 @@ export default {
     },
     methods:{
         resetPassword(){
-            this.axios.post('/user/reset-password', this.form)
-                .then((response) => {
-                    toast.fire({
-                        icon: 'success',
-                        title: 'You are now verified'
-                    });
-                    //window.location.replace('/user/login');
-                }).catch(()=>{
+            if (this.form.password || this.form.password_recover_code){
+                this.axios.post('/user/set/new/password', this.form)
+                    .then((response) => {
+                        toast.fire({
+                            icon: 'success',
+                            title: 'Your password is changed'
+                        });
+                        window.location.replace('/user/login');
+                    }).catch(()=>{
 
-            });
+                });
+            }else {
+                this.axios.post('/user/reset-password', this.form)
+                    .then((response) => {
+                        toast.fire({
+                            icon: 'success',
+                            title: 'Your password send to your email'
+                        });
+                        window.location.reload();
+                    }).catch(()=>{
+
+                });
+            }
         }
     }
 }

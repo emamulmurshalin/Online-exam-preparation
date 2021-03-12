@@ -326,7 +326,30 @@ class UserController extends Controller
         {
             return [
                 'status' => 200,
-                'message' => 'Resend code sent',
+                'message' => 'Verification code sent',
+            ];
+        }
+    }
+
+    public function userNewPassword(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|string|email|max:191',
+            'password_recover_code' => 'required',
+            'password' => 'required|min:6',
+        ]);
+
+        $userInfo = User::where('email', $request->email)->first();
+
+        $updatePassword = $userInfo->update(
+            ['password' => Hash::make($request->password)]
+        );
+
+        if ($updatePassword)
+        {
+            return [
+                'status' => 200,
+                'message' => 'Your password updated',
             ];
         }
     }

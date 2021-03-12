@@ -124,6 +124,7 @@ Route::patch('/profile/{id}', [UserController::class, 'updateProfile']);
 Route::post('/user/verified', [UserController::class, 'userVerified']);
 Route::post('/user/resend-code', [UserController::class, 'userResendCode']);
 Route::post('/user/reset-password', [UserController::class, 'userPasswordReset']);
+Route::post('/user/set/new/password', [UserController::class, 'userNewPassword']);
 
 //Quiz
 Route::resource('quiz', QuizController::class);
