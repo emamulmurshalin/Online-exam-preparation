@@ -81,6 +81,7 @@ import AdminLogin from './Components/Admin/Users/AdminLogin.vue';
 import UserVerification from './Components/FrontEnd/Register/Verification.vue';
 import UserResendCode from './Components/FrontEnd/Register/ResendCode.vue';
 import UserResetPassword from './Components/FrontEnd/Register/ResetPassword.vue';
+import UserSetNewPassword from './Components/FrontEnd/Register/SetNewPassword.vue';
 
 
 let routes = [
@@ -102,6 +103,7 @@ let routes = [
     { path: '/user/verification', component: UserVerification },
     { path: '/user/resend/code', component: UserResendCode },
     { path: '/user/forgot/password', component: UserResetPassword },
+    { path: '/user/set/new/password', component:  UserSetNewPassword},
 ];
 
 Vue.use(VueAxios, axios);
@@ -255,6 +257,10 @@ Vue.component(
 Vue.component(
     'app-reset-password',
     require('./Components/FrontEnd/Register/ResetPassword').default
+);
+Vue.component(
+    'app-set-password',
+    require('./Components/FrontEnd/Register/SetNewPassword').default
 );
 
 //Home page

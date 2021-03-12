@@ -21,30 +21,6 @@
                                v-model="form.email"
                                required="" />
                     </div>
-                    <div class="">
-                        <p>Verification code </p>
-                        <input type="text"
-                               class="name"
-                               name="password_recover_code"
-                               v-model="form.password_recover_code"
-                               required="" />
-                    </div>
-                    <div class="">
-                        <p>New password </p>
-                        <input type="password"
-                               class="name"
-                               name="password"
-                               v-model="form.password"
-                               required="" />
-                    </div>
-                    <div class="">
-                        <p>Confirm passsword </p>
-                        <input type="password"
-                               class="name"
-                               name="confirm_password"
-                               v-model="form.confirm_password"
-                               required="" />
-                    </div>
                     <input @click.prevent="resetPassword" type="submit" value="Reset Password">
                 </form>
             </div>
@@ -56,11 +32,11 @@
 
 <script>
 export default {
-    name: "ResetPassword",
+    name: "SetNewPassword",
     data(){
         return{
             form: new Form({
-
+                email: '',
             })
         }
     },
@@ -72,7 +48,7 @@ export default {
                         icon: 'success',
                         title: 'You are now verified'
                     });
-                    //window.location.replace('/user/login');
+                    window.location.replace('/user/login');
                 }).catch(()=>{
 
             });

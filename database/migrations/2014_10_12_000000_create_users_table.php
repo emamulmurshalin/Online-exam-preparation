@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('verification_code');
             $table->integer('verified')->default(0);
             $table->longText('bio')->nullable();
+            $table->integer('password_recover_code')->nullable();
             $table->timestamps();
         });
     }

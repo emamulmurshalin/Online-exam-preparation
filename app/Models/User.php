@@ -41,7 +41,8 @@ class User extends Authenticatable
         'bio',
         'password',
         'verification_code',
-        'verified'
+        'verified',
+        'password_recover_code'
     ];
 
     /**

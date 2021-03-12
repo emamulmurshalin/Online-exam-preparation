@@ -282,7 +282,7 @@ class UserController extends Controller
         $details = [
             'title' => 'Hi There, Hope this mail finds you well and healthy.
             We are informing you that you\'ve been registered to our application
-            by own. It\'ll be a great opportunity to work with you. We send a varification
+            by own. It\'ll be a great opportunity to work with you. We send a verification
             code for you to verified your email',
             'body' => 'verification code: '.$randomCode
         ];
@@ -300,7 +300,35 @@ class UserController extends Controller
     }
     public function userPasswordReset(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|string|email|max:191',
+        ]);
+        $randomCode = mt_rand(1000000, 9999999);
+        $request['password_recover_code'] = $randomCode;
 
+        $userInfo = User::where('email', $request->email)->first();
+
+        $sendCode = $userInfo->update(
+            ['password_recover_code' => $request->password_recover_code]
+        );
+
+        $details = [
+            'title' => 'Hi There, Hope this mail finds you well and healthy.
+            We are informing you that you\'ve been apply for reset password
+            by own. We send a verification code for you to verified your email',
+            'body' => 'verification code: '.$randomCode
+        ];
+
+        Mail::to($request->email)
+            ->send(new SignUpMail($details));
+
+        if ($sendCode)
+        {
+            return [
+                'status' => 200,
+                'message' => 'Resend code sent',
+            ];
+        }
     }
 
     //Get profile data
