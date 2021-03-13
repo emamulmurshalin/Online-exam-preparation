@@ -91,6 +91,8 @@ class UserController extends Controller
     {
         if (!$request->password){
             $request['password'] = $user->password;
+        }else{
+            $request['password'] = Hash::make($request->password);
         }
         $this->validate($request, [
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
@@ -98,9 +100,9 @@ class UserController extends Controller
             'email' => 'required|string|email|max:191',
             'password' => 'required|min:6'
         ]);
-        if (!empty($request->password)){
-            $request->merge(['password' => Hash::make($request['password'])]);
-        }
+//        if (!empty($request->password)){
+//            $request->merge(['password' => Hash::make($request['password'])]);
+//        }
         $updatUser = $user->update($request->all());
         if ($updatUser)
         {
