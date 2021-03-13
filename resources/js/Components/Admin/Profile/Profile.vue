@@ -65,11 +65,29 @@
                                         <div class="col-sm-10">
                                             <input v-model="form.first_name" type="text" class="form-control" placeholder="Enter first name">
                                         </div>
+                                        <div class="col-sm-8">
+                                            <p
+                                                v-if="errors.first_name"
+                                                class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                                style="font-size: 12px"
+                                            >
+                                                {{ errors.first_name[0] }}
+                                            </p>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Last name</label>
                                         <div class="col-sm-10">
                                             <input v-model="form.last_name" type="text" class="form-control" placeholder="Enter last name">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p
+                                                v-if="errors.last_name"
+                                                class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                                style="font-size: 12px"
+                                            >
+                                                {{ errors.last_name[0] }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -77,6 +95,15 @@
                                         <div class="col-sm-10">
                                             <input v-model="form.email" type="email" class="form-control"
                                                    placeholder="Enter email">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p
+                                                v-if="errors.email"
+                                                class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                                style="font-size: 12px"
+                                            >
+                                                {{ errors.email[0] }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -97,6 +124,15 @@
                                         <div class="col-sm-10">
                                             <input v-model="form.password" type="password" class="form-control"
                                                    placeholder="If you want change password">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p
+                                                v-if="errors.password"
+                                                class="text-danger col-sm-9 mt-1 mb-0 float-right"
+                                                style="font-size: 12px"
+                                            >
+                                                {{ errors.password[0] }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -132,6 +168,7 @@
         name: "Profile",
         data(){
             return{
+                errors: {},
                 formData: {},
                 dataLoaded: false,
                 totalUser: 0,
@@ -177,7 +214,9 @@
                             icon: 'success',
                             title: 'User info updated successfully'
                         });
-                    }).catch(()=>{
+                    }).catch(error=>{
+                    this.errors = error.response.data.errors;
+                }).finally(()=>{
 
                 });
             },

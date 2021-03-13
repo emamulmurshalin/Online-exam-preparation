@@ -3308,10 +3308,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile",
   data: function data() {
     return {
+      errors: {},
       formData: {},
       dataLoaded: false,
       totalUser: 0,
@@ -3364,7 +3401,9 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: 'User info updated successfully'
         });
-      })["catch"](function () {});
+      })["catch"](function (error) {
+        _this2.errors = error.response.data.errors;
+      })["finally"](function () {});
     },
     getProfileImage: function getProfileImage() {
       if (this.form.photo) {
@@ -6288,7 +6327,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".modal-lg[data-v-8a54839a] {\n  max-width: 48%;\n}\n", ""]);
+exports.push([module.i, ".modal-lg[data-v-8a54839a] {\n  max-width: 48%;\n}\r\n", ""]);
 
 // exports
 
@@ -54484,6 +54523,26 @@ var render = function() {
                             }
                           }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-8" }, [
+                        _vm.errors.first_name
+                          ? _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "text-danger col-sm-9 mt-1 mb-0 float-right",
+                                staticStyle: { "font-size": "12px" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(_vm.errors.first_name[0]) +
+                                    "\n                                        "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
@@ -54521,6 +54580,26 @@ var render = function() {
                             }
                           }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-8" }, [
+                        _vm.errors.last_name
+                          ? _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "text-danger col-sm-9 mt-1 mb-0 float-right",
+                                staticStyle: { "font-size": "12px" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(_vm.errors.last_name[0]) +
+                                    "\n                                        "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
@@ -54551,6 +54630,26 @@ var render = function() {
                             }
                           }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-8" }, [
+                        _vm.errors.email
+                          ? _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "text-danger col-sm-9 mt-1 mb-0 float-right",
+                                staticStyle: { "font-size": "12px" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(_vm.errors.email[0]) +
+                                    "\n                                        "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
@@ -54635,6 +54734,26 @@ var render = function() {
                             }
                           }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-8" }, [
+                        _vm.errors.password
+                          ? _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "text-danger col-sm-9 mt-1 mb-0 float-right",
+                                staticStyle: { "font-size": "12px" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(_vm.errors.password[0]) +
+                                    "\n                                        "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ])
                     ]),
                     _vm._v(" "),
