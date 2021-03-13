@@ -6253,6 +6253,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Verification",
   data: function data() {
@@ -60477,6 +60485,32 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "login-form" }, [
         _c("form", { attrs: { action: "#", method: "post" } }, [
+          _c("div", {}, [
+            _c("p", [_vm._v("Email ")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.email,
+                  expression: "form.email"
+                }
+              ],
+              staticClass: "email",
+              attrs: { type: "email", name: "email", required: "" },
+              domProps: { value: _vm.form.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "email", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
           _c("div", {}, [
             _c("p", [_vm._v("Verification code ")]),
             _vm._v(" "),

@@ -14,6 +14,14 @@
             <div class="login-form">
                 <form action="#" method="post">
                     <div class="">
+                        <p>Email </p>
+                        <input type="email"
+                               class="email"
+                               name="email"
+                               v-model="form.email"
+                               required="" />
+                    </div>
+                    <div class="">
                         <p>Verification code </p>
                         <input type="text"
                                class="name"

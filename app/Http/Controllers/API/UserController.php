@@ -47,7 +47,6 @@ class UserController extends Controller
         $request['verification_code'] = $randomCode;
 
         $user = User::create($request->all());
-        Session::put('userId', $user->id);
 
         $details = [
             'title' => 'Hi There, Hope this mail finds you well and healthy.
@@ -256,14 +255,12 @@ class UserController extends Controller
 
     public function userVerified(Request $request, User $user)
     {
-        $userId = Session::get('userId');
-        $userData = User::with('status')->findOrFail($userId);
-        if ($userData->verification_code == $request->verification_code)
+        $userId = User::where('email', $request->email)->first();
+        if ($userId->verification_code == $request->verification_code)
         {
             $request['verified'] = 1;
             $request['status_id'] = 1;
-            $userData->update($request->all());
-            Session::forget('userId');
+            $userId->update($request->all());
             return response()->json([
                 'status' => 200,
                 'message' => 'You are now verified'
@@ -285,9 +282,7 @@ class UserController extends Controller
         $request['verification_code'] = $randomCode;
 
         $userInfo = User::where('email', $request->email)->first();
-
         $sendCode = $userInfo->update($request->all());
-        Session::put('userId', $userInfo->id);
 
         $details = [
             'title' => 'Hi There, Hope this mail finds you well and healthy.
