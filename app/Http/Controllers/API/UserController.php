@@ -89,12 +89,18 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (!$request->password){
+            $request['password'] = $user->password;
+        }
         $this->validate($request, [
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|string|email|max:191',
             'password' => 'required|min:6'
         ]);
+        if (!empty($request->password)){
+            $request->merge(['password' => Hash::make($request['password'])]);
+        }
         $updatUser = $user->update($request->all());
         if ($updatUser)
         {
@@ -137,6 +143,8 @@ class UserController extends Controller
         $user = Auth::user();
         if (!$request->password){
             $request['password'] = $user->password;
+        }else{
+            $request['password'] = Hash::make($request->password);
         }
 
         $this->validate($request, [
@@ -161,9 +169,9 @@ class UserController extends Controller
             }
         }
 
-        if (!empty($request->password)){
-            $request->merge(['password' => Hash::make($request['password'])]);
-        }
+//        if (!empty($request->password)){
+//            $request->merge(['password' => Hash::make($request['password'])]);
+//        }
         $user->update($request->all());
         return [
             'status' => 200,
