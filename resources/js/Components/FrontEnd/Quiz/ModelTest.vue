@@ -55,7 +55,7 @@
                 <template v-for="(quiz,index) in quizes">
                     <div style="height: 50px; margin-top: 30px;">
                         <h3 align="center" style="margin-top: 5px; font-weight: bold;" class="justify-content-center">
-                            {{ quiz.quiz_question}}  {{ index }} {{ index }}</h3>
+                            {{ quiz.quiz_question }}</h3>
                     </div>
                     <div align="center" class="justify-content-center" style="height: 250px">
                         <template v-if="quiz.quiz_option[0]">
