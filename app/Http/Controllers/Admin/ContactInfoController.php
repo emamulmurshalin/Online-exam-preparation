@@ -118,4 +118,12 @@ class ContactInfoController extends Controller
             ->latest()
             ->paginate(10);
     }
+
+    public function totalMessage()
+    {
+        return ContactInfo::with('status')
+            ->latest()
+            ->where('status_id', 7)
+            ->get();
+    }
 }

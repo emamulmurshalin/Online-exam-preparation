@@ -71,6 +71,7 @@ import Profile from './Components/Admin/Profile/Profile.vue';
 import Quiz from './Components/Admin/Quiz/QuizList.vue';
 import ViewPreviousQuestion from './Components/Admin/PreviousQuestion/ShowQuestion.vue';
 import ExamContactUs from './Components/FrontEnd/Contact/ContactUs.vue';
+import BlogPage from './Components/FrontEnd/Blog/BlogPage.vue';
 import QuestionShow from './Components/FrontEnd/Question/QuestionShow.vue';
 import ModelTest from './Components/FrontEnd/Quiz/ModelTest.vue';
 import Login from './Components/FrontEnd/Register/Login.vue';
@@ -93,6 +94,7 @@ let routes = [
     { path: '/quiz/list/view', component: Quiz },
     { path: '/show-question', component: ViewPreviousQuestion },
     { path: '/exam/contact-us', component: ExamContactUs },
+    { path: '/exam/blog', component: BlogPage },
     { path: '/exam/question', component: QuestionShow },
     { path: '/exam/model-test', component: ModelTest },
     { path: '/user/login', component: Login },
@@ -223,6 +225,10 @@ Vue.component(
     'exam-contact-us',
     require('./Components/FrontEnd/Contact/ContactUs').default
 );
+Vue.component(
+    'app-blog-page',
+    require('./Components/FrontEnd/Blog/BlogPage').default
+);
 
 Vue.component(
     'exam-question',
@@ -241,6 +247,10 @@ Vue.component(
 Vue.component(
     'app-admin-login',
     require('./Components/Admin/Users/AdminLogin').default
+);
+Vue.component(
+    'app-navbar-message',
+    require('./Components/Admin/Dashboard/NavBarMessage').default
 );
 Vue.component(
     'app-registration',

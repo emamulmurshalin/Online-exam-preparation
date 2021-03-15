@@ -37,6 +37,9 @@ Route::get('/', function () {
 Route::get('/exam/contact-us', function () {
     return view('layouts.frontEnd.contact.contact-us');
 });
+Route::get('/exam/blog', function () {
+    return view('layouts.frontEnd.blog.blog-page');
+});
 Route::get('/exam/about', function () {
     return view('layouts.frontEnd.about.about');
 });
@@ -155,6 +158,7 @@ Route::get('/find-previous-question', [PreviousQuestionController::class, 'searc
 //Contact info
 Route::resource('contact-info', ContactInfoController::class);
 Route::get('/find-contact-info', [ContactInfoController::class, 'search']);
+Route::get('/total-message', [ContactInfoController::class, 'totalMessage']);
 
 //Blog post
 Route::resource('blogs', BlogController::class);
