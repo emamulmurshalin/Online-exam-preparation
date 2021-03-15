@@ -7,6 +7,9 @@ use Database\Seeders\Admin\CountryTableSeeder;
 use Database\Seeders\Admin\PostCategorySeeder;
 use Database\Seeders\Admin\QuestionTypeSeeder;
 use Database\Seeders\Admin\QuestionYearSeeder;
+use Database\Seeders\Admin\QuizAnswerSeeder;
+use Database\Seeders\Admin\QuizOptionSeeder;
+use Database\Seeders\Admin\QuizQuestionSeeder;
 use Database\Seeders\Admin\StatusTableSeeder;
 use Database\Seeders\Admin\SubjectTableSeeder;
 use Database\Seeders\Admin\UserTableSeeder;
@@ -33,5 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(PostCategorySeeder::class);
+        $this->call(QuizQuestionSeeder::class);
+        $this->call(QuizOptionSeeder::class);
+        $this->call(QuizAnswerSeeder::class);
     }
 }
