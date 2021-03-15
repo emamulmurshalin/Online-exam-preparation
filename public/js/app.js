@@ -2483,7 +2483,11 @@ __webpack_require__.r(__webpack_exports__);
   name: "NavBarMessage",
   data: function data() {
     return {
-      contacts: {}
+      contacts: {},
+      dataLoaded: false,
+      form: new Form({
+        status_id: 6
+      })
     };
   },
   mounted: function mounted() {
@@ -2495,7 +2499,23 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get('/total-message').then(function (response) {
         _this.contacts = response.data;
+        _this.dataLoaded = true;
       })["catch"](function (error) {});
+    },
+    getImage: function getImage() {
+      return '/img/profile/default.png';
+    },
+    readMessage: function readMessage(id) {
+      var _this2 = this;
+
+      this.axios.patch("/contact-info/".concat(id), this.form).then(function (response) {
+        _this2.getTotalMessage();
+
+        toast.fire({
+          icon: 'success',
+          title: 'Message read by owner'
+        });
+      })["catch"](function () {});
     }
   }
 });
@@ -52693,79 +52713,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item dropdown" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link",
-          attrs: { "data-toggle": "dropdown", href: "#" }
-        },
-        [
-          _c("i", { staticClass: "far fa-comments" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-danger navbar-badge" }, [
-            _vm._v("3")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "dropdown-menu dropdown-menu-lg dropdown-menu-right" },
-        [
-          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-            _c("div", { staticClass: "media" }, [
-              _c("img", {
-                staticClass: "img-size-50 mr-3 img-circle",
-                attrs: { src: "", alt: "User Avatar" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "media-body" }, [
-                _c("h3", { staticClass: "dropdown-item-title" }, [
-                  _vm._v(
-                    "\n                        Brad Diesel\n                        "
-                  ),
-                  _c(
-                    "span",
-                    { staticClass: "float-right text-sm text-danger" },
-                    [_c("i", { staticClass: "fas fa-star" })]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-sm" }, [
-                  _vm._v("Call me whenever you can...")
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-sm text-muted" }, [
-                  _c("i", { staticClass: "far fa-clock mr-1" }),
-                  _vm._v(" 4 Hours Ago")
-                ])
-              ])
+  return _vm.dataLoaded
+    ? _c("li", { staticClass: "nav-item dropdown" }, [
+        _c(
+          "a",
+          {
+            staticClass: "nav-link",
+            attrs: { "data-toggle": "dropdown", href: "#" }
+          },
+          [
+            _c("i", { staticClass: "far fa-comments" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "badge badge-danger navbar-badge" }, [
+              _vm._v(_vm._s(_vm.contacts.length))
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "dropdown-divider" }),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item dropdown-footer",
-              attrs: { href: "#" }
-            },
-            [_vm._v("See All Messages")]
-          )
-        ]
-      )
-    ])
-  }
-]
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "dropdown-menu dropdown-menu-lg dropdown-menu-right" },
+          [
+            _c(
+              "a",
+              { staticClass: "dropdown-item", attrs: { href: "#" } },
+              _vm._l(_vm.contacts, function(contact) {
+                return _c("div", { staticClass: "media" }, [
+                  _c("img", {
+                    staticClass: "img-size-50 mr-3 img-circle",
+                    attrs: { src: _vm.getImage(), alt: "User Avatar" }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "media-body" }, [
+                    _c("h3", { staticClass: "dropdown-item-title" }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(contact.name) +
+                          "\n                            "
+                      ),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "float-right text-sm text-danger",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.readMessage(contact.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-star" })]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-sm" }, [
+                      _vm._v(_vm._s(contact.message))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-sm text-muted" }, [
+                      _c("i", { staticClass: "far fa-clock mr-1" }),
+                      _vm._v(
+                        " " + _vm._s(_vm._f("localDate")(contact.created_at))
+                      )
+                    ])
+                  ])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-divider" })
+          ]
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
