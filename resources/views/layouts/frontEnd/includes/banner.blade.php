@@ -11,10 +11,10 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h6>Welcome To Online Preparation</h6>
-                    <h3>Leading
-                        <span>University</span>
+                    <h3>Advance
+                        <span>Model Test</span>
                     </h3>
-                    <p>Create an all-encompassing website for your school with ease.</p>
+                    <p>We provide advance model test for your best preparation.</p>
                 </div>
             </div>
         </div>
@@ -22,10 +22,10 @@
             <div class="container">
                 <div class="carousel-caption">
                     <h6>Welcome To Online Preparation</h6>
-                    <h3>Most Popular
-                        <span>Education</span>
+                    <h3>Previous
+                        <span>Question Provide</span>
                     </h3>
-                    <p>Create an all-encompassing website for your school with ease.</p>
+                    <p>We provide previous question pdf.</p>
                 </div>
             </div>
         </div>
@@ -40,15 +40,14 @@
             </div>
         </div>
         <div class="item item4">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h6>Welcome To Online Preparation</h6>
-                    <h3>Most Popular
-                        <span>Education</span>
-                    </h3>
-                    <p>Create an all-encompassing website for your school with ease.</p>
-                </div>
-            </div>
+{{--            <div class="container">--}}
+{{--                <div class="carousel-caption">--}}
+{{--                    <h6>Welcome To Online Preparation</h6>--}}
+{{--                    <h3>We Can--}}
+{{--                        <span>Teach</span> You</h3>--}}
+{{--                    <p>Create an all-encompassing website for your school with ease.</p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
