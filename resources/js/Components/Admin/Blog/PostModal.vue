@@ -51,7 +51,14 @@
                                     </select>
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Upload image</label>
+                                <div class="col-sm-9">
+                                    <input v-on:change="selectFile"
+                                           type="file"
+                                           placeholder="Photo">
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </form>
@@ -84,8 +91,9 @@ export default {
             form: new Form({
                 title: '',
                 content: '',
-                category_id: '',
-                status_id: ''
+                category_id: 1,
+                status_id: 5,
+                file: ''
             })
         }
     },
@@ -97,6 +105,10 @@ export default {
         }
     },
     methods:{
+        selectFile(file) {
+            if (file == "") return false;
+            this.form.file = file.target.files[0];
+        },
         getCategory(){
             this.axios.get('/get-post-category')
                 .then((response) => {
@@ -118,9 +130,20 @@ export default {
             this.form.content = '';
             this.form.category_id = '';
             this.form.status_id = '';
+            this.form.file = '';
         },
         submit(){
-            this.axios.post('/blogs', this.form)
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+
+            let formData = new FormData();
+            formData.append('file', this.form.file);
+            formData.append('title', this.form.title);
+            formData.append('content', this.form.content);
+            formData.append('category_id', this.form.category_id);
+            formData.append('status_id', this.form.status_id);
+            this.axios.post('/blogs', formData, config)
                 .then((response) => {
                     toast.fire({
                         icon: 'success',
@@ -144,14 +167,23 @@ export default {
             });
         },
         update(){
-            this.axios.patch(this.selectedUrl, this.form)
-                .then((response) => {
-                    toast.fire({
-                        icon: 'success',
-                        title: 'Post updated successfully'
-                    });
-                    this.closeModal();
-                }).catch(()=>{
+            this.axios.put(this.selectedUrl, {
+                params: {
+                    data: this.form
+                },
+
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            }).then((response) => {
+                toast.fire({
+                    icon: 'success',
+                    title: 'Post updated successfully'
+                });
+                this.closeModal();
+            }).catch(error=>{
+
+            }).finally(()=>{
                 this.closeModal();
             });
         },

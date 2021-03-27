@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->integer('status_id')->unsigned();
             $table->string("title");
             $table->longText("content");
+            $table->string("file_path")->default('post.png');
             $table->timestamps();
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('category_id')->references('id')->on('post_catergories');

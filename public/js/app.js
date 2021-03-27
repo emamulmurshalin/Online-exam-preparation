@@ -2156,6 +2156,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostModal",
   props: ['selectedUrl'],
@@ -2167,8 +2174,9 @@ __webpack_require__.r(__webpack_exports__);
       form: new Form({
         title: '',
         content: '',
-        category_id: '',
-        status_id: ''
+        category_id: 1,
+        status_id: 5,
+        file: ''
       })
     };
   },
@@ -2181,6 +2189,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    selectFile: function selectFile(file) {
+      if (file == "") return false;
+      this.form.file = file.target.files[0];
+    },
     getCategory: function getCategory() {
       var _this = this;
 
@@ -2200,11 +2212,23 @@ __webpack_require__.r(__webpack_exports__);
       this.form.content = '';
       this.form.category_id = '';
       this.form.status_id = '';
+      this.form.file = '';
     },
     submit: function submit() {
       var _this3 = this;
 
-      this.axios.post('/blogs', this.form).then(function (response) {
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      var formData = new FormData();
+      formData.append('file', this.form.file);
+      formData.append('title', this.form.title);
+      formData.append('content', this.form.content);
+      formData.append('category_id', this.form.category_id);
+      formData.append('status_id', this.form.status_id);
+      this.axios.post('/blogs', formData, config).then(function (response) {
         toast.fire({
           icon: 'success',
           title: 'Post created successfully'
@@ -2229,14 +2253,21 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this5 = this;
 
-      this.axios.patch(this.selectedUrl, this.form).then(function (response) {
+      this.axios.put(this.selectedUrl, {
+        params: {
+          data: this.form
+        },
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then(function (response) {
         toast.fire({
           icon: 'success',
           title: 'Post updated successfully'
         });
 
         _this5.closeModal();
-      })["catch"](function () {
+      })["catch"](function (error) {})["finally"](function () {
         _this5.closeModal();
       });
     },
@@ -6431,7 +6462,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".modal-lg[data-v-5f50e34b] {\n  max-width: 48%;\n}\r\n", ""]);
+exports.push([module.i, ".modal-lg[data-v-5f50e34b] {\n  max-width: 48%;\n}\n", ""]);
 
 // exports
 
@@ -52293,6 +52324,19 @@ var render = function() {
                         }),
                         0
                       )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+                      _vm._v("Upload image")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _c("input", {
+                        attrs: { type: "file", placeholder: "Photo" },
+                        on: { change: _vm.selectFile }
+                      })
                     ])
                   ])
                 ])

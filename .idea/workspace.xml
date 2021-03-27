@@ -6,8 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/Question/1616864166.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PreviousQuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PreviousQuestionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Post/1616865922.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_11_10_183535_create_posts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_11_10_183535_create_posts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/PostModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/PostModal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -517,7 +522,7 @@
       <workItem from="1615738328260" duration="8601000" />
       <workItem from="1616514893843" duration="686000" />
       <workItem from="1616602268833" duration="1305000" />
-      <workItem from="1616605507830" duration="6195000" />
+      <workItem from="1616605507830" duration="8481000" />
     </task>
     <servers />
   </component>
@@ -572,7 +577,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/resources/js/Components/Admin/Blog/PostModal.vue</url>
-          <line>54</line>
+          <line>61</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

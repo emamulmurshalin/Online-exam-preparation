@@ -47,12 +47,34 @@ class BlogController extends Controller
             'category_id' => 'required',
             'status_id' => 'required',
         ]);
+
         $request['user_id'] = Auth::user()->id;
-        $post->create($request->all());
-        return [
-            'status' => 200,
-            'message' => 'Post created successfully',
-        ];
+        if($file = $request->file('file')){
+            //$name =  $file->getClientOriginalName();
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $request['file_path'] = $fileName;
+            if($file->move('Post',$fileName))
+            {
+                $post = Post::create($request->all());
+                if ($post){
+                    return [
+                        'status' => 200,
+                        'message' => 'Post created successfully',
+                    ];
+                }
+            } else
+            {
+                return 'file not uploaded';
+            }
+        }else{
+            $post = Post::create($request->all());
+            if ($post){
+                return [
+                    'status' => 200,
+                    'message' => 'Post created successfully',
+                ];
+            }
+        }
     }
 
     /**
@@ -87,18 +109,32 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
-        $this->validate($request, [
-            'title' => 'required',
-            'content' => 'required',
-            'category_id' => 'required',
-            'status_id' => 'required',
-        ]);
         $request['user_id'] = Auth::user()->id;
-        $post->update($request->all());
-        return [
-            'status' => 200,
-            'message' => 'Post updated successfully',
-        ];
+        if($file = $request->file('file')){
+            //$name =  $file->getClientOriginalName();
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $request['file_path'] = $fileName;
+            if($file->move('Post',$fileName))
+            {
+                $postUpdate = $post->update($request->all());
+                if ($postUpdate)
+                {
+                    return [
+                        'status' => 200,
+                        'message' => 'Post updated successfully',
+                    ];
+                }
+            } else
+            {
+                return 'file not uploaded';
+            }
+        }else{
+            $post->update($request->params['data']);
+            return [
+                'status' => 200,
+                'message' => 'Post updated successfully',
+            ];
+        }
     }
 
     /**

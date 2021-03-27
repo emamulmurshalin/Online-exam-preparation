@@ -36,6 +36,7 @@ class Post extends Model
         'content',
         'category_id',
         'status_id',
-        'user_id'
+        'user_id',
+        'file_path'
     ];
 }
