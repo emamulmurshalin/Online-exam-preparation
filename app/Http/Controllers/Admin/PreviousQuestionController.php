@@ -110,9 +110,6 @@ class PreviousQuestionController extends Controller
      */
     public function update(Request $request, PreviousQuestion $previousQuestion)
     {
-        $this->validate($request, [
-            'question_title' => 'required',
-        ]);
         if($file = $request->file('file')){
             //$name =  $file->getClientOriginalName();
             $fileName = time().'.'.$file->getClientOriginalExtension();
