@@ -18,6 +18,10 @@ class Post extends Model
     {
         return $this->hasMany(PostLike::class);
     }
+    public function postDislike()
+    {
+        return $this->hasMany(PostDislike::class);
+    }
     public function category()
     {
         return $this->belongsTo(PostCatergory::class, 'category_id');

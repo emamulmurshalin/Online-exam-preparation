@@ -5121,6 +5121,12 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     userLogin: function userLogin() {
       return window.user;
+    },
+    postLikedOrNot: function postLikedOrNot() {
+      this.posts.map(function (post) {});
+    },
+    checkDisliked: function checkDisliked() {
+      this.posts.map(function (post) {});
     }
   },
   mounted: function mounted() {
@@ -5130,14 +5136,42 @@ __webpack_require__.r(__webpack_exports__);
     seeMore: function seeMore() {
       console.log('hoise');
     },
-    likeAdd: function likeAdd() {
-      console.log('like');
+    likeAdd: function likeAdd(postId) {
+      var _this = this;
+
+      this.form.like = 1;
+      this.form.post_id = postId;
+      this.form.user_id = window.user.id;
+      this.axios.post('/post-like', this.form).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'liked'
+        });
+        _this.form = {};
+
+        _this.loadPost();
+      })["catch"](function (error) {//this.errors = error.response.data.errors;
+      })["finally"](function () {});
     },
-    disLikeAdd: function disLikeAdd() {
-      console.log('dislike');
+    disLikeAdd: function disLikeAdd(postId) {
+      var _this2 = this;
+
+      this.form.dis_like = 1;
+      this.form.post_id = postId;
+      this.form.user_id = window.user.id;
+      this.axios.post('/post-dislike', this.form).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'disliked'
+        });
+        _this2.form = {};
+
+        _this2.loadPost();
+      })["catch"](function (error) {//this.errors = error.response.data.errors;
+      })["finally"](function () {});
     },
     commentAdd: function commentAdd(postId) {
-      var _this = this;
+      var _this3 = this;
 
       this.form.post_id = postId;
       this.form.user_id = window.user.id;
@@ -5147,7 +5181,9 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: 'You comment in a post'
         });
-        _this.form = {};
+        _this3.form = {};
+
+        _this3.loadPost();
       })["catch"](function (error) {//this.errors = error.response.data.errors;
       })["finally"](function () {});
     },
@@ -5159,11 +5195,11 @@ __webpack_require__.r(__webpack_exports__);
       return '/Post/default.png';
     },
     loadPost: function loadPost() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.axios.get('/blogs?blog').then(function (response) {
-        _this2.posts = response.data;
-        _this2.dataLoaded = true;
+        _this4.posts = response.data;
+        _this4.dataLoaded = true;
       })["catch"](function (error) {});
     }
   }
@@ -58510,7 +58546,11 @@ var render = function() {
                                   ]),
                                   _vm._v(
                                     "\n                                " +
-                                      _vm._s(post.comments[0].comment) +
+                                      _vm._s(
+                                        _vm._f("titleTruncate")(
+                                          post.comments[0].comment
+                                        )
+                                      ) +
                                       "\n                            "
                                   )
                                 ]
@@ -58520,47 +58560,47 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "row",
-                        staticStyle: { "margin-top": "7px", height: "50px" }
-                      },
-                      [
-                        _c("div", { staticClass: "col-sm-1" }, [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "", title: "like" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.likeAdd($event)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-thumbs-up" })]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-sm-1" }, [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "", title: "disliike" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.disLikeAdd($event)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "far fa-thumbs-down" })]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.userLogin
-                          ? _c("div", { staticClass: "col-sm-10" }, [
+                    _vm.userLogin
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "row",
+                            staticStyle: { "margin-top": "7px", height: "50px" }
+                          },
+                          [
+                            _c("div", { staticClass: "col-sm-1" }, [
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: "", title: "like" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.likeAdd(post.id)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "far fa-thumbs-up" })]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-1" }, [
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: "", title: "disliike" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.disLikeAdd(post.id)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "far fa-thumbs-down" })]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-10" }, [
                               _c("textarea", {
                                 directives: [
                                   {
@@ -58606,9 +58646,9 @@ var render = function() {
                                 }
                               })
                             ])
-                          : _vm._e()
-                      ]
-                    )
+                          ]
+                        )
+                      : _vm._e()
                   ]
                 )
               }),

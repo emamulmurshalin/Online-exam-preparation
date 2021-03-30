@@ -25,18 +25,18 @@
                                 <a href="">
                                     {{ post.user.first_name + ' ' + post.user.last_name + ' ' }}
                                 </a>
-                                {{ post.comments[0].comment }}
+                                {{ post.comments[0].comment | titleTruncate }}
                             </p>
                         </div>
                     </div>
-                    <div style="margin-top: 7px; height: 50px" class="row">
+                    <div v-if="userLogin" style="margin-top: 7px; height: 50px" class="row">
                         <div class="col-sm-1">
-                            <a href="" title="like" @click.prevent="likeAdd"><i class="far fa-thumbs-up"></i></a>
+                            <a href="" title="like" @click.prevent="likeAdd(post.id)"><i class="far fa-thumbs-up"></i></a>
                         </div>
                         <div class="col-sm-1">
-                            <a href="" title="disliike" @click.prevent="disLikeAdd"><i class="far fa-thumbs-down"></i></a>
+                            <a href="" title="disliike" @click.prevent="disLikeAdd(post.id)"><i class="far fa-thumbs-down"></i></a>
                         </div>
-                        <div class="col-sm-10" v-if="userLogin">
+                        <div class="col-sm-10">
                             <textarea  v-model="form[post.id]" name="comment" @keyup.enter="commentAdd(post.id)"
                                       class="form-control d-flex justify-content-center"
                                       placeholder="Enter comment"></textarea>
@@ -74,6 +74,11 @@ name: "BlogPage",
             this.posts.map((post)=>{
 
             });
+        },
+        checkDisliked(){
+            this.posts.map((post)=>{
+
+            });
         }
     },
     mounted() {
@@ -83,11 +88,41 @@ name: "BlogPage",
         seeMore(){
            console.log('hoise');
         },
-        likeAdd(){
-            console.log('like');
+        likeAdd(postId){
+            this.form.like = 1;
+            this.form.post_id = postId;
+            this.form.user_id = window.user.id;
+            this.axios.post('/post-like', this.form)
+                .then((response) => {
+                    toast.fire({
+                        icon: 'success',
+                        title: 'liked'
+                    });
+                    this.form = {};
+                    this.loadPost();
+                }).catch(error=>{
+                //this.errors = error.response.data.errors;
+            }).finally(()=>{
+
+            });
         },
-        disLikeAdd(){
-            console.log('dislike');
+        disLikeAdd(postId){
+            this.form.dis_like = 1;
+            this.form.post_id = postId;
+            this.form.user_id = window.user.id;
+            this.axios.post('/post-dislike', this.form)
+                .then((response) => {
+                    toast.fire({
+                        icon: 'success',
+                        title: 'disliked'
+                    });
+                    this.form = {};
+                    this.loadPost();
+                }).catch(error=>{
+                //this.errors = error.response.data.errors;
+            }).finally(()=>{
+
+            });
         },
         commentAdd(postId){
             this.form.post_id = postId;

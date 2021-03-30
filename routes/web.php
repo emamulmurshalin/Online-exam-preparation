@@ -169,6 +169,10 @@ Route::get('/get-status', [BlogController::class, 'getStatus'])
     ->name('get_status');
 Route::post('/post-comment', [BlogController::class, 'postComment'])
     ->name('post_comment');
+Route::post('/post-like', [BlogController::class, 'postLike'])
+    ->name('post_like');
+Route::post('/post-dislike', [BlogController::class, 'postDislike'])
+    ->name('post_dislike');
 
 //Job exam info
 Route::resource('jobs-info', JobExamInfoController::class);

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Exam\Admin\Comment;
 use App\Models\Exam\Admin\Post;
 use App\Models\Exam\Admin\PostCatergory;
+use App\Models\Exam\Admin\PostDislike;
+use App\Models\Exam\Admin\PostLike;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +23,30 @@ class BlogController extends Controller
     {
         if (\request()->exists('blog'))
         {
-            return Post::with(['comments.user', 'status', 'postLike', 'category', 'user'])
-                ->inRandomOrder()
+            return Post::with([
+                    'comments.user',
+                    'status',
+                    'postLike',
+                    'postDislike',
+                    'category',
+                    'user'])
+                ->whereHas('status', function($q) {
+                    $q->where('name', '=', 'published');
+                })
+                ->latest()
                 ->limit(4)
                 ->get();
         }
-        return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
+        return Post::with([
+            'comments',
+            'status',
+            'postLike',
+            'postDislike',
+            'category',
+            'user'])
+            ->whereHas('status', function($q) {
+                $q->where('name', '=', 'published');
+            })
             ->latest()
             ->paginate(10);
     }
@@ -193,6 +213,30 @@ class BlogController extends Controller
             return [
                 'status' => 200,
                 'message' => 'Commented successfully',
+            ];
+        }
+    }
+
+    public function postLike(Request $request)
+    {
+        $liked = PostLike::create($request->all());
+        if ($liked)
+        {
+            return [
+                'status' => 200,
+                'message' => 'liked',
+            ];
+        }
+    }
+
+    public function postDislike(Request $request)
+    {
+        $disLiked = PostDislike::create($request->all());
+        if ($disLiked)
+        {
+            return [
+                'status' => 200,
+                'message' => 'disliked',
             ];
         }
     }
