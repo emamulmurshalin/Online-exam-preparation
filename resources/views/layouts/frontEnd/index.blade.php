@@ -101,7 +101,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 
-
+@auth()
+    <script>
+        window.user = @json(auth()->user())
+    </script>
+@endauth
 </body>
 
 </html>

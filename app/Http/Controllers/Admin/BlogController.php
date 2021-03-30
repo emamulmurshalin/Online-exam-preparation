@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exam\Admin\Comment;
 use App\Models\Exam\Admin\Post;
 use App\Models\Exam\Admin\PostCatergory;
 use App\Models\Status;
@@ -18,6 +19,13 @@ class BlogController extends Controller
      */
     public function index()
     {
+        if (\request()->exists('blog'))
+        {
+            return Post::with(['comments.user', 'status', 'postLike', 'category', 'user'])
+                ->inRandomOrder()
+                ->limit(6)
+                ->get();
+        }
         return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
             ->latest()
             ->paginate(10);
@@ -175,5 +183,17 @@ class BlogController extends Controller
         return Post::with(['comments', 'status', 'postLike', 'category', 'user'])
             ->latest()
             ->paginate(10);
+    }
+
+    public function postComment(Request $request)
+    {
+        $comment = Comment::create($request->all());
+        if ($comment)
+        {
+            return [
+                'status' => 200,
+                'message' => 'Commented successfully',
+            ];
+        }
     }
 }

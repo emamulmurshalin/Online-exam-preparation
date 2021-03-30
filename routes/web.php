@@ -167,6 +167,8 @@ Route::get('/get-post-category', [BlogController::class, 'getCategory'])
     ->name('get_post_category');
 Route::get('/get-status', [BlogController::class, 'getStatus'])
     ->name('get_status');
+Route::post('/post-comment', [BlogController::class, 'postComment'])
+    ->name('post_comment');
 
 //Job exam info
 Route::resource('jobs-info', JobExamInfoController::class);

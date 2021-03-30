@@ -5071,8 +5071,102 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "BlogPage"
+  name: "BlogPage",
+  data: function data() {
+    return {
+      dataLoaded: false,
+      posts: {},
+      form: new Form({
+        comment: '',
+        post_id: ''
+      })
+    };
+  },
+  computed: {
+    userLogin: function userLogin() {
+      return window.user;
+    }
+  },
+  mounted: function mounted() {
+    this.loadPost();
+  },
+  methods: {
+    seeMore: function seeMore() {
+      console.log('hoise');
+    },
+    likeAdd: function likeAdd() {
+      console.log('like');
+    },
+    disLikeAdd: function disLikeAdd() {
+      console.log('dislike');
+    },
+    commentAdd: function commentAdd(postId) {
+      var _this = this;
+
+      this.form.post_id = postId;
+      this.form.user_id = window.user.id;
+      this.form.comment = this.form[postId];
+      this.axios.post('/post-comment', this.form).then(function (response) {
+        toast.fire({
+          icon: 'success',
+          title: 'You comment in a post'
+        });
+        _this.form = {};
+      })["catch"](function (error) {//this.errors = error.response.data.errors;
+      })["finally"](function () {});
+    },
+    getImage: function getImage(imageName) {
+      if (imageName) {
+        return '/Post/' + imageName;
+      }
+
+      return '/Post/default.png';
+    },
+    loadPost: function loadPost() {
+      var _this2 = this;
+
+      this.axios.get('/blogs?blog').then(function (response) {
+        _this2.posts = response.data;
+        _this2.dataLoaded = true;
+      })["catch"](function (error) {});
+    }
+  }
 });
 
 /***/ }),
@@ -6539,7 +6633,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".bg-background{\n  color: red;\n  min-height: 350px;\n  background-color: #F5F5F5;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, ".bg-background{\n  color: red;\n  min-height: 450px;\n  background-color: #F5F5F5;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -51930,7 +52024,11 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(post.title))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(post.content))]),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(_vm._f("textTruncate")(post.content))
+                                )
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(post.comments.length))]),
                               _vm._v(" "),
@@ -58314,37 +58412,221 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "card bg-background" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-9" }, [
-            _c("div", {
-              staticClass: "col-sm-6",
-              staticStyle: { "background-color": "red", height: "350px" }
-            }),
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "card bg-background" }, [
+      _vm.dataLoaded
+        ? _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-sm-9" },
+              _vm._l(_vm.posts, function(post) {
+                return _c(
+                  "div",
+                  { staticClass: "col-sm-6", staticStyle: { height: "350px" } },
+                  [
+                    _c("div", { staticStyle: { "margin-top": "5px" } }, [
+                      _c("h4", { staticStyle: { color: "black" } }, [
+                        _vm._v(_vm._s(_vm._f("titleTruncate")(post.title)))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { height: "230px" } }, [
+                      _c("img", {
+                        staticClass: "justify-content-center",
+                        staticStyle: {
+                          "margin-top": "15px",
+                          width: "100%",
+                          "border-radius": "2%"
+                        },
+                        attrs: {
+                          align: "center",
+                          src: _vm.getImage(post.file_path),
+                          alt: "User Avatar"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticStyle: { "margin-top": "3px" } }, [
+                      _c("p", { staticStyle: { color: "black" } }, [
+                        _vm._v(
+                          _vm._s(_vm._f("textTruncate")(post.content)) + "..."
+                        ),
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.seeMore($event)
+                              }
+                            }
+                          },
+                          [_vm._v("See more")]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "row",
+                        staticStyle: { "margin-top": "3px" }
+                      },
+                      [
+                        _c("div", { staticClass: "col-sm-4" }, [
+                          _c(
+                            "p",
+                            { staticStyle: { "background-color": "#F5F5F5" } },
+                            [_vm._v(_vm._s(post.comments.length) + " comments")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        post.comments.length
+                          ? _c("div", { staticClass: "col-sm-8" }, [
+                              _c(
+                                "p",
+                                {
+                                  staticStyle: {
+                                    "background-color": "#F5F5F5",
+                                    color: "black"
+                                  }
+                                },
+                                [
+                                  _c("a", { attrs: { href: "" } }, [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(
+                                          post.user.first_name +
+                                            " " +
+                                            post.user.last_name +
+                                            " "
+                                        ) +
+                                        "\n                                "
+                                    )
+                                  ]),
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(post.comments[0].comment) +
+                                      "\n                            "
+                                  )
+                                ]
+                              )
+                            ])
+                          : _vm._e()
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "row",
+                        staticStyle: { "margin-top": "7px", height: "50px" }
+                      },
+                      [
+                        _c("div", { staticClass: "col-sm-1" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "", title: "like" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.likeAdd($event)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-thumbs-up" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-1" }, [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "", title: "disliike" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.disLikeAdd($event)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "far fa-thumbs-down" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm.userLogin
+                          ? _c("div", { staticClass: "col-sm-10" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form[post.id],
+                                    expression: "form[post.id]"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control d-flex justify-content-center",
+                                attrs: {
+                                  name: "comment",
+                                  placeholder: "Enter comment"
+                                },
+                                domProps: { value: _vm.form[post.id] },
+                                on: {
+                                  keyup: function($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "enter",
+                                        13,
+                                        $event.key,
+                                        "Enter"
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    return _vm.commentAdd(post.id)
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      post.id,
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ]
+                )
+              }),
+              0
+            ),
             _vm._v(" "),
             _c("div", {
-              staticClass: "col-sm-6",
-              staticStyle: { "background-color": "black", height: "350px" }
+              staticClass: "col-sm-3",
+              staticStyle: {
+                "background-color": "yellow",
+                height: "350px",
+                "margin-top": "15px",
+                width: "23%"
+              }
             })
-          ]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "col-sm-3",
-            staticStyle: { "background-color": "yellow", height: "350px" }
-          })
-        ])
-      ])
+          ])
+        : _vm._e()
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -83960,6 +84242,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('textUppercase', function (tex
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('localDate', function (date) {
   return moment__WEBPACK_IMPORTED_MODULE_1___default()(date).format('MMMM Do YYYY');
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('textTruncate', function (text) {
+  if (!text) return '';
+  text = text.toString();
+  return text.slice(0, 100);
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('titleTruncate', function (text) {
+  if (!text) return '';
+  text = text.toString();
+  return text.slice(0, 30);
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('localTime', function (time) {
   var _time$split = time.split(":"),

@@ -124,6 +124,16 @@ Vue.filter('textUppercase', function (text) {
 Vue.filter('localDate', function (date) {
     return moment(date).format('MMMM Do YYYY');
 });
+Vue.filter('textTruncate', function (text) {
+    if (!text) return '';
+    text = text.toString();
+    return text.slice(0, 100);
+});
+Vue.filter('titleTruncate', function (text) {
+    if (!text) return '';
+    text = text.toString();
+    return text.slice(0, 30);
+});
 Vue.filter('localTime', function (time) {
     let [hours, minutes] = time.split(":");
     let modifier = '';

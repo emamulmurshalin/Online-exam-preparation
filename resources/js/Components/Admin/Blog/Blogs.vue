@@ -46,7 +46,7 @@
                                 <tr role="row" class="even" v-for="post in posts.data" :key="post.id">
                                     <td class="sorting_1" tabindex="0">{{post.id}}</td>
                                     <td>{{post.title}}</td>
-                                    <td>{{post.content}}</td>
+                                    <td>{{post.content | textTruncate }}</td>
                                     <td>{{post.comments.length}}</td>
                                     <td>{{post.status.name}}</td>
                                     <td>{{post.category.name}}</td>
