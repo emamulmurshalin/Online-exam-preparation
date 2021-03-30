@@ -1071,10 +1071,12 @@ a.button-style:hover {
     color: #fff;
     font-size: 14px;
     letter-spacing: 2px;
+    font-weight: bold;
 }
 
 .botttom-nav-allah ul li a:hover {
-    color: #37BF91;
+    color: #030303;
+    font-weight: bold;
 }
 
 .footer-middle-thanks h2 {
@@ -1105,12 +1107,12 @@ a.button-style:hover {
 
 .footer-copy-right p a {
     text-decoration: none;
-    color: #EA3621;
+    color: #0099e5;
 }
 
 .footer-copy-right p a:hover {
     text-decoration: none;
-    color: #0099e5;
+    color: white;
 }
 
 .footercopy-social {

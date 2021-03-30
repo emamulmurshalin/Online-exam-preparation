@@ -6,19 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/Post/1616867553.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Post/default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/profile/default.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Exam/Admin/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Exam/Admin/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/Post/1616865922.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/Post/1616867519.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/profile/default.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Admin/Blog/Blogs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Blog/BlogPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/FrontEnd/Blog/BlogPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/front/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/front/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/footer.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -474,7 +465,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="/login&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/front/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/img/profile" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -483,9 +474,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Exam\public\img\profile" />
       <recent name="C:\xampp\htdocs\Exam\public\front\images" />
       <recent name="C:\xampp\htdocs\Exam\public\img\about" />
-      <recent name="C:\xampp\htdocs\Exam\public\img\profile" />
       <recent name="C:\xampp\htdocs\Exam\public\img" />
       <recent name="C:\xampp\htdocs\Exam\public\front" />
     </key>
@@ -528,7 +519,7 @@
       <workItem from="1615738328260" duration="8601000" />
       <workItem from="1616514893843" duration="686000" />
       <workItem from="1616602268833" duration="1305000" />
-      <workItem from="1616605507830" duration="23747000" />
+      <workItem from="1616605507830" duration="25407000" />
     </task>
     <servers />
   </component>
