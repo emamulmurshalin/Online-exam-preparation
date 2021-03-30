@@ -13,7 +13,7 @@ class PostCategorySeeder extends Seeder
     {
         DB::table('post_catergories')->insert(
             [
-                'name' => 'IT Comunication',
+                'name' => 'BCS',
             ]
         );
         DB::table('post_catergories')->insert(

@@ -1,9 +1,9 @@
 <template>
 <div class="container-fluid">
-    <div class="card bg-background">
+    <div class="card background">
         <div class="row" v-if="dataLoaded">
             <div class="col-sm-9">
-                <div v-for="post in posts" class="col-sm-6" style="height: 350px">
+                <div v-for="post in posts" class="col-sm-6 bg-background" style="height: 350px">
                     <div style="margin-top: 5px">
                         <h4 style="color: black">{{ post.title | titleTruncate }}</h4>
                     </div>
@@ -69,6 +69,11 @@ name: "BlogPage",
     computed:{
         userLogin(){
             return window.user;
+        },
+        postLikedOrNot(){
+            this.posts.map((post)=>{
+
+            });
         }
     },
     mounted() {
@@ -95,6 +100,7 @@ name: "BlogPage",
                         title: 'You comment in a post'
                     });
                     this.form = {};
+                    this.loadPost();
                 }).catch(error=>{
                 //this.errors = error.response.data.errors;
             }).finally(()=>{
@@ -121,8 +127,12 @@ name: "BlogPage",
 </script>
 <style>
 .bg-background{
-    color: red;
     min-height: 450px;
+    height: auto;
+}
+.background{
+    min-height: 450px;
+    height: auto;
     background-color: #F5F5F5;
     margin-bottom: 10px;
     margin-top: 10px;

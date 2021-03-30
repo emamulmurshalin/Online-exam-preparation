@@ -23,7 +23,7 @@ class BlogController extends Controller
         {
             return Post::with(['comments.user', 'status', 'postLike', 'category', 'user'])
                 ->inRandomOrder()
-                ->limit(6)
+                ->limit(4)
                 ->get();
         }
         return Post::with(['comments', 'status', 'postLike', 'category', 'user'])

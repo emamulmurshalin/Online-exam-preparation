@@ -6633,7 +6633,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".bg-background{\n  color: red;\n  min-height: 450px;\n  background-color: #F5F5F5;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, ".bg-background{\n  min-height: 450px;\n  height: auto;\n}\n.background{\n  min-height: 450px;\n  height: auto;\n  background-color: #F5F5F5;\n  margin-bottom: 10px;\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -58413,7 +58413,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _c("div", { staticClass: "card bg-background" }, [
+    _c("div", { staticClass: "card background" }, [
       _vm.dataLoaded
         ? _c("div", { staticClass: "row" }, [
             _c(
@@ -58422,7 +58422,10 @@ var render = function() {
               _vm._l(_vm.posts, function(post) {
                 return _c(
                   "div",
-                  { staticClass: "col-sm-6", staticStyle: { height: "350px" } },
+                  {
+                    staticClass: "col-sm-6 bg-background",
+                    staticStyle: { height: "350px" }
+                  },
                   [
                     _c("div", { staticStyle: { "margin-top": "5px" } }, [
                       _c("h4", { staticStyle: { color: "black" } }, [
