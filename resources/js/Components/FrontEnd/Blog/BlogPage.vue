@@ -32,7 +32,7 @@
                     <div v-if="userLogin" style="margin-top: 7px; height: 50px" class="row">
                         <div class="col-sm-1">
                             <a href=""
-                               title="like"
+                               :title="post.liked ? 'like' : 'Unlike'"
                                @click.prevent="likeAdd(post)">
                                 <i class="far fa-thumbs-up"></i>
                             </a>
@@ -228,6 +228,7 @@ name: "BlogPage",
             return '/Post/default.png';
         },
         loadPost(){
+            this.dataLoaded = false;
             this.axios.get('/blogs?blog')
                 .then(response => {
                     this.posts = response.data;

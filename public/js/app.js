@@ -5275,6 +5275,7 @@ __webpack_require__.r(__webpack_exports__);
     loadPost: function loadPost() {
       var _this4 = this;
 
+      this.dataLoaded = false;
       this.axios.get('/blogs?blog').then(function (response) {
         _this4.posts = response.data;
         _this4.dataLoaded = true;
@@ -58650,7 +58651,10 @@ var render = function() {
                               _c(
                                 "a",
                                 {
-                                  attrs: { href: "", title: "like" },
+                                  attrs: {
+                                    href: "",
+                                    title: post.liked ? "like" : "Unlike"
+                                  },
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
