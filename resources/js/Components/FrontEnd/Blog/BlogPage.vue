@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-sm-1">
                             <a href=""
-                               title="disliike"
+                               :title="(post.post_dislike ? post.post_dislike.length : 0) + ' disliikes'"
                                @click.prevent="disLikeAdd(post)">
                                 <i class="far fa-thumbs-down"></i>
                             </a>
@@ -81,11 +81,20 @@ name: "BlogPage",
         },
         checkLiked(){
             return this.posts.map((post)=>{
-                let likedPost = post.post_like.find((liked)=>{
+                let totalLike = 0;
+                let totalUnLike = 0;
+                let likedPost = post.post_like.find((liked) =>{
+                    if (liked.like == 1){
+                        totalLike = totalLike + 1;
+                    }else {
+                        totalUnLike = totalUnLike + 1;
+                    }
                     if (liked.user_id == window.user.id && liked.like == 1){
                         return liked;
                     }
                 });
+                post.totalLike = totalLike;
+                post.totalUnLike = totalUnLike;
                 if (likedPost){
                     post.liked = true;
                 }else {

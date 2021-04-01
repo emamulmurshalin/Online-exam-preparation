@@ -5133,11 +5133,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkLiked: function checkLiked() {
       return this.posts.map(function (post) {
+        var totalLike = 0;
+        var totalUnLike = 0;
         var likedPost = post.post_like.find(function (liked) {
+          if (liked.like == 1) {
+            totalLike = totalLike + 1;
+          } else {
+            totalUnLike = totalUnLike + 1;
+          }
+
           if (liked.user_id == window.user.id && liked.like == 1) {
             return liked;
           }
         });
+        post.totalLike = totalLike;
+        post.totalUnLike = totalUnLike;
 
         if (likedPost) {
           post.liked = true;
@@ -58670,7 +58680,13 @@ var render = function() {
                               _c(
                                 "a",
                                 {
-                                  attrs: { href: "", title: "disliike" },
+                                  attrs: {
+                                    href: "",
+                                    title:
+                                      (post.post_dislike
+                                        ? post.post_dislike.length
+                                        : 0) + " disliikes"
+                                  },
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
