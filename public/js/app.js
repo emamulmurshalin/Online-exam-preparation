@@ -5106,11 +5106,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BlogPage",
   data: function data() {
     return {
       dataLoaded: false,
+      likedPost: null,
       posts: {},
       form: new Form({
         comment: '',
@@ -5122,11 +5131,35 @@ __webpack_require__.r(__webpack_exports__);
     userLogin: function userLogin() {
       return window.user;
     },
-    postLikedOrNot: function postLikedOrNot() {
-      this.posts.map(function (post) {});
+    checkLiked: function checkLiked() {
+      return this.posts.map(function (post) {
+        var likedPost = post.post_like.find(function (liked) {
+          if (liked.user_id == window.user.id && liked.like == 1) {
+            return liked;
+          }
+        });
+
+        if (likedPost) {
+          post.liked = true;
+        } else {
+          post.liked = false;
+        }
+      });
     },
     checkDisliked: function checkDisliked() {
-      this.posts.map(function (post) {});
+      this.posts.map(function (post) {
+        var disliked = post.post_dislike.find(function (dislike) {
+          if (dislike.user_id == window.user.id && dislike.dis_like == 1) {
+            return dislike;
+          }
+        });
+
+        if (disliked) {
+          post.disliked = true;
+        } else {
+          post.disliked = false;
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -5136,39 +5169,84 @@ __webpack_require__.r(__webpack_exports__);
     seeMore: function seeMore() {
       console.log('hoise');
     },
-    likeAdd: function likeAdd(postId) {
+    likeAdd: function likeAdd(post) {
       var _this = this;
 
-      this.form.like = 1;
-      this.form.post_id = postId;
-      this.form.user_id = window.user.id;
-      this.axios.post('/post-like', this.form).then(function (response) {
-        toast.fire({
-          icon: 'success',
-          title: 'liked'
-        });
-        _this.form = {};
+      var likedPost = post.post_like.find(function (liked) {
+        if (liked.user_id == window.user.id) {
+          return liked;
+        }
+      });
 
-        _this.loadPost();
-      })["catch"](function (error) {//this.errors = error.response.data.errors;
-      })["finally"](function () {});
+      if (likedPost) {
+        if (likedPost.like == 1) {
+          this.form.like = 0;
+          this.form.post_id = likedPost.post_id;
+          this.axios.patch("/post-unlike/".concat(likedPost.id), this.form).then(function (response) {
+            toast.fire({
+              icon: 'success',
+              title: 'Unliked'
+            });
+            _this.form = {};
+
+            _this.loadPost();
+          })["catch"](function (error) {})["finally"](function () {});
+        } else {
+          this.form.like = 1;
+          this.form.post_id = likedPost.post_id;
+          this.axios.patch("/post-like-update/".concat(likedPost.id), this.form).then(function (response) {
+            toast.fire({
+              icon: 'success',
+              title: 'liked'
+            });
+            _this.form = {};
+
+            _this.loadPost();
+          })["catch"](function (error) {})["finally"](function () {});
+        }
+      } else {
+        this.form.like = 1;
+        this.form.post_id = post.id;
+        this.form.user_id = window.user.id;
+        this.axios.post('/post-like', this.form).then(function (response) {
+          toast.fire({
+            icon: 'success',
+            title: 'liked'
+          });
+          _this.form = {};
+
+          _this.loadPost();
+        })["catch"](function (error) {})["finally"](function () {});
+      }
     },
-    disLikeAdd: function disLikeAdd(postId) {
+    disLikeAdd: function disLikeAdd(post) {
       var _this2 = this;
 
-      this.form.dis_like = 1;
-      this.form.post_id = postId;
-      this.form.user_id = window.user.id;
-      this.axios.post('/post-dislike', this.form).then(function (response) {
+      var disliked = post.post_dislike.find(function (dislike) {
+        if (dislike.user_id == window.user.id && dislike.dis_like == 1) {
+          return dislike;
+        }
+      });
+
+      if (disliked) {
         toast.fire({
           icon: 'success',
-          title: 'disliked'
+          title: 'Already disliked'
         });
-        _this2.form = {};
+      } else {
+        this.form.dis_like = 1;
+        this.form.post_id = post.id;
+        this.form.user_id = window.user.id;
+        this.axios.post('/post-dislike', this.form).then(function (response) {
+          toast.fire({
+            icon: 'success',
+            title: 'disliked'
+          });
+          _this2.form = {};
 
-        _this2.loadPost();
-      })["catch"](function (error) {//this.errors = error.response.data.errors;
-      })["finally"](function () {});
+          _this2.loadPost();
+        })["catch"](function (error) {})["finally"](function () {});
+      }
     },
     commentAdd: function commentAdd(postId) {
       var _this3 = this;
@@ -58576,7 +58654,7 @@ var render = function() {
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
-                                      return _vm.likeAdd(post.id)
+                                      return _vm.likeAdd(post)
                                     }
                                   }
                                 },
@@ -58592,7 +58670,7 @@ var render = function() {
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
-                                      return _vm.disLikeAdd(post.id)
+                                      return _vm.disLikeAdd(post)
                                     }
                                   }
                                 },

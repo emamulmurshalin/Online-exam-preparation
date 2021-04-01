@@ -31,10 +31,18 @@
                     </div>
                     <div v-if="userLogin" style="margin-top: 7px; height: 50px" class="row">
                         <div class="col-sm-1">
-                            <a href="" title="like" @click.prevent="likeAdd(post.id)"><i class="far fa-thumbs-up"></i></a>
+                            <a href=""
+                               title="like"
+                               @click.prevent="likeAdd(post)">
+                                <i class="far fa-thumbs-up"></i>
+                            </a>
                         </div>
                         <div class="col-sm-1">
-                            <a href="" title="disliike" @click.prevent="disLikeAdd(post.id)"><i class="far fa-thumbs-down"></i></a>
+                            <a href=""
+                               title="disliike"
+                               @click.prevent="disLikeAdd(post)">
+                                <i class="far fa-thumbs-down"></i>
+                            </a>
                         </div>
                         <div class="col-sm-10">
                             <textarea  v-model="form[post.id]" name="comment" @keyup.enter="commentAdd(post.id)"
@@ -59,6 +67,7 @@ name: "BlogPage",
     data(){
         return{
             dataLoaded: false,
+            likedPost: null,
             posts: {},
             form: new Form({
                 comment: '',
@@ -70,14 +79,32 @@ name: "BlogPage",
         userLogin(){
             return window.user;
         },
-        postLikedOrNot(){
-            this.posts.map((post)=>{
-
+        checkLiked(){
+            return this.posts.map((post)=>{
+                let likedPost = post.post_like.find((liked)=>{
+                    if (liked.user_id == window.user.id && liked.like == 1){
+                        return liked;
+                    }
+                });
+                if (likedPost){
+                    post.liked = true;
+                }else {
+                    post.liked = false;
+                }
             });
         },
         checkDisliked(){
             this.posts.map((post)=>{
-
+                let disliked = post.post_dislike.find((dislike)=>{
+                    if (dislike.user_id == window.user.id && dislike.dis_like == 1){
+                        return dislike;
+                    }
+                });
+                if (disliked){
+                    post.disliked = true;
+                }else {
+                    post.disliked = false;
+                }
             });
         }
     },
@@ -88,41 +115,93 @@ name: "BlogPage",
         seeMore(){
            console.log('hoise');
         },
-        likeAdd(postId){
-            this.form.like = 1;
-            this.form.post_id = postId;
-            this.form.user_id = window.user.id;
-            this.axios.post('/post-like', this.form)
-                .then((response) => {
-                    toast.fire({
-                        icon: 'success',
-                        title: 'liked'
-                    });
-                    this.form = {};
-                    this.loadPost();
-                }).catch(error=>{
-                //this.errors = error.response.data.errors;
-            }).finally(()=>{
-
+        likeAdd(post){
+             let likedPost = post.post_like.find((liked)=>{
+                if (liked.user_id == window.user.id){
+                    return liked;
+                }
             });
+            if (likedPost){
+                if (likedPost.like == 1){
+                    this.form.like = 0;
+                    this.form.post_id = likedPost.post_id;
+                    this.axios.patch(`/post-unlike/${likedPost.id}`, this.form)
+                        .then((response) => {
+                            toast.fire({
+                                icon: 'success',
+                                title: 'Unliked'
+                            });
+                            this.form = {};
+                            this.loadPost();
+                        }).catch(error=>{
+
+                    }).finally(()=>{
+
+                    });
+                }else {
+                    this.form.like = 1;
+                    this.form.post_id = likedPost.post_id;
+                    this.axios.patch(`/post-like-update/${likedPost.id}`, this.form)
+                        .then((response) => {
+                            toast.fire({
+                                icon: 'success',
+                                title: 'liked'
+                            });
+                            this.form = {};
+                            this.loadPost();
+                        }).catch(error=>{
+
+                    }).finally(()=>{
+
+                    });
+                }
+            }else {
+                this.form.like = 1;
+                this.form.post_id = post.id;
+                this.form.user_id = window.user.id;
+                this.axios.post('/post-like', this.form)
+                    .then((response) => {
+                        toast.fire({
+                            icon: 'success',
+                            title: 'liked'
+                        });
+                        this.form = {};
+                        this.loadPost();
+                    }).catch(error=>{
+
+                }).finally(()=>{
+
+                });
+            }
         },
-        disLikeAdd(postId){
-            this.form.dis_like = 1;
-            this.form.post_id = postId;
-            this.form.user_id = window.user.id;
-            this.axios.post('/post-dislike', this.form)
-                .then((response) => {
-                    toast.fire({
-                        icon: 'success',
-                        title: 'disliked'
-                    });
-                    this.form = {};
-                    this.loadPost();
-                }).catch(error=>{
-                //this.errors = error.response.data.errors;
-            }).finally(()=>{
-
+        disLikeAdd(post){
+            let disliked = post.post_dislike.find((dislike)=>{
+                if (dislike.user_id == window.user.id && dislike.dis_like == 1){
+                    return dislike;
+                }
             });
+            if (disliked){
+                toast.fire({
+                    icon: 'success',
+                    title: 'Already disliked'
+                });
+            }else {
+                this.form.dis_like = 1;
+                this.form.post_id = post.id;
+                this.form.user_id = window.user.id;
+                this.axios.post('/post-dislike', this.form)
+                    .then((response) => {
+                        toast.fire({
+                            icon: 'success',
+                            title: 'disliked'
+                        });
+                        this.form = {};
+                        this.loadPost();
+                    }).catch(error=>{
+                }).finally(()=>{
+
+                });
+            }
         },
         commentAdd(postId){
             this.form.post_id = postId;

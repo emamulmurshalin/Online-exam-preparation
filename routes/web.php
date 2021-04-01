@@ -171,6 +171,10 @@ Route::post('/post-comment', [BlogController::class, 'postComment'])
     ->name('post_comment');
 Route::post('/post-like', [BlogController::class, 'postLike'])
     ->name('post_like');
+Route::patch('/post-unlike/{id}', [BlogController::class, 'postUnLike'])
+    ->name('post_unlike');
+Route::patch('/post-like-update/{id}', [BlogController::class, 'postLikeUpdate'])
+    ->name('post_like_update');
 Route::post('/post-dislike', [BlogController::class, 'postDislike'])
     ->name('post_dislike');
 

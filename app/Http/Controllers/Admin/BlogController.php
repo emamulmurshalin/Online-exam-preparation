@@ -240,4 +240,22 @@ class BlogController extends Controller
             ];
         }
     }
+    public function postUnLike(Request $request, $id)
+    {
+        $postLike = PostLike::findOrFail($id);
+        $postLike->update($request->all());
+        return [
+            'status' => 200,
+            'message' => 'Unliked',
+        ];
+    }
+    public function postLikeUpdate(Request $request, $id)
+    {
+        $postLike = PostLike::findOrFail($id);
+        $postLike->update($request->all());
+        return [
+            'status' => 200,
+            'message' => 'liked',
+        ];
+    }
 }
