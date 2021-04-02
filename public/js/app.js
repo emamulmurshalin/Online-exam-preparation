@@ -5110,10 +5110,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BlogPage",
   data: function data() {
@@ -58543,12 +58539,12 @@ var render = function() {
         ? _c("div", { staticClass: "row" }, [
             _c(
               "div",
-              { staticClass: "col-sm-9" },
+              { staticClass: "col-sm-12" },
               _vm._l(_vm.posts, function(post) {
                 return _c(
                   "div",
                   {
-                    staticClass: "col-sm-6 bg-background",
+                    staticClass: "col-sm-4 bg-background",
                     staticStyle: { height: "350px" }
                   },
                   [
@@ -58751,17 +58747,7 @@ var render = function() {
                 )
               }),
               0
-            ),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "col-sm-3",
-              staticStyle: {
-                "background-color": "yellow",
-                height: "350px",
-                "margin-top": "15px",
-                width: "23%"
-              }
-            })
+            )
           ])
         : _vm._e()
     ])

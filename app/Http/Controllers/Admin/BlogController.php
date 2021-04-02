@@ -34,7 +34,7 @@ class BlogController extends Controller
                     $q->where('name', '=', 'published');
                 })
                 ->latest()
-                ->limit(4)
+                ->limit(6)
                 ->get();
         }
         return Post::with([

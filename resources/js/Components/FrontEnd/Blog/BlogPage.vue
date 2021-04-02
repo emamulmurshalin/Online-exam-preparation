@@ -2,8 +2,8 @@
 <div class="container-fluid">
     <div class="card background">
         <div class="row" v-if="dataLoaded">
-            <div class="col-sm-9">
-                <div v-for="post in posts" class="col-sm-6 bg-background" style="height: 350px">
+            <div class="col-sm-12">
+                <div v-for="post in posts" class="col-sm-4 bg-background" style="height: 350px">
                     <div style="margin-top: 5px">
                         <h4 style="color: black">{{ post.title | titleTruncate }}</h4>
                     </div>
@@ -51,10 +51,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" style="background-color: yellow;
-            height: 350px; margin-top: 15px; width: 23%;">
-
             </div>
         </div>
     </div>
