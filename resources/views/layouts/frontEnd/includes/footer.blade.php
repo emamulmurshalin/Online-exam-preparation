@@ -59,8 +59,8 @@
     <div class="footer-copy-right">
         <div class="container">
             <div class="allah-copy">
-                <p>© 2020 Online Preparation. All rights reserved | Design by
-                    <a href="/">Group members</a>
+                <p>© 2021 A job helpline portal. All rights reserved | Design by
+                    <a href="/exam/about">Group members</a>
                 </p>
             </div>
             <div class="footercopy-social">

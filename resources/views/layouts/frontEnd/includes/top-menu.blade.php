@@ -11,7 +11,7 @@
                     </button>
                     <a class="navbar-brand" href="/">
                         <h1>
-                            <span class="fa fa-leanpub" aria-hidden="true"></span>Online Exam Preparation
+                            <span class="fa fa-leanpub" aria-hidden="true"></span>A job helpline portal
                             <label>Quiz & Question</label>
                         </h1>
                     </a>

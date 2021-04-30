@@ -4,7 +4,7 @@
     <a href="/dashboard" class="brand-link">
         <img src="{{asset('admin/dist/img/logo.png')}}" alt="Online job preparation" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Online job</span>
+        <span class="brand-text font-weight-light">A job helpline portal</span>
     </a>
 
     <!-- Sidebar -->

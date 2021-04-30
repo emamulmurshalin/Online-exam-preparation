@@ -7,6 +7,11 @@
   <component name="ChangeListManager">
     <list default="true" id="78fa4893-946d-463f-90d6-de0a75315f41" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/exam.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/exam.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/includes/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/includes/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin/includes/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/includes/top-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontEnd/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/frontEnd/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -517,6 +522,7 @@
       <workItem from="1616514893843" duration="686000" />
       <workItem from="1616602268833" duration="1305000" />
       <workItem from="1616605507830" duration="45281000" />
+      <workItem from="1619802127221" duration="249000" />
     </task>
     <servers />
   </component>
